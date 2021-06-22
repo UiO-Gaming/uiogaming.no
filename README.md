@@ -28,6 +28,8 @@ yarn install
 yarn start
 ```
 
+Du må også spesifisere URL for webhook i Sanity sitt dashbord. Du kan lese mer om det [her](https://www.sanity.io/docs/webhooks). Denne URLen skal peke på APIet ditt.
+
 ## Vil du bidra?
 
 Ta gjerne kontakt eller send inn en PR om du vil forbedre nettsiden.
