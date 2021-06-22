@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  place-items: center;
+  gap: 10rem;
+}
+
+.textContent {
+  display: grid;
+  place-items: center;
+}
+
+.joinSection {
+  margin: 3.5rem 0;
+  font-size: 2rem;
+}
+.joinSection h3 {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 60em) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}

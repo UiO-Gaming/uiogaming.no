@@ -1,0 +1,42 @@
+.container {
+  display: grid;
+  gap: 5rem;
+  justify-content: center;
+}
+
+.card {
+  display: grid;
+  gap: 1rem;
+  justify-content: stretch;
+  max-width: 80ch;
+}
+
+.published {
+  font-weight: 100;
+}
+.header {
+  font-size: 2.25rem;
+}
+.author {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 100;
+}
+.authorImage {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.link {
+  text-decoration: underline;
+  text-decoration-color: var(--link-color);
+}
+.link:hover {
+  text-decoration-color: var(--link-color-hover);
+}
+
+.allBlogPosts {
+  place-self: center;
+}

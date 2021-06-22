@@ -1,11 +1,17 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `UiO Gaming`,
+    description: `En hobbyforening som ønsker skape et sosialt miljø rundt gaming og E-sport på UiO!`,
+    author: `@uiogaming`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/images/logo.jpg",
+      },
+    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -17,18 +23,25 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `gatsby-source-sanity`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        projectId: `mmqlu667`,
+        dataset: `production`,
+        watchMode: true,
       },
     },
-    `gatsby-plugin-gatsby-cloud`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `UiO Gaming`,
+        short_name: `uiogaming.no`,
+        start_url: `/`,
+        background_color: `#171520`,
+        theme_color: `#E2231A`,
+        display: `minimal-ui`,
+        icon: `src/images/logo.jpg`, // This path is relative to the root of the site.
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

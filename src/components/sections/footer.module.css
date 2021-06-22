@@ -1,0 +1,35 @@
+footer {
+  background-color: var(--footer-color);
+  padding: 10rem 3rem;
+  display: grid;
+  place-items: center;
+}
+
+.footer {
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+  grid-template-rows: auto;
+}
+
+.orgInfo {
+  text-align: center;
+}
+.orgInfo * {
+  margin: 1rem 0;
+}
+.links * {
+  margin: 0.75rem 0;
+}
+
+@media (min-width: 70em) {
+  .footer {
+    grid-template-columns: 1fr 1fr 2fr;
+  }
+  .orgInfo {
+    text-align: left;
+  }
+  .links {
+    justify-self: start;
+  }
+}

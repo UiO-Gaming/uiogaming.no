@@ -1,0 +1,23 @@
+.container {
+  background-image: url("https://lblend.moe/temp/uiogaming/assets/img/keyboard.jpg"); /* Placeholder image */
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%);
+
+  padding: 1rem;
+  padding-bottom: 10vh;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+
+  max-width: none;
+  text-align: center;
+}
+.container > p {
+  max-width: 40ch;
+}

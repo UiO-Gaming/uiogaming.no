@@ -1,0 +1,16 @@
+.container {
+  display: grid;
+  gap: 1rem;
+  justify-content: center;
+}
+.item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.left {
+  justify-self: end;
+}
+.right {
+  justify-self: start;
+}

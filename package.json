@@ -1,31 +1,30 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "uiogaming.no",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "UiO Gaming Website",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "LBlend <lblend@protonmail.com",
   "dependencies": {
+    "@sanity/block-content-to-react": "^3.0.0",
     "gatsby": "^3.4.1",
-    "gatsby-plugin-gatsby-cloud": "^2.4.1",
     "gatsby-plugin-image": "^1.4.0",
     "gatsby-plugin-manifest": "^3.4.0",
     "gatsby-plugin-offline": "^4.4.0",
     "gatsby-plugin-react-helmet": "^4.4.0",
-    "gatsby-plugin-sharp": "^3.4.1",
-    "gatsby-source-filesystem": "^3.4.0",
-    "gatsby-transformer-sharp": "^3.4.0",
+    "gatsby-plugin-sharp": "^3.7.1",
+    "gatsby-source-filesystem": "^3.7.1",
+    "gatsby-source-sanity": "^7.0.4",
+    "gatsby-transformer-sharp": "^3.7.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-helmet": "^6.1.0"
+    "react-helmet": "^6.1.0",
+    "react-icons": "^4.2.0",
+    "sharp": "^0.28.3"
   },
   "devDependencies": {
     "prettier": "2.2.1"
   },
-  "keywords": [
-    "gatsby"
-  ],
-  "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -37,9 +36,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
+    "url": "https://github.com/UiO-Gaming/uiogaming.no"
   },
   "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/UiO-Gaming/uiogaming.no/issues"
   }
 }

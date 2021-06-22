@@ -1,0 +1,43 @@
+.container {
+  display: grid;
+  place-items: center;
+}
+.article {
+  display: grid;
+  place-items: center;
+  padding: 3rem 1rem;
+}
+.header {
+  border-bottom: var(--blog-header-divider);
+  padding-bottom: 1rem;
+  margin-bottom: 3rem;
+}
+.headerImage {
+  max-height: 75vh;
+  margin: 1rem 0;
+  max-width: 1280px;
+}
+h1 {
+  font-size: 3rem;
+  line-height: 1;
+  padding: 1.5rem 0;
+}
+.content {
+  max-width: 60ch;
+}
+
+.published {
+  font-weight: 100;
+}
+
+.author {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 100;
+}
+.author img {
+  border-radius: 50%;
+  border: 2px solid white;
+}
