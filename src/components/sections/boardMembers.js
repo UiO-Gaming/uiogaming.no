@@ -13,6 +13,7 @@ const BoardMembers = () => {
       ) {
         edges {
           node {
+            _id
             boardMember
             email
             name
@@ -34,7 +35,7 @@ const BoardMembers = () => {
       <h2>Styret</h2>
       <div className={styles.container}>
         {data.allSanityAuthor.edges.map(({ node: member }) => (
-          <article className={styles.card}>
+          <article key={member._id} className={styles.card}>
             <div className={styles.header}>
               <GatsbyImage
                 image={member.image.asset.gatsbyImageData}

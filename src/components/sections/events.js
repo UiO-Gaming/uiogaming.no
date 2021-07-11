@@ -21,6 +21,7 @@ const Events = () => {
       allSanityEvent(sort: { fields: date, order: ASC }) {
         edges {
           node {
+            _id
             title
             location
             date(locale: "nb_NO", formatString: "dddd D. MMM Y")
@@ -44,7 +45,7 @@ const Events = () => {
             .slice(0, 2)
             .map(({ node: event }) => (
               <Link to={"event/" + event.slug.current}>
-                <article className={styles.card}>
+                <article key={event._id} className={styles.card}>
                   <h3>{event.title}</h3>
                   <div>
                     <div>

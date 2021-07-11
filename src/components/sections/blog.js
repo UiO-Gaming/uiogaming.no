@@ -10,6 +10,7 @@ const Blog = () => {
       allSanityPost(limit: 3, sort: { fields: _createdAt, order: DESC }) {
         edges {
           node {
+            _id
             _createdAt(formatString: "D. MMMM Y", locale: "nb_NO")
             slug {
               current
@@ -35,7 +36,7 @@ const Blog = () => {
       <h2>Bloggen</h2>
       <div className={styles.container}>
         {data.allSanityPost.edges.map(({ node: post }) => (
-          <div className={styles.card}>
+          <div key={post._id} className={styles.card}>
             <p className={styles.published}>
               <time>{post._createdAt}</time>
             </p>
