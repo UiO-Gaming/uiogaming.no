@@ -40,6 +40,7 @@ const BoardMembers = () => {
               <GatsbyImage
                 image={member.image.asset.gatsbyImageData}
                 className={styles.headerImage}
+                alt={"Bilde av styemedlem, " + member.name}
               />
               <div className={styles.info}>
                 <h3>{member.name}</h3>
