@@ -18,7 +18,7 @@ const Events = () => {
           )
         }
       }
-      allSanityEvent(limit: 2, sort: { fields: date, order: ASC }) {
+      allSanityEvent(sort: { fields: date, order: ASC }) {
         edges {
           node {
             title
@@ -39,24 +39,27 @@ const Events = () => {
       <div className={styles.container}>
         <h2 className={styles.sectionHeader}>Hva skjer?</h2>
         <div className={styles.events}>
-          {data.allSanityEvent.edges.map(({ node: event }) => (
-            <Link to={"event/" + event.slug.current}>
-              <article className={styles.card}>
-                <h3>{event.title}</h3>
-                <div>
+          {data.allSanityEvent.edges
+            .filter(({ node }) => new Date(node.date).getTime() > Date.now())
+            .slice(0, 2)
+            .map(({ node: event }) => (
+              <Link to={"event/" + event.slug.current}>
+                <article className={styles.card}>
+                  <h3>{event.title}</h3>
                   <div>
-                    <FaMapMarkerAlt />
-                    <p>{event.location}</p>
+                    <div>
+                      <FaMapMarkerAlt />
+                      <p>{event.location}</p>
+                    </div>
+                    <div>
+                      <FaCalendarAlt />
+                      <p>{event.date}</p>
+                    </div>
                   </div>
-                  <div>
-                    <FaCalendarAlt />
-                    <p>{event.date}</p>
-                  </div>
-                </div>
-                <p>{event.description}</p>
-              </article>
-            </Link>
-          ))}
+                  <p>{event.description}</p>
+                </article>
+              </Link>
+            ))}
         </div>
         <div className={"no-mobile " + styles.image}>
           <GatsbyImage
