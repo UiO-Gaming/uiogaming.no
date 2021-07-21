@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as styles from "./blogPost.module.css"
-
+import Seo from "../components/seo"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import PortableText from "@sanity/block-content-to-react"
@@ -57,28 +57,34 @@ const serializer = {
 
 const BlogPost = ({ data }) => {
   return (
-    <div className={styles.container}>
-      <article>
-        <header>
-          <p className={styles.published}>{data.sanityPost._createdAt}</p>
-          <GatsbyImage
-            image={data.sanityPost.mainImage.asset.gatsbyImageData}
-            className={styles.headerImage}
-          />
-          <h1>{data.sanityPost.title}</h1>
-          <p>{data.sanityPost.excerpt}</p>
-          <div className={styles.author}>
+    <>
+      <Seo title={data.sanityPost.title} />
+      <div className={styles.container}>
+        <article>
+          <header>
+            <p className={styles.published}>{data.sanityPost._createdAt}</p>
             <GatsbyImage
-              image={data.sanityPost.author.image.asset.gatsbyImageData}
+              image={data.sanityPost.mainImage.asset.gatsbyImageData}
+              className={styles.headerImage}
             />
-            <p>{data.sanityPost.author.name}</p>
+            <h1>{data.sanityPost.title}</h1>
+            <p>{data.sanityPost.excerpt}</p>
+            <div className={styles.author}>
+              <GatsbyImage
+                image={data.sanityPost.author.image.asset.gatsbyImageData}
+              />
+              <p>{data.sanityPost.author.name}</p>
+            </div>
+          </header>
+          <div className={styles.content}>
+            <PortableText
+              blocks={data.sanityPost.body}
+              serializer={serializer}
+            />
           </div>
-        </header>
-        <div className={styles.content}>
-          <PortableText blocks={data.sanityPost.body} serializer={serializer} />
-        </div>
-      </article>
-    </div>
+        </article>
+      </div>
+    </>
   )
 }
 
