@@ -1,0 +1,36 @@
+body {
+  display: grid;
+  place-content: center;
+  min-height: none;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  margin: 1rem;
+}
+
+.event {
+  display: grid;
+  max-width: 60ch;
+}
+
+.event > h1 {
+  text-align: center;
+  text-decoration: underline;
+  text-decoration-color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+.metadata {
+  display: grid;
+  place-content: stretch;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+  font-weight: 100;
+}
+
+.description {
+  margin-top: 1rem;
+}
