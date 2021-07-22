@@ -3,6 +3,8 @@ module.exports = {
     title: `UiO Gaming`,
     description: `En hobbyforening som ønsker skape et sosialt miljø rundt gaming og E-sport på UiO!`,
     author: `@uiogaming`,
+    url: `https://uiogaming.no`,
+    image: `/images/logo.jpg`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

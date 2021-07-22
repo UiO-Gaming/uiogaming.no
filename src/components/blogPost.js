@@ -58,7 +58,10 @@ const serializer = {
 const BlogPost = ({ data }) => {
   return (
     <>
-      <Seo title={data.sanityPost.title} />
+      <Seo
+        title={data.sanityPost.title}
+        image={data.sanityPost.mainImage.asset.GatsbyImage}
+      />
       <div className={styles.container}>
         <article>
           <header>
