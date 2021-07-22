@@ -10,6 +10,8 @@
 }
 
 .joinSection {
+  display: grid;
+  place-items: center;
   margin: 3.5rem 0;
   font-size: 2rem;
 }
@@ -21,5 +23,8 @@
   .container {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
+  }
+  .joinSection {
+    place-items: start;
   }
 }
