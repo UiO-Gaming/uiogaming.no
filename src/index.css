@@ -223,8 +223,8 @@ section h2 {
 
 /* ===== Page specific ===== */
 .center {
-  height: 100vh;
-  display: grid;
-  place-content: center;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
