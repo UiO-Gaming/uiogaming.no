@@ -42,6 +42,7 @@
 .headerImage {
   border-radius: 50%;
   border: 5px solid white;
+  overflow: hidden; /* Fuck webkit and apple for not following web standards */
   /* box-shadow: inset 0 0 10px #000000; */
 }
 
