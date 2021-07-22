@@ -3,6 +3,7 @@ import * as styles from "./event.module.css"
 import Seo from "../components/seo"
 import { graphql } from "gatsby"
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
+import Back from "./items/back"
 
 export const query = graphql`
   query($id: String!) {
@@ -24,6 +25,7 @@ const Event = ({ data }) => {
     <>
       <Seo title={data.sanityEvent.title} />
       <div className={styles.container}>
+        <Back />
         <div className={styles.event}>
           <h1>{data.sanityEvent.title}</h1>
           <div className={styles.metadata}>
