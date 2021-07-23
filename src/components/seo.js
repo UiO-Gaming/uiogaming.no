@@ -52,10 +52,6 @@ function Seo({ description, lang, meta, image: metaImage, title, author }) {
           content: metaDescription,
         },
         {
-          name: "keywords",
-          content: site.siteMetadata.keywords.join(","),
-        },
-        {
           property: `og:site_name`,
           content: site.siteMetadata.title,
         },
