@@ -61,7 +61,7 @@ const BlogPost = ({ data }) => {
     <>
       <Seo
         title={data.sanityPost.title}
-        image={data.sanityPost.mainImage.asset.url}
+        imageURL={data.sanityPost.mainImage.asset.url}
         description={data.sanityPost.excerpt}
         author={data.sanityPost.author.name}
       />
