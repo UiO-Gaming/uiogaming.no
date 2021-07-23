@@ -23,7 +23,10 @@ export const query = graphql`
 const Event = ({ data }) => {
   return (
     <>
-      <Seo title={data.sanityEvent.title} />
+      <Seo
+        title={data.sanityEvent.title}
+        description={`Tidspunkt: ${data.sanityEvent.date}\nSted: ${data.sanityEvent.location}\n\n${data.sanityEvent.description}`}
+      />
       <div className={styles.container}>
         <Back />
         <div className={styles.event}>

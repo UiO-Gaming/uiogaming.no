@@ -21,6 +21,7 @@ export const query = graphql`
       }
       mainImage {
         asset {
+          url
           gatsbyImageData
         }
       }
@@ -60,7 +61,9 @@ const BlogPost = ({ data }) => {
     <>
       <Seo
         title={data.sanityPost.title}
-        image={data.sanityPost.mainImage.asset.GatsbyImage}
+        image={data.sanityPost.mainImage.asset.url}
+        description={data.sanityPost.excerpt}
+        author={data.sanityPost.author.name}
       />
       <div className={styles.container}>
         <article>
