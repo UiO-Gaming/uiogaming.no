@@ -29,11 +29,8 @@ function Seo({ description, lang, meta, image: metaImage, title, author }) {
   const metaAuthor = author || site.siteMetadata.author
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
-
   const image =
-    metaImage && metaImage.src
-      ? `${site.siteMetadata.siteUrl}${metaImage.src}`
-      : null
+    image || `${site.siteMetadata.siteUrl}/${site.siteMetadata.image}`
 
   return (
     <Helmet
@@ -120,9 +117,11 @@ Seo.defaultProps = {
   lang: `no`,
   meta: [],
   description: ``,
+  image: null,
 }
 
 Seo.propTypes = {
+  image: PropTypes.string,
   description: PropTypes.string,
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.object),
