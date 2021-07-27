@@ -3,6 +3,7 @@ import * as styles from "./events.module.css"
 
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import moment from "moment"
 
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
@@ -35,13 +36,18 @@ const Events = () => {
     }
   `)
 
+  const currentDate = new Date()
+
   return (
     <section className={styles.stretch}>
       <div className={styles.container}>
         <h2 className={styles.sectionHeader}>Hva skjer?</h2>
         <div className={styles.events}>
           {data.allSanityEvent.edges
-            .filter(({ node }) => new Date(node.date).getTime() > Date.now())
+            .filter(({ node: event }) => {
+              const eventDate = event.date.split(" ").slice(1).join(" ")
+              return currentDate < moment(eventDate, "D. MMM Y")
+            })
             .slice(0, 2)
             .map(({ node: event }) => (
               <Link to={"event/" + event.slug.current}>
