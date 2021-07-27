@@ -29,7 +29,6 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
   const metaAuthor = author || site.siteMetadata.author
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
-  const image = imageURL || `${site.siteMetadata.url}/logo.jpg`
 
   return (
     <Helmet
@@ -81,11 +80,11 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
         },
       ]
         .concat(
-          image
+          imageURL
             ? [
                 {
                   property: "og:image",
-                  content: image,
+                  content: imageURL,
                 },
                 {
                   name: "twitter:card",
@@ -93,6 +92,10 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
                 },
               ]
             : [
+                {
+                  property: "og:image",
+                  content: `${site.siteMetadata.url}/logo.jpg`,
+                },
                 {
                   name: "twitter:card",
                   content: "summary",
