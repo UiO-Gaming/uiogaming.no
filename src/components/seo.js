@@ -52,7 +52,7 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: title ? title : defaultTitle,
         },
         {
           property: `og:description`,
