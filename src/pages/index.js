@@ -15,7 +15,7 @@ import Footer from "../components/sections/footer"
 
 const IndexPage = () => (
   <Layout>
-    <Seo title="Home" />
+    <Seo />
     <Header />
     <About />
     <Events />
