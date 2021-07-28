@@ -210,6 +210,23 @@ section h2 {
 .no-mobile {
   display: none;
 }
+.circular-container {
+  /* Fuck webkit */
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -khtml-border-radius: 50%;
+}
+.circular {
+  /* Fuck webkit */
+  overflow: hidden;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -khtml-border-radius: 50%;
+  mask-image: radial-gradient(white, black);
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
 @media (min-width: 60em) {
   .no-mobile {
     display: block;

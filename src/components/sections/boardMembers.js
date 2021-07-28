@@ -37,10 +37,12 @@ const BoardMembers = () => {
         {data.allSanityAuthor.edges.map(({ node: member }) => (
           <article key={member._id} className={styles.card}>
             <div className={styles.header}>
-              <div className={styles.headerImageContainer}>
+              <div
+                className={`circular-container ${styles.headerImageContainer}`}
+              >
                 <GatsbyImage
                   image={member.image.asset.gatsbyImageData}
-                  className={styles.headerImage}
+                  className="circular"
                   alt={"Bilde av styemedlem, " + member.name}
                   roundedCircle
                 />

@@ -50,11 +50,13 @@ const Blog = () => {
             </h3>
             <p>{post.excerpt}</p>
             <div className={styles.author}>
-              <GatsbyImage
-                image={post.author.image.asset.gatsbyImageData}
-                className={styles.authorImage}
-                alt={"Forfatteren av innlegget, " + post.author.name}
-              />
+              <div className="circular-container">
+                <GatsbyImage
+                  image={post.author.image.asset.gatsbyImageData}
+                  className={`circular ${styles.authorImage}`}
+                  alt={"Forfatteren av innlegget, " + post.author.name}
+                />
+              </div>
               <p>{post.author.name}</p>
             </div>
           </div>
