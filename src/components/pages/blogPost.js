@@ -1,6 +1,6 @@
 import * as React from "react"
 import * as styles from "./blogPost.module.css"
-import Seo from "../components/seo"
+import Seo from "../seo"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import PortableText from "@sanity/block-content-to-react"

@@ -1,9 +1,9 @@
 import * as React from "react"
 import * as styles from "./event.module.css"
-import Seo from "../components/seo"
+import Seo from "../seo"
 import { graphql } from "gatsby"
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
-import Back from "./items/back"
+import Back from "../items/back"
 
 export const query = graphql`
   query($id: String!) {
