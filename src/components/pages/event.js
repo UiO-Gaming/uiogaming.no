@@ -4,14 +4,14 @@ import Seo from "../seo"
 import { graphql } from "gatsby"
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 import Back from "../items/back"
+import moment from "moment-timezone"
 
 export const query = graphql`
   query($id: String!) {
     sanityEvent(_id: { eq: $id }) {
-      _createdAt(formatString: "DD. MMMM, YYYY", locale: "nb_NO")
       title
       location
-      date(locale: "nb_NO", formatString: "dddd D. MMM Y")
+      date
       slug {
         current
       }
@@ -21,11 +21,15 @@ export const query = graphql`
 `
 
 const Event = ({ data }) => {
+  const time = moment(data.sanityEvent.date)
+    .tz("Europe/Oslo")
+    .format("dddd Do MMMM, [kl.] H:mm")
+
   return (
     <>
       <Seo
         title={data.sanityEvent.title}
-        description={`Tidspunkt: ${data.sanityEvent.date}\nSted: ${data.sanityEvent.location}\n\n${data.sanityEvent.description}`}
+        description={`Tidspunkt: ${time}\nSted: ${data.sanityEvent.location}\n\n${data.sanityEvent.description}`}
       />
       <div className={styles.container}>
         <Back />
@@ -37,7 +41,11 @@ const Event = ({ data }) => {
           </div>
           <div className={styles.metadata}>
             <FaCalendarAlt />
-            <p>{data.sanityEvent.date}</p>
+            <p>
+              {moment(data.sanityEvent.date)
+                .tz("Europe/Oslo")
+                .format("dddd Do MMMM, [kl.] H:mm")}
+            </p>
           </div>
           <p className={styles.description}>{data.sanityEvent.description}</p>
         </div>

@@ -3,7 +3,7 @@ import * as styles from "./events.module.css"
 
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import moment from "moment"
+import moment from "moment-timezone"
 
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
@@ -25,7 +25,7 @@ const Events = () => {
             _id
             title
             location
-            date(locale: "nb_NO", formatString: "dddd D. MMM Y")
+            date
             slug {
               current
             }
@@ -36,12 +36,13 @@ const Events = () => {
     }
   `)
 
-  const currentDate = new Date()
+  moment.locale("nb_NO")
+  const currentDate = moment().utc()
+  console.log(currentDate)
 
   const filteredEvents = data.allSanityEvent.edges
     .filter(({ node: event }) => {
-      const eventDate = event.date.split(" ").slice(1).join(" ")
-      return currentDate <= moment(eventDate, "D. MMM Y")
+      return currentDate <= moment.utc(event.date)
     })
     .slice(0, 2)
 
@@ -58,7 +59,11 @@ const Events = () => {
               </div>
               <div>
                 <FaCalendarAlt />
-                <p>{event.date}</p>
+                <p>
+                  {moment(event.date)
+                    .tz("Europe/Oslo")
+                    .format("dddd Do MMMM, [kl.] H:mm")}
+                </p>
               </div>
             </div>
             <p>{event.description}</p>
