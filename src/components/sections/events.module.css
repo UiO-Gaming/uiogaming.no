@@ -67,6 +67,9 @@
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
   }
+  .container > h2 {
+    margin-bottom: 1em;
+  }
   .sectionHeader {
     margin-bottom: 0.5em;
   }
