@@ -41,7 +41,7 @@ const Events = () => {
   const filteredEvents = data.allSanityEvent.edges
     .filter(({ node: event }) => {
       const eventDate = event.date.split(" ").slice(1).join(" ")
-      return currentDate < moment(eventDate, "D. MMM Y")
+      return currentDate <= moment(eventDate, "D. MMM Y")
     })
     .slice(0, 2)
 
