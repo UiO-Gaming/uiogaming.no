@@ -44,7 +44,6 @@ const BoardMembers = () => {
                   image={member.image.asset.gatsbyImageData}
                   className="circular"
                   alt={"Bilde av styemedlem, " + member.name}
-                  roundedCircle
                 />
               </div>
               <div className={styles.info}>
