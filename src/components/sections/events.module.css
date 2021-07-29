@@ -5,8 +5,11 @@
 .container {
   display: grid;
   place-items: center;
-  gap: 3rem;
+  gap: 6em;
   grid-template-rows: auto 1fr;
+}
+.container > h2 {
+  margin: 0;
 }
 .sectionHeader {
   grid-column: 1;
@@ -17,7 +20,7 @@
 .events {
   display: grid;
   width: 100%;
-  gap: 3rem;
+  gap: 2rem;
 }
 .events > *,
 *:hover {
@@ -62,6 +65,7 @@
   }
   .container {
     grid-template-columns: 1fr 1fr;
+    gap: 3rem;
   }
   .sectionHeader {
     margin-bottom: 0.5em;
