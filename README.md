@@ -37,3 +37,5 @@ Docker er for øyeblikket ikke støttet, men vil støttes fremtiden.
 ## Vil du bidra?
 
 Ta gjerne kontakt eller send inn en PR om du vil forbedre nettsiden.
+
+Sjekk også ut [bidgragsguiden](CONTRIBUTING.md) vår før du sender noe som helst inn.
