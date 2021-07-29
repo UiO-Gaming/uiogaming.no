@@ -27,6 +27,10 @@
   justify-self: center;
 }
 
+.noEvents {
+  text-align: center;
+}
+
 .card {
   display: grid;
   box-shadow: var(--shadow);
