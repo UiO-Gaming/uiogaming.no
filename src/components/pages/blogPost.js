@@ -51,6 +51,7 @@ const BlogPost = ({ data }) => {
             <p className={styles.excerpt}>{data.sanityPost.excerpt}</p>
             <div className={styles.author}>
               <GatsbyImage
+                className="circular"
                 image={data.sanityPost.author.image.asset.gatsbyImageData}
               />
               <div className={styles.authorNameSection}>
