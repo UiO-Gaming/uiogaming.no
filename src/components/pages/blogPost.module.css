@@ -55,13 +55,10 @@
 }
 
 /* Block content styling */
-.content h1,
-h2,
-h3,
-h4 {
+/* .content {
   padding-inline-start: 1rem;
   border-inline-start: 8px solid var(--main-color);
-}
+} */
 .content blockquote {
   color: rgb(225, 225, 225);
   font-weight: 100;
