@@ -3,7 +3,7 @@ import * as styles from "./blogPost.module.css"
 import Seo from "../seo"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import PortableText from "@sanity/block-content-to-react"
+import BlockContent from "@sanity/block-content-to-react"
 import urlBuilder from "@sanity/image-url"
 
 export const query = graphql`
@@ -15,7 +15,7 @@ export const query = graphql`
         name
         image {
           asset {
-            gatsbyImageData(width: 64, height: 64)
+            gatsbyImageData(width: 50, height: 50)
           }
         }
       }
@@ -26,35 +26,10 @@ export const query = graphql`
         }
       }
       excerpt
-      body {
-        children {
-          _key
-          _type
-          text
-          marks
-        }
-        _type
-        list
-        style
-      }
+      _rawBody(resolveReferences: { maxDepth: 10 })
     }
   }
 `
-
-const urlFor = source =>
-  urlBuilder({ projectId: "mmqlu667", dataset: "production" }).image(source)
-
-const serializer = {
-  types: {
-    mainImage: props => (
-      <figure>
-        <img src={urlFor(props.node.asset).width(600).url()} />
-
-        <figcaption>{props.node.caption}</figcaption>
-      </figure>
-    ),
-  },
-}
 
 const BlogPost = ({ data }) => {
   return (
@@ -66,28 +41,28 @@ const BlogPost = ({ data }) => {
         author={data.sanityPost.author.name}
       />
       <div className={styles.container}>
-        <article>
-          <header>
-            <p className={styles.published}>{data.sanityPost._createdAt}</p>
+        <article className={styles.article}>
+          <header className={styles.header}>
             <GatsbyImage
               image={data.sanityPost.mainImage.asset.gatsbyImageData}
               className={styles.headerImage}
             />
-            <h1>{data.sanityPost.title}</h1>
-            <p>{data.sanityPost.excerpt}</p>
+            <h1 className={styles.title}>{data.sanityPost.title}</h1>
+            <p className={styles.excerpt}>{data.sanityPost.excerpt}</p>
             <div className={styles.author}>
               <GatsbyImage
                 image={data.sanityPost.author.image.asset.gatsbyImageData}
               />
-              <p>{data.sanityPost.author.name}</p>
+              <div className={styles.authorNameSection}>
+                <p>{data.sanityPost.author.name}</p>
+                <p>{data.sanityPost._createdAt}</p>
+              </div>
             </div>
           </header>
-          <div className={styles.content}>
-            <PortableText
-              blocks={data.sanityPost.body}
-              serializer={serializer}
-            />
-          </div>
+          <BlockContent
+            className={styles.content}
+            blocks={data.sanityPost._rawBody}
+          />
         </article>
       </div>
     </>
