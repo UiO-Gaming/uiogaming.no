@@ -3,11 +3,12 @@ const { exec } = require("child_process")
 const cors = require("cors")
 
 const app = express()
-const port = 9001
+const frontendURL = process.env.FRONTEND_URL || "https://uiogaming.no"
+const port = process.env.PORT || 9001
 
 app.use(express.json())
 
-const corsOptions = cors({ origin: "https://uiogaming.no" })
+const corsOptions = cors({ origin: frontendURL })
 
 app.get("/", (req, res) => {
   res.send("API is running! Yeet!")
@@ -27,5 +28,5 @@ app.post("/build", corsOptions, (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`LIVE! http://localhost:${port}`)
+  console.log(`LIVE! http://0.0.0.0:${port}`)
 })
