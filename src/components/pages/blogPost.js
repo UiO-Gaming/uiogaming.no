@@ -4,7 +4,6 @@ import Seo from "../seo"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import BlockContent from "@sanity/block-content-to-react"
-import urlBuilder from "@sanity/image-url"
 
 export const query = graphql`
   query($id: String!) {
