@@ -4,6 +4,7 @@ import Seo from "../seo"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import BlockContent from "@sanity/block-content-to-react"
+import Back from "../items/back"
 
 export const query = graphql`
   query($id: String!) {
@@ -40,6 +41,9 @@ const BlogPost = ({ data }) => {
         author={data.sanityPost.author.name}
       />
       <div className={styles.container}>
+        <div className={styles.backButton}>
+          <Back />
+        </div>
         <article className={styles.article}>
           <header className={styles.header}>
             <GatsbyImage

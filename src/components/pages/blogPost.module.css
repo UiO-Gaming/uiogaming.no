@@ -1,11 +1,14 @@
 .container {
   display: grid;
   place-items: center;
+  padding: 1rem 0;
+}
+.backButton {
+  justify-self: start;
 }
 .article {
   display: grid;
   place-items: center;
-  padding: 1rem 0;
 }
 .header > * {
   padding: 0 1rem;
