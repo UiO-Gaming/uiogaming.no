@@ -69,6 +69,13 @@
   border-inline-start: 2px solid var(--link-color-hover);
 }
 
+.content h1,
+.content h2,
+.content h3,
+.content h4 {
+  margin-top: 3rem;
+}
+
 /* .content blockquote::before {
   content: '"';
   font-size: 3rem;
