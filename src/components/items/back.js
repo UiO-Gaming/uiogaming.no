@@ -5,10 +5,13 @@ import { Link } from "gatsby"
 import { FaArrowLeft } from "react-icons/fa"
 
 const Back = () => (
-  <Link to="/" className={styles.container}>
+  <button
+    className={`${styles.container} ${styles.button}`}
+    onClick={() => window.history.back()}
+  >
     <FaArrowLeft />
     <p>Tilbake</p>
-  </Link>
+  </button>
 )
 
 export default Back

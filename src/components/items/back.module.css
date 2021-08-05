@@ -4,3 +4,13 @@
   justify-content: center;
   gap: 0.5rem;
 }
+
+.button {
+  background: none;
+  border: none;
+  color: var(--link-color);
+}
+.button:hover,
+.button *:hover {
+  color: var(--link-color-hover);
+}
