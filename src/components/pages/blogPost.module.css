@@ -65,6 +65,7 @@
 .content blockquote {
   color: rgb(225, 225, 225);
   font-weight: 100;
+  margin-inline-start: 2rem;
   padding-inline-start: 2rem;
   border-inline-start: 2px solid var(--link-color-hover);
 }
