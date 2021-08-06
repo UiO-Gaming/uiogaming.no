@@ -38,7 +38,6 @@ const Events = () => {
 
   moment.locale("nb_NO")
   const currentDate = moment().utc()
-  console.log(currentDate)
 
   const filteredEvents = data.allSanityEvent.edges
     .filter(({ node: event }) => {
