@@ -7,15 +7,13 @@ const app = express()
 const frontendURL = process.env.FRONTEND_URL || "https://uiogaming.no"
 const port = process.env.PORT || 9001
 
-app.use(express.json())
-
-const corsOptions = cors({ origin: frontendURL })
+app.use(cors({ origin: frontendURL }))
 
 app.get("/", (req, res) => {
   res.send("API is running! Yeet!")
 })
 
-app.post("/build", corsOptions, (req, res) => {
+app.post("/build", (req, res) => {
   exec("cd ../ && gatsby build", (error, stdout, stderr) => {
     if (error) {
       console.log(stderr.message)
