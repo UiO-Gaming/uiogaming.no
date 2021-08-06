@@ -1,8 +1,7 @@
 import * as React from "react"
+import "../index.css"
 
 import { Link } from "gatsby"
-
-import "../index.css"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"

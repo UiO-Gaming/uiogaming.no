@@ -1,8 +1,10 @@
 import * as React from "react"
 import * as styles from "./blogPost.module.css"
-import Seo from "../seo"
+
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+
+import Seo from "../seo"
 import BlockContent from "@sanity/block-content-to-react"
 import Back from "../items/back"
 

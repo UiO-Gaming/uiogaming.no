@@ -1,6 +1,7 @@
 const express = require("express")
-const { exec } = require("child_process")
 const cors = require("cors")
+
+const { exec } = require("child_process")
 
 const app = express()
 const frontendURL = process.env.FRONTEND_URL || "https://uiogaming.no"

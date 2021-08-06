@@ -1,6 +1,6 @@
 import * as React from "react"
-
 import * as styles from "./back.module.css"
+
 import { FaArrowLeft } from "react-icons/fa"
 
 const Back = () => (

@@ -1,5 +1,4 @@
 import * as React from "react"
-
 import * as styles from "./button.module.css"
 
 const Button = () => (
@@ -12,5 +11,4 @@ const Button = () => (
     Bli med!
   </a>
 )
-
 export default Button
