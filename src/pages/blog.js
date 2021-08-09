@@ -62,6 +62,7 @@ const BlogPage = ({ data }) => (
                 <div className={styles.author}>
                   <GatsbyImage
                     className={`circular ${styles.authorImage}`}
+                    alt={"Forfatteren av innlegget, " + post.node.author.name}
                     image={post.node.author.image.asset.gatsbyImageData}
                   />
                   <p>{post.node.author.name}</p>
