@@ -1,5 +1,5 @@
 import * as React from "react"
-import * as styles from "./event.module.css"
+import * as styles from "./eventPost.module.css"
 
 import { graphql } from "gatsby"
 import moment from "moment-timezone"
