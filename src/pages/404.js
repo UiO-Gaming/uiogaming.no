@@ -1,4 +1,5 @@
 import * as React from "react"
+import * as styles from "./404.module.css"
 
 import { Link } from "gatsby"
 
@@ -8,15 +9,15 @@ import Seo from "../components/seo"
 const NotFoundPage = () => (
   <Layout>
     <Seo title="404: Not found" />
-    <div className="center" style={{ margin: "1rem" }}>
-      <h1 style={{ textAlign: "center" }}>404: Siden finnes ikke</h1>
-      <p style={{ textAlign: "center" }}>
+    <div className={styles.container}>
+      <h1 className={styles.centeredText}>404: Siden finnes ikke</h1>
+      <p className={styles.centeredText}>
         Du har nådd en blindvei, men ikke på Blindern{" "}
         <span role="img" aria-label="eyes">
           👀
         </span>
       </p>
-      <Link to="/" style={{ textAlign: "center", marginTop: "1rem" }}>
+      <Link to="/" className={`${styles.centeredText} ${styles.homeLink}`}>
         Tilbake til hjemmesiden
       </Link>
     </div>

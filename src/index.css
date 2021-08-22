@@ -237,11 +237,3 @@ section h2 {
     margin-bottom: 1em;
   }
 }
-
-/* ===== Page specific ===== */
-.center {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
