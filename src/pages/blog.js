@@ -10,7 +10,7 @@ import Back from "../components/items/back"
 
 export const query = graphql`
   query {
-    allSanityPost {
+    allSanityPost(sort: { fields: _createdAt, order: DESC }) {
       edges {
         node {
           title
