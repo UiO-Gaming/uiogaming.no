@@ -4,9 +4,9 @@ import * as styles from "./blogPost.module.css"
 import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import Seo from "../seo"
+import Seo from "../components/seo"
 import BlockContent from "@sanity/block-content-to-react"
-import Back from "../items/back"
+import Back from "../components/items/back"
 
 export const query = graphql`
   query($id: String!) {

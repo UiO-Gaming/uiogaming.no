@@ -4,8 +4,8 @@ import * as styles from "./event.module.css"
 import { graphql } from "gatsby"
 import moment from "moment-timezone"
 
-import Seo from "../seo"
-import Back from "../items/back"
+import Seo from "../components/seo"
+import Back from "../components/items/back"
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
 export const query = graphql`

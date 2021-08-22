@@ -2,8 +2,8 @@ const path = require("path")
 
 module.exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
-  const blogTemplate = path.resolve("./src/components/pages/blogPost.js")
-  const eventTemplate = path.resolve("./src/components/pages/event.js")
+  const blogTemplate = path.resolve("./src/pages/blogPost.js")
+  const eventTemplate = path.resolve("./src/pages/event.js")
   const result = await graphql(`
     query {
       allSanityPost {
