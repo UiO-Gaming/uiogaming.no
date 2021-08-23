@@ -2,7 +2,7 @@
   "name": "uiogaming.no",
   "private": true,
   "description": "UiO Gaming Website",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "LBlend <lblend@protonmail.com",
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
