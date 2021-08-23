@@ -22,6 +22,8 @@ export const query = graphql`
   }
 `
 
+moment.locale("nb_NO")
+
 const Event = ({ data }) => {
   const time = moment(data.sanityEvent.date)
     .tz("Europe/Oslo")
