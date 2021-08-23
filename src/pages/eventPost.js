@@ -9,7 +9,7 @@ import Back from "../components/items/back"
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
 export const query = graphql`
-  query($id: String!) {
+  query($id: String) {
     sanityEvent(_id: { eq: $id }) {
       title
       location

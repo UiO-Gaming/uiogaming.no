@@ -9,7 +9,7 @@ import BlockContent from "@sanity/block-content-to-react"
 import Back from "../components/items/back"
 
 export const query = graphql`
-  query($id: String!) {
+  query($id: String) {
     sanityPost(_id: { eq: $id }) {
       _createdAt(formatString: "DD. MMMM, YYYY", locale: "nb_NO")
       title
