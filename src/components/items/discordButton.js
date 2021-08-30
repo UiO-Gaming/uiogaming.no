@@ -1,14 +1,14 @@
 import * as React from "react"
-import * as styles from "./button.module.css"
+import * as styles from "./discordButton.module.css"
 
-const Button = () => (
+const DiscordButton = () => (
   <a
     href="https://discord.uiogaming.no"
     target="_blank"
     rel="noreferrer"
     className={styles.button}
   >
-    Bli med!
+    Discord
   </a>
 )
-export default Button
+export default DiscordButton

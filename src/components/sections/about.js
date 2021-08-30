@@ -4,7 +4,8 @@ import * as styles from "./about.module.css"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 
-import Button from "../items/button"
+import DiscordButton from "../items/discordButton"
+import MemberButton from "../items/memberButton"
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -45,7 +46,10 @@ const About = () => {
             </p>
             <div className={styles.joinSection}>
               <h3>Interessert?</h3>
-              <Button />
+              <div className={styles.buttons}>
+                <MemberButton />
+                <DiscordButton />
+              </div>
             </div>
           </div>
         </div>

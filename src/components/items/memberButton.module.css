@@ -1,0 +1,16 @@
+.button {
+	display: flex;
+	justify-content: center;
+	font-size: 1.6rem;
+	background-color: var(--main-color);
+  
+	padding: 0.5em 1em;
+	border-radius: 999em;
+  
+	color: var(--text-color);
+}
+.button:hover {
+	color: white;
+	background-color: rgb(255, 62, 52);
+}
+  
