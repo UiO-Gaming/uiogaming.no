@@ -157,14 +157,6 @@ img {
   max-width: 100%;
 }
 
-section > div,
-article {
-  max-width: 1920px;
-}
-footer > div {
-  max-width: 1440px;
-}
-
 section {
   padding: 7em 1em;
   display: grid;
