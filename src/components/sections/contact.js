@@ -18,7 +18,7 @@ const Contact = () => (
       <div className={styles.item}>
         <FaAt />
         <a
-          href="mailto:styret.uiogaming@gmail.com"
+          href="mailto:styret@uiogaming.no"
           target="_blank"
           rel="noreferrer"
         >
