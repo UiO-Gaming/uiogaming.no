@@ -10,7 +10,7 @@ import MemberButton from "../items/memberButton"
 const About = () => {
   const data = useStaticQuery(graphql`
     query {
-      logo: file(relativePath: { eq: "styret.jpg" }) {
+      logo: file(relativePath: { eq: "about.jpg" }) {
         childImageSharp {
           gatsbyImageData(
             placeholder: BLURRED
