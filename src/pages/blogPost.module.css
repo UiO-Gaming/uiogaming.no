@@ -10,8 +10,10 @@
   display: grid;
   place-items: center;
 }
-.header > * {
+.header {
+  display: grid;
   padding: 0 1rem;
+  max-width: 85ch;
 }
 .published {
   font-weight: 100;
@@ -19,8 +21,9 @@
 .headerImage {
   padding: 0;
   margin: 1rem 0;
-  max-width: 85ch;
+  max-width: 100%;
   max-height: 80vh;
+  place-self: center;
 }
 .title {
   font-size: 3rem;
