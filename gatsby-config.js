@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `UiO Gaming`,
-    description: `En hobbyforening som ønsker skape et sosialt miljø rundt gaming og E-sport på UiO!`,
+    description: `En hobbyforening som ønsker skape et sosialt miljø rundt gaming og e-sport på UiO!`,
     author: `@uiogaming`,
     url: `https://uiogaming.no`,
   },
