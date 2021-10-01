@@ -36,7 +36,7 @@ const About = () => {
           <div>
             <p>
               UiO Gaming er en forening med hovedfokus på å danne et
-              inkluderende fellesskap rundt videospill og E-sport. Hos oss er
+              inkluderende fellesskap rundt videospill og e-sport. Hos oss er
               det enkelt å skaffe seg venner, ettersom alle har felles
               interesser. Vi arrangerer ukentlige spillkvelder og fysiske
               sosiale arrangementer, som for eksempel brettspillkvelder og
