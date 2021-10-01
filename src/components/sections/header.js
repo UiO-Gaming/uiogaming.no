@@ -29,7 +29,7 @@ const Header = () => {
       <h1>UiO Gaming</h1>
       <p>
         En hobbyforening som ønsker skape et sosialt miljø rundt gaming og
-        E-sport på UiO
+        e-sport på UiO
       </p>
     </header>
   )
