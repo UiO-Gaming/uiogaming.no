@@ -72,7 +72,7 @@ const Events = () => {
     } else {
       return (
         <h3 className={styles.noEvents}>
-          Ingen kommende arragnementer
+          Ingen kommende arrangementer
           <br />
           <br />
           (っ˘̩╭╮˘̩)っ
