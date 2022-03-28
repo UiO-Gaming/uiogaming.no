@@ -28,7 +28,7 @@ const About = () => {
         <div className="no-mobile">
           <GatsbyImage
             image={data.logo.childImageSharp.gatsbyImageData}
-            alt="6 styremedlemmer på rekke i det fine været"
+            alt="Medlemmer som spiller brettspill"
           />
         </div>
         <div>

@@ -89,7 +89,7 @@ const Events = () => {
         <div className={"no-mobile " + styles.image}>
           <GatsbyImage
             image={data.placeholder.childImageSharp.gatsbyImageData}
-            alt="Medlemmer som spiller kubb"
+            alt="Medlem som spiller VR"
           />
         </div>
       </div>
