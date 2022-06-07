@@ -72,6 +72,16 @@ textarea,
 select {
   font: inherit;
 }
+/* fixed issue #35 */
+.blog-module--card--7uDeb {
+  display: grid;
+  max-width: 50ch;
+  box-shadow: 0 6px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 20%);
+  height: 100%;
+}
+.blog-module--headerImage--Jn7iJ {
+  max-height: 80vh;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
