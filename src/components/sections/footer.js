@@ -58,7 +58,7 @@ const Footer = () => {
 
         <div className={styles.orgInfo}>
           <p>Orgnr.: 925 719 153</p>
-          <p>Nettsiden er utviklet og driftet av foreningen</p>
+          <address>Slemdalsveien 15, 0369 Oslo</address>
         </div>
       </div>
     </footer>
