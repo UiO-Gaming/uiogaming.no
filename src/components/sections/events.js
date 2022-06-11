@@ -4,6 +4,7 @@ import * as styles from "./events.module.css"
 import { Link, graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import moment from "moment-timezone"
+import "moment/locale/nb"
 
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
