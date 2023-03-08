@@ -97,7 +97,14 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
               ]
         )
         .concat(meta)}
-    />
+    >
+      <script
+        async
+        defer
+        data-website-id="c375ccba-0b3e-4bf0-a4c9-165bd9b0176c"
+        src="https://umami.uiogaming.no/umami.js"
+      ></script>
+    </Helmet>
   )
 }
 
