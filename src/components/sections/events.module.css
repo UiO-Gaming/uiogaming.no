@@ -77,3 +77,9 @@
     padding: 2em;
   }
 }
+
+.readMore {
+  opacity: 0.5;
+  text-decoration: underline;
+  font-size: 0.75em;
+}

@@ -66,7 +66,7 @@ const Events = () => {
                 </p>
               </div>
             </div>
-            <p>{event.description}</p>
+            <p>{event.description.slice(0, 120)}... <span className={styles.readMore}>Les mer</span></p>
           </article>
         </Link>
       ))
