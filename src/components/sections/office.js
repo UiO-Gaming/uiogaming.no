@@ -1,6 +1,12 @@
 import * as React from "react"
 import * as styles from "./office.module.css"
 
+import ReactPannellum from "react-pannellum"
+
+const config = {
+  autoLoad: true,
+}
+
 const Office = () => (
   <section>
     <h2>Kontoret</h2>
@@ -10,13 +16,13 @@ const Office = () => (
         vårt og henge med andre medlemmer!
       </p>
 
-      <iframe
-        className={styles.frame}
-        src="https://www.google.com/maps/embed?pb=!4v1695744274768!6m8!1m7!1sCAoSLEFGMVFpcFBiSUJEWVhFcTFwMDBxWDZPamlhNXc2RjFvVEo2RWlYdmNNSnFM!2m2!1d59.9324458!2d10.7129466!3f300!4f0!5f0.7820865974627469"
-        allowfullscreen="true"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
+      <ReactPannellum
+        id="1"
+        sceneId="office"
+        config={config}
+        imageSource="/3D_office_2023_09_15.jpg"
+        style={{ width: "100%", aspectRatio: "1 / 1", background: "#000000" }} // yes, apparantly applying a css class to the component doesn't work
+      />
     </div>
   </section>
 )
