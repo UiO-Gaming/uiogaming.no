@@ -1,5 +1,6 @@
 .container {
-  background-image: url("../../images/keyboard.jpg"); /* Placeholder image */
+  background-color: #7C5CA8;
+  background-image: url("../../images/test2.png"); /* Placeholder image */
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -20,4 +21,9 @@
 }
 .container > p {
   max-width: 40ch;
+  color: #130729;
+}
+
+.container > h1 {
+  color: #130729;
 }

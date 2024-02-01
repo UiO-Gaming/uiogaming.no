@@ -1,18 +1,18 @@
 /* ===== Variables ===== */
 
 :root {
-  --main-color: rgb(226, 35, 26);
-  --main-background-color: rgb(22, 20, 31);
-  --secondary-background-color: rgb(44, 53, 69);
+  --main-color: #7D36E7;
+  --main-background-color: #1D1320;
+  --secondary-background-color: #261F31;
   --footer-color: rgb(12, 12, 15);
 
   --header-color: rgb(255, 255, 255);
-  --text-color: rgb(228, 228, 228);
-  --light-text-color: rgb(190, 190, 190);
-  --link-color: rgb(226, 35, 26);
-  --link-color-hover: rgb(255, 157, 160);
+  --text-color: #EEEEEE;
+  --light-text-color: #CCCCCC;
+  --link-color: #7D36E7;
+  --link-color-hover: #D1B3FF;
 
-  --main-font: "Roboto", sans-serif;
+  --main-font: "Nunito", sans-serif;
 
   --card-section-divider: 2px solid rgba(128, 128, 128, 0.5);
   --blog-header-divider: 1px solid rgba(128, 128, 128, 0.25);
