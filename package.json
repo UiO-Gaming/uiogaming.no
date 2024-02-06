@@ -3,7 +3,7 @@
   "private": true,
   "description": "UiO Gaming Website",
   "version": "0.1.2",
-  "author": "LBlend <lblend@protonmail.com",
+  "author": "LBlend <leanderfurumo@protonmail.com",
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
     "gatsby": "^3.4.1",
