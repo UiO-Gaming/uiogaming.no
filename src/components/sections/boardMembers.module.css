@@ -53,8 +53,9 @@
 }
 .info > p {
   font-weight: 100;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   margin: 0.5rem 0;
+  color: var(--light-text-color);
 }
 .info > h3 {
   margin: 0.5rem 0;
