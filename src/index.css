@@ -107,7 +107,7 @@ select {
   background-color: var(--main-color);
 }
 a::selection {
-  color: blue;
+  color: white;
 }
 
 body {
