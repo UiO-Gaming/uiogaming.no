@@ -29,6 +29,10 @@ body {
   gap: 0.75rem;
   align-items: center;
   font-weight: 100;
+  color: var(--light-text-color);
+}
+.metadata > *:hover {
+  color: var(--light-text-color);
 }
 
 .description {

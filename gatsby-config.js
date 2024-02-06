@@ -37,8 +37,8 @@ module.exports = {
         name: `UiO Gaming`,
         short_name: `uiogaming.no`,
         start_url: `/`,
-        background_color: `#171520`,
-        theme_color: `#E2231A`,
+        background_color: `#1D1320`,
+        theme_color: `#7D36E7`,
         display: `minimal-ui`,
         icon: `src/images/logo.jpg`, // This path is relative to the root of the site.
       },

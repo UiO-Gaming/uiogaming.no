@@ -53,11 +53,11 @@ const Events = () => {
           <article className={styles.card}>
             <h3>{event.title}</h3>
             <div>
-              <div>
+              <div className={styles.metadata}>
                 <FaMapMarkerAlt />
                 <p>{event.location}</p>
               </div>
-              <div>
+              <div className={styles.metadata}>
                 <FaCalendarAlt />
                 <p>
                   {moment(event.date)

@@ -48,14 +48,23 @@
   margin-bottom: 0.5em;
 }
 .card > div {
-  font-weight: 100;
+  font-weight: 200;
   margin-bottom: 1em;
 }
 .card > div * {
-  display: flex;
-  align-items: baseline;
   margin-right: 0.5em;
 }
+.metadata {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  font-weight: 100;
+  color: var(--light-text-color)
+}
+.metadata > *:hover {
+  color: var(--light-text-color);
+}
+
 .image {
   grid-row: 1 / -1;
 }
