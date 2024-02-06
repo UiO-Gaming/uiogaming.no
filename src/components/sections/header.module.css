@@ -22,8 +22,10 @@
 .container > p {
   max-width: 40ch;
   color: #130729;
+  font-size: 1.5rem;
 }
 
 .container > h1 {
   color: #130729;
+  font-size: 4rem;
 }
