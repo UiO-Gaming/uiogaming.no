@@ -23,7 +23,7 @@
 }
 @media (min-width: 500px) {
   .card {
-    width: 35ch;
+    width: 37ch;
   }
 }
 .card > p {
