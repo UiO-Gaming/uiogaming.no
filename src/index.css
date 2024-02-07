@@ -219,6 +219,10 @@ section h2 {
   mask-image: radial-gradient(white, black);
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
+.photo-credit, .photo-credit:hover {
+  color: var(--light-text-color);
+  text-align: end;
+}
 @media (min-width: 60em) {
   .no-mobile {
     display: block;

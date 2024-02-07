@@ -30,6 +30,7 @@ const About = () => {
             image={data.logo.childImageSharp.gatsbyImageData}
             alt="Medlemmer som spiller brettspill"
           />
+          <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
         </div>
         <div>
           <h2 className="left-section-header">Hvem er vi?</h2>
