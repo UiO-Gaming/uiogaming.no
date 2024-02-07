@@ -98,7 +98,7 @@ const Events = () => {
         <div className={styles.events}>{mapEvents(filteredEvents)}</div>
         <div className={"no-mobile " + styles.image}>
           <GatsbyImage
-            image={data.event.childImageSharp.gatsbyImageData}
+            image={data.eventImage.childImageSharp.gatsbyImageData}
             alt="Medlemmer spiller brettspill"
           />
           <div>
