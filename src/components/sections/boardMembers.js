@@ -53,7 +53,7 @@ const BoardMembers = () => {
             </div>
             <p>{member.bio}</p>
             <div className={styles.footer}>
-              <p className="text-center">{member.email}</p>
+              <p className="text-center">{member.email ? member.email : <i>Ikke oppgitt</i>}</p>
             </div>
           </article>
         ))}
