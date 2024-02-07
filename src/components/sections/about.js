@@ -28,7 +28,7 @@ const About = () => {
         <div className="no-mobile">
           <GatsbyImage
             image={data.logo.childImageSharp.gatsbyImageData}
-            alt="Medlemmer som spiller brettspill"
+            alt="Medlemmer som spiller"
           />
           <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
         </div>
