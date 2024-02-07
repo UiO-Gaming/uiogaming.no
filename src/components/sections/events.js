@@ -66,7 +66,16 @@ const Events = () => {
                 </p>
               </div>
             </div>
-            <p>{event.description.slice(0, 120)}... <span className={styles.readMore}>Les mer</span></p>
+            <p>
+              {event.description.length < 120 ? (
+                event.description
+              ) : (
+                <>
+                  {event.description.substring(0, 120)}...{" "}
+                  <span className={styles.readMore}>Les mer</span>
+                </>
+              )}
+            </p>
           </article>
         </Link>
       ))
