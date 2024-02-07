@@ -11,7 +11,7 @@ import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 const Events = () => {
   const data = useStaticQuery(graphql`
     query {
-      placeholder: file(relativePath: { eq: "event.jpg" }) {
+      eventImage: file(relativePath: { eq: "event.jpg" }) {
         childImageSharp {
           gatsbyImageData(
             placeholder: BLURRED
@@ -98,7 +98,7 @@ const Events = () => {
         <div className={styles.events}>{mapEvents(filteredEvents)}</div>
         <div className={"no-mobile " + styles.image}>
           <GatsbyImage
-            image={data.placeholder.childImageSharp.gatsbyImageData}
+            image={data.event.childImageSharp.gatsbyImageData}
             alt="Medlemmer spiller brettspill"
           />
           <div>
