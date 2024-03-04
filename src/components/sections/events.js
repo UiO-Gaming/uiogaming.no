@@ -20,7 +20,7 @@ const Events = () => {
           )
         }
       }
-      allSanityEvent(sort: { fields: date, order: ASC }) {
+      allSanityEvent(sort: { date: ASC }) {
         edges {
           node {
             _id

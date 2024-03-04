@@ -9,7 +9,7 @@ const BoardMembers = () => {
     query {
       allSanityAuthor(
         filter: { boardMember: { eq: true } }
-        sort: { fields: order }
+        sort: { orderRank: ASC }
       ) {
         edges {
           node {
