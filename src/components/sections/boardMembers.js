@@ -15,7 +15,7 @@ const BoardMembers = () => {
           node {
             _id
             boardMember
-            email
+            contactInfo
             name
             role
             image {
@@ -53,7 +53,13 @@ const BoardMembers = () => {
             </div>
             <p>{member.bio}</p>
             <div className={styles.footer}>
-              <p className="text-center">{member.email ? member.email : <i>Ikke oppgitt</i>}</p>
+              <p className="text-center">
+                {member.contactInfo ? (
+                  member.contactInfo
+                ) : (
+                  <i>Ingen kontaktinfo</i>
+                )}
+              </p>
             </div>
           </article>
         ))}
