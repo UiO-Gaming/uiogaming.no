@@ -3,13 +3,14 @@ import * as styles from "./eventPost.module.css"
 
 import { graphql } from "gatsby"
 import moment from "moment-timezone"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 import Seo from "../components/seo"
 import Back from "../components/items/back"
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
 export const query = graphql`
-  query($id: String) {
+  query ($id: String, $language: String!) {
     sanityEvent(_id: { eq: $id }) {
       title
       location
@@ -19,15 +20,27 @@ export const query = graphql`
       }
       description
     }
+    locales: allLocale(
+      filter: { ns: { in: ["common"] }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
   }
 `
 
-moment.locale("nb_NO")
-
 const Event = ({ data }) => {
+  const { t, i18n } = useTranslation()
+  moment.locale(i18n.language)
+
   const time = moment(data.sanityEvent.date)
     .tz("Europe/Oslo")
-    .format("dddd Do MMMM, [kl.] H:mm")
+    .format("dddd Do MMMM, H:mm")
 
   return (
     <>

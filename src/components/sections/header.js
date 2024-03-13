@@ -3,6 +3,7 @@ import * as styles from "./header.module.css"
 
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 const Header = () => {
   const data = useStaticQuery(graphql`
@@ -19,6 +20,8 @@ const Header = () => {
     }
   `)
 
+  const { t } = useTranslation()
+
   return (
     <header id="hjem" className={styles.container}>
       <GatsbyImage
@@ -27,10 +30,7 @@ const Header = () => {
       />
 
       <h1>UiO Gaming</h1>
-      <p>
-        En hobbyforening som ønsker å skape et sosialt miljø rundt gaming og
-        e-sport på UiO
-      </p>
+      <p>{t("header.text")}</p>
     </header>
   )
 }

@@ -1,14 +1,20 @@
 import * as React from "react"
 import * as styles from "./memberButton.module.css"
 
-const MemberButton = () => (
-  <a
-    href="https://innmelding.uiogaming.no"
-    target="_blank"
-    rel="noreferrer"
-    className={styles.button}
-  >
-    Bli medlem!
-  </a>
-)
+import { useTranslation } from "gatsby-plugin-react-i18next"
+
+const MemberButton = () => {
+  const { t } = useTranslation()
+
+  return (
+    <a
+      href="https://innmelding.uiogaming.no"
+      target="_blank"
+      rel="noreferrer"
+      className={styles.button}
+    >
+      {t("join")}
+    </a>
+  )
+}
 export default MemberButton

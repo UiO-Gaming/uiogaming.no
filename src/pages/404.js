@@ -1,27 +1,48 @@
 import * as React from "react"
 import * as styles from "./404.module.css"
 
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import { Link, useTranslation } from "gatsby-plugin-react-i18next"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
-const NotFoundPage = () => (
-  <Layout>
-    <Seo title="404: Not found" />
-    <div className={styles.container}>
-      <h1 className={styles.centeredText}>404: Siden finnes ikke</h1>
-      <p className={styles.centeredText}>
-        Du har nådd en blindvei, men ikke på Blindern{" "}
-        <span role="img" aria-label="eyes">
-          👀
-        </span>
-      </p>
-      <Link to="/" className={`${styles.centeredText} ${styles.homeLink}`}>
-        Tilbake til hjemmesiden
-      </Link>
-    </div>
-  </Layout>
-)
+const NotFoundPage = () => {
+  const { t } = useTranslation()
+
+  return (
+    <Layout>
+      <Seo title="404: Not found" />
+      <div className={styles.container}>
+        <h1 className={styles.centeredText}>{t("title")}</h1>
+        <p className={styles.centeredText}>
+          {t("text")}{" "}
+          <span role="img" aria-label="eyes">
+            👀
+          </span>
+        </p>
+        <Link to="/" className={`${styles.centeredText} ${styles.homeLink}`}>
+          {t("back")}
+        </Link>
+      </div>
+    </Layout>
+  )
+}
 
 export default NotFoundPage
+
+export const query = graphql`
+  query ($language: String!) {
+    locales: allLocale(
+      filter: { ns: { in: ["404"] }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`

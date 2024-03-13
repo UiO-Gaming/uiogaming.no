@@ -1,8 +1,9 @@
 import * as React from "react"
 import * as styles from "./events.module.css"
 
-import { Link, graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
+import { Link, useTranslation } from "gatsby-plugin-react-i18next"
 import moment from "moment-timezone"
 import "moment/locale/nb"
 
@@ -37,7 +38,9 @@ const Events = () => {
     }
   `)
 
-  moment.locale("nb_NO")
+  const { t, i18n } = useTranslation()
+
+  moment.locale(i18n.language)
   const currentDate = moment().utc()
 
   const filteredEvents = data.allSanityEvent.edges
@@ -49,7 +52,7 @@ const Events = () => {
   const mapEvents = events => {
     if (events.length !== 0) {
       return events.map(({ node: event }) => (
-        <Link key={event._id} to={"event/" + event.slug.current}>
+        <Link key={event._id} to={"/event/" + event.slug.current}>
           <article className={styles.card}>
             <h3>{event.title}</h3>
             <div>
@@ -62,7 +65,7 @@ const Events = () => {
                 <p>
                   {moment(event.date)
                     .tz("Europe/Oslo")
-                    .format("dddd Do MMMM, [kl.] H:mm")}
+                    .format("dddd Do MMMM, H:mm")}
                 </p>
               </div>
             </div>
@@ -72,7 +75,9 @@ const Events = () => {
               ) : (
                 <>
                   {event.description.substring(0, 120)}...{" "}
-                  <span className={styles.readMore}>Les mer</span>
+                  <span className={styles.readMore}>
+                    {t("events.readMore")}
+                  </span>
                 </>
               )}
             </p>
@@ -82,7 +87,7 @@ const Events = () => {
     } else {
       return (
         <h3 className={styles.noEvents}>
-          Ingen kommende arrangementer
+          {t("events.noEvents")}
           <br />
           <br />
           (っ˘̩╭╮˘̩)っ
@@ -94,15 +99,17 @@ const Events = () => {
   return (
     <section className={styles.stretch}>
       <div className={styles.container}>
-        <h2 className={styles.sectionHeader}>Hva skjer?</h2>
+        <h2 className={styles.sectionHeader}>{t("events.title")}</h2>
         <div className={styles.events}>{mapEvents(filteredEvents)}</div>
         <div className={"no-mobile " + styles.image}>
           <GatsbyImage
             image={data.eventImage.childImageSharp.gatsbyImageData}
-            alt="Medlemmer spiller brettspill"
+            alt={t("altText.events")}
           />
           <div>
-            <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
+            <p className="photo-credit">
+              {t("photo")}: 장태민, Studentenes Fotoklubb
+            </p>
           </div>
         </div>
       </div>
