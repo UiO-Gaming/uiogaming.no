@@ -4,8 +4,6 @@ import * as styles from "./events.module.css"
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link, useTranslation } from "gatsby-plugin-react-i18next"
-import moment from "moment-timezone"
-import "moment/locale/nb"
 
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
@@ -40,12 +38,10 @@ const Events = () => {
 
   const { t, i18n } = useTranslation()
 
-  moment.locale(i18n.language)
-  const currentDate = moment().utc()
-
+  const currentDate = new Date()
   const filteredEvents = data.allSanityEvent.edges
     .filter(({ node: event }) => {
-      return currentDate <= moment.utc(event.date)
+      return currentDate <= new Date(event.date)
     })
     .slice(0, 2)
 
@@ -63,9 +59,15 @@ const Events = () => {
               <div className={styles.metadata}>
                 <FaCalendarAlt />
                 <p>
-                  {moment(event.date)
-                    .tz("Europe/Oslo")
-                    .format("dddd Do MMMM, H:mm")}
+                  {new Date(event.date).toLocaleString(i18n.language, {
+                    weekday: "long",
+                    month: "long",
+                    year: "numeric",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "2-digit",
+                    timeZone: "Europe/Oslo",
+                  })}
                 </p>
               </div>
             </div>

@@ -2,7 +2,6 @@ import * as React from "react"
 import * as styles from "./eventPost.module.css"
 
 import { graphql } from "gatsby"
-import moment from "moment-timezone"
 import { useTranslation } from "gatsby-plugin-react-i18next"
 
 import Seo from "../components/seo"
@@ -36,11 +35,16 @@ export const query = graphql`
 
 const Event = ({ data }) => {
   const { t, i18n } = useTranslation()
-  moment.locale(i18n.language)
 
-  const time = moment(data.sanityEvent.date)
-    .tz("Europe/Oslo")
-    .format("dddd Do MMMM, H:mm")
+  const time = new Date(data.sanityEvent.date).toLocaleString(i18n.language, {
+    weekday: "long",
+    month: "long",
+    year: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: "Europe/Oslo",
+  })
 
   return (
     <>
@@ -60,9 +64,15 @@ const Event = ({ data }) => {
           <div className={styles.metadata}>
             <FaCalendarAlt />
             <p>
-              {moment(data.sanityEvent.date)
-                .tz("Europe/Oslo")
-                .format("dddd Do MMMM, [kl.] H:mm")}
+              {new Date(data.sanityEvent.date).toLocaleString(i18n.language, {
+                weekday: "long",
+                month: "long",
+                year: "numeric",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                timeZone: "Europe/Oslo",
+              })}
             </p>
           </div>
           <p className={styles.description}>{data.sanityEvent.description}</p>
