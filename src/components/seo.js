@@ -24,6 +24,38 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
   const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
+  const jsonLdDescription =
+    "UiO Gaming sitt formål er å fremme gaming, brettspill og andre spillrelaterte interesser/kulturer ved UiO. I tillegg til dette vil vi lage et sosialt miljø som tilrettelegger alle former for aktivitet rundt spill. Foreningen har derfor som mål å arrangere spillkvelder, turneringer, LAN og andre spillrelaterte aktiviteter åpent for alle som er interesserte" // I shouldn't hardcode this but whatever
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    logo: `${site.siteMetadata.url}/logo.jpg`,
+    url: site.siteMetadata.url,
+    sameAs: [
+      "https://www.instagram.com/uio_gaming",
+      "https://www.facebook.com/profile.php?id=100066853901827",
+      "https://www.twitch.tv/uio_gaming",
+      "https://www.youtube.com/channel/UCZhUhWT_q0oZGk0rCeov51Q",
+      "https://github.com/UiO-Gaming",
+    ],
+    name: site.siteMetadata.title,
+    description: jsonLdDescription,
+    email: "styret@uiogaming.no",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Slemdalsveien 15",
+      addressLocality: "Oslo",
+      postalCode: "0369",
+      addressCountry: "NO",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: "styret@uiogaming.no",
+    },
+    foundingDate: "2020-09-11",
+  }
+
   return (
     <Helmet
       htmlAttributes={{
@@ -97,7 +129,9 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
               ]
         )
         .concat(meta)}
-    ></Helmet>
+    >
+      <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+    </Helmet>
   )
 }
 
