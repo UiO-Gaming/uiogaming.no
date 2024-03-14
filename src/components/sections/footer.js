@@ -20,7 +20,12 @@ const Footer = () => {
     }
   `)
 
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
+
+  const statutesUrl =
+    i18n.language === "en"
+      ? "https://statutes.uiogaming.no"
+      : "https://vedtekter.uiogaming.no"
 
   return (
     <footer>
@@ -34,7 +39,7 @@ const Footer = () => {
         <div className={styles.links}>
           <ul className="remove-bullets">
             <li>
-              <a href="https://vedtekter.uiogaming.no" rel="noreferrer">
+              <a href={statutesUrl} rel="noreferrer">
                 {t("footer.statutes")}
               </a>
             </li>
