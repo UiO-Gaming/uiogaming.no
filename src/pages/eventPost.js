@@ -50,7 +50,7 @@ const Event = ({ data }) => {
     <>
       <Seo
         title={data.sanityEvent.title}
-        description={`Tidspunkt: ${time}\nSted: ${data.sanityEvent.location}\n\n${data.sanityEvent.description}`}
+        description={`${t("time")}: ${time}\n${t("location")}: ${data.sanityEvent.location}\n\n${data.sanityEvent.description}`}
         lang={i18n.language}
       />
       <div className={styles.container}>
