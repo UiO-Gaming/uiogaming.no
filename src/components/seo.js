@@ -47,6 +47,7 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
       streetAddress: "Slemdalsveien 15",
       addressLocality: "Oslo",
       postalCode: "0369",
+      addressRegion: "Oslo",
       addressCountry: "NO",
     },
     contactPoint: {
