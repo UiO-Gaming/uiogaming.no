@@ -21,7 +21,7 @@ export const query = graphql`
       description
     }
     locales: allLocale(
-      filter: { ns: { in: ["common"] }, language: { eq: $language } }
+      filter: { ns: { in: ["common", "seo"] }, language: { eq: $language } }
     ) {
       edges {
         node {
@@ -47,6 +47,7 @@ const Event = ({ data }) => {
       <Seo
         title={data.sanityEvent.title}
         description={`Tidspunkt: ${time}\nSted: ${data.sanityEvent.location}\n\n${data.sanityEvent.description}`}
+        lang={i18n.language}
       />
       <div className={styles.container}>
         <Back />

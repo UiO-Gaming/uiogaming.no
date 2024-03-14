@@ -3,29 +3,28 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 function Seo({ description, lang, meta, imageURL, title, author }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            url
-          }
+  const { site } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+          description
+          author
+          url
         }
       }
-    `
-  )
+    }
+  `)
+
+  const { t } = useTranslation()
 
   const metaAuthor = author || site.siteMetadata.author
-  const metaDescription = description || site.siteMetadata.description
+  const metaDescription =
+    description || t("header.text", site.siteMetadata.description)
   const defaultTitle = site.siteMetadata?.title
-
-  const jsonLdDescription =
-    "UiO Gaming sitt formål er å fremme gaming, brettspill og andre spillrelaterte interesser/kulturer ved UiO. I tillegg til dette vil vi lage et sosialt miljø som tilrettelegger alle former for aktivitet rundt spill. Foreningen har derfor som mål å arrangere spillkvelder, turneringer, LAN og andre spillrelaterte aktiviteter åpent for alle som er interesserte" // I shouldn't hardcode this but whatever
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -40,7 +39,7 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
       "https://github.com/UiO-Gaming",
     ],
     name: site.siteMetadata.title,
-    description: jsonLdDescription,
+    description: t("longDescription"),
     email: "styret@uiogaming.no",
     address: {
       "@type": "PostalAddress",
@@ -91,7 +90,7 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
         },
         {
           property: `og:locale`,
-          content: `nb_NO`,
+          content: lang,
         },
         {
           name: `twitter:creator`,

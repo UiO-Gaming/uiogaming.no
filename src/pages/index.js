@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 import "../index.css"
 
 import Layout from "../components/layout"
@@ -14,21 +15,24 @@ import BoardMembers from "../components/sections/boardMembers"
 import Contact from "../components/sections/contact"
 import Footer from "../components/sections/footer"
 
-const IndexPage = () => (
-  <>
-    <Layout>
-      <Seo />
-      <Header />
-      <About />
-      <Events />
-      <Office />
-      <BoardMembers />
-      <Contact />
-      <Footer />
-    </Layout>
-    <LanguageSelector />
-  </>
-)
+const IndexPage = () => {
+  const { t, i18n } = useTranslation()
+  return (
+    <>
+      <Layout>
+        <Seo lang={i18n.language} />
+        <Header />
+        <About />
+        <Events />
+        <Office />
+        <BoardMembers />
+        <Contact />
+        <Footer />
+      </Layout>
+      <LanguageSelector />
+    </>
+  )
+}
 
 export default IndexPage
 
@@ -36,7 +40,7 @@ export const query = graphql`
   query ($language: String!) {
     locales: allLocale(
       filter: {
-        ns: { in: ["common", "index", "altText"] }
+        ns: { in: ["common", "index", "altText", "seo"] }
         language: { eq: $language }
       }
     ) {
