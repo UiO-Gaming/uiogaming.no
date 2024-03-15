@@ -3,11 +3,10 @@ import * as styles from "./boardMembers.module.css"
 
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { useTranslation, useI18next } from "gatsby-plugin-react-i18next"
+import { useTranslation } from "gatsby-plugin-react-i18next"
 
 const BoardMembers = () => {
   const { t, i18n } = useTranslation();
-  const { language } = useI18next(); 
   const data = useStaticQuery(graphql`
     query {
       allSanityAuthor(
@@ -39,8 +38,6 @@ const BoardMembers = () => {
     }
   `)
 
-  console.log(data)
-
   return (
     <section>
       <h2>{t("boardMembers.title")}</h2>
@@ -59,10 +56,10 @@ const BoardMembers = () => {
               </div>
               <div className={styles.info}>
                 <h3>{member.name}</h3>
-                <p>{member.role[language]}</p>
+                <p>{member.role[i18n.language]}</p>
               </div>
             </div>
-            <p>{member.bio[language]}</p>
+            <p>{member.bio[i18n.language]}</p>
             <div className={styles.footer}>
               <p className="text-center">
                 {member.contactInfo ? (
