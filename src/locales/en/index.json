@@ -8,12 +8,12 @@
   "events.noEvents": "No upcoming events",
   "office.title": "The office",
   "office.text": "We have an office at Chateau Neuf where you can use our gear and hang out with other members!",
-  "boardMembers.title": "The board",
+  "boardMembers.title": "The Board",
   "boardMembers.noContact": "No contact info",
   "contact.title": "Contact us",
   "contact.email": "E-mail",
   "footer.statutes": "Statutes",
   "footer.sourcecode": "Source code",
   "footer.admin": "Admin page",
-  "footer.orgnum": "OrgNum"
+  "footer.orgnum": "Org. no"
 }
