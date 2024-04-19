@@ -20,7 +20,7 @@ const Office = () => {
           id="1"
           sceneId="office"
           config={config}
-          imageSource="/3D_office_2023_09_15.jpg"
+          imageSource="/3D_office_2024_04_18.jpg"
           style={{ width: "100%", aspectRatio: "1 / 1", background: "#000000" }} // yes, apparantly applying a css class to the component doesn't work
         />
       </div>
