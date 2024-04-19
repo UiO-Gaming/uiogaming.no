@@ -16,6 +16,7 @@ const Office = () => {
       <h2>{t("office.title")}</h2>
       <div className={styles.container}>
         <p>{t("office.text")}</p>
+        <p>{t("office.tip")}</p>
         <ReactPannellum
           id="1"
           sceneId="office"
