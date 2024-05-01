@@ -14,7 +14,9 @@
   "contact.title": "Finn oss",
   "contact.email": "E-post",
   "footer.statutes": "Vedtekter",
+  "footer.complaints": "Klage",
   "footer.sourcecode": "Kildekode",
   "footer.admin": "Adminområdet",
-  "footer.orgnum": "Org.Nr."
+  "footer.orgnum": "Org.Nr.",
+  "documents": "Dokumenter"
 }

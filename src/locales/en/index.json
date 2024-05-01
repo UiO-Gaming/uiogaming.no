@@ -14,7 +14,9 @@
   "contact.title": "Contact us",
   "contact.email": "E-mail",
   "footer.statutes": "Statutes",
+  "footer.complaints": "File complaint",
   "footer.sourcecode": "Source code",
   "footer.admin": "Admin page",
-  "footer.orgnum": "Org. no"
+  "footer.orgnum": "Org. no",
+  "documents": "Documents"
 }

@@ -7,6 +7,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 
 import DiscordButton from "../items/discordButton"
 import MemberButton from "../items/memberButton"
+import OtherButton from "../items/otherButton"
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -46,6 +47,7 @@ const About = () => {
               <div className={styles.buttons}>
                 <MemberButton />
                 <DiscordButton />
+                <OtherButton /> 
               </div>
             </div>
           </div>
