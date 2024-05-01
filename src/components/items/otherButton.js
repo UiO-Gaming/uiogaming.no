@@ -7,10 +7,15 @@ import { useState } from 'react';
 const OtherButton = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const statutesUrl =
+  i18n.language === "en"
+    ? "https://statutes.uiogaming.no"
+    : "https://vedtekter.uiogaming.no"
 
   const links = [
-    { url: "https://statutes.uiogaming.no", label: t("footer.statutes") },  
+    { url: statutesUrl, label: t("footer.statutes") },  
     { url: "https://docs.google.com/forms/d/e/1FAIpQLSfinPnTd993oEMH1Pu52lnP1LRcacGqegOfdP4-hHv1vASn1A/viewform", label: t("footer.complaints") },
     { url: "https://github.com/UiO-Gaming/dokumenter", label: t("documents")}
   ]
