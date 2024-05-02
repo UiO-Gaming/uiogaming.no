@@ -15,9 +15,9 @@ const OtherButton = () => {
     : "https://vedtekter.uiogaming.no"
 
   const links = [
-    { url: statutesUrl, label: t("footer.statutes") },  
-    { url: "https://docs.google.com/forms/d/e/1FAIpQLSfinPnTd993oEMH1Pu52lnP1LRcacGqegOfdP4-hHv1vASn1A/viewform", label: t("footer.complaints") },
-    { url: "https://github.com/UiO-Gaming/dokumenter", label: t("documents")}
+    { url: statutesUrl, label: t("footer.statutes") },
+    { url: "https://klage.uiogaming.no", label: t("footer.complaints") },
+    { url: "https://github.com/UiO-Gaming/dokumenter", label: t("documents") }
   ]
 
   return (

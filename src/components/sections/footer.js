@@ -49,7 +49,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfinPnTd993oEMH1Pu52lnP1LRcacGqegOfdP4-hHv1vASn1A/viewform" rel="noreferrer">
+              <a href="https://klage.uiogaming.no" rel="noreferrer">
                 {t("footer.complaints")}
               </a>
             </li>
