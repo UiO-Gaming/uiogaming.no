@@ -4,7 +4,7 @@
 	gap: 0.5em;
 	justify-content: center;
 	font-size: 1.6rem;
-	background-color: rgb(204, 204, 204);
+	background-color: #cccccc;
 	width: 100%;
 
 	padding: 0.5em 1em;
@@ -15,8 +15,9 @@
 }
 
 .button:hover {
-	color: white;
     cursor: pointer;
+	color: black;
+	background-color: #e6e6e6;
 }
 
 .dropdown {
@@ -30,9 +31,8 @@
 
 .dropdownButton {
 	width: 100%;
-	background-color: #483D8B;
 	color: black;
-	background-color: #a3a3a3;
+	background-color: #cccccc;
 	border: none;
 	border-radius: 999em !important;
 	padding: 8px 16px;
@@ -43,6 +43,11 @@
 	font-size: 1.6rem;
 	box-shadow: var(--shadow);
 	padding: 0.5em 1em;
+}
+
+.dropdownButton:hover {
+	color: black;
+	background-color: #e6e6e6;
 }
 
 .arrowUp, .arrowDown {
