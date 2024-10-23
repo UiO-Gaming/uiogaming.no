@@ -29,7 +29,6 @@ const Header = () => {
         alt="UiO Gaming logo"
       />
 
-      <h1>UiO Gaming</h1>
       <p>{t("header.text")}</p>
     </header>
   )
