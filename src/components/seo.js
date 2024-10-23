@@ -29,7 +29,7 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    logo: `${site.siteMetadata.url}/logo.jpg`,
+    logo: `${site.siteMetadata.url}/logo_2024_neon_trans.png`,
     url: site.siteMetadata.url,
     sameAs: [
       "https://www.instagram.com/uio_gaming",
@@ -120,7 +120,7 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
             : [
                 {
                   property: "og:image",
-                  content: `${site.siteMetadata.url}/logo.jpg`,
+                  content: `${site.siteMetadata.url}/logo_2024_neon_trans.png`,
                 },
                 {
                   name: "twitter:card",

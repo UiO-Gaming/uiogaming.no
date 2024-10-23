@@ -10,7 +10,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/logo.jpg",
+        icon: "src/images/logo_2024_neon_pink.png",
       },
     },
     `gatsby-plugin-image`,
@@ -67,7 +67,7 @@ module.exports = {
         background_color: `#1D1320`,
         theme_color: `#7D36E7`,
         display: `minimal-ui`,
-        icon: `src/images/logo.jpg`, // This path is relative to the root of the site.
+        icon: `src/images/logo_2024_neon_pink.png`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

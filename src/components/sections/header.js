@@ -8,7 +8,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 const Header = () => {
   const data = useStaticQuery(graphql`
     query {
-      placeholder: file(relativePath: { eq: "logo.jpg" }) {
+      placeholder: file(relativePath: { eq: "logo_2024_black_trans.png" }) {
         childImageSharp {
           gatsbyImageData(
             placeholder: BLURRED

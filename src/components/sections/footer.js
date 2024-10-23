@@ -8,7 +8,7 @@ import { useTranslation } from "gatsby-plugin-react-i18next"
 const Footer = () => {
   const data = useStaticQuery(graphql`
     query {
-      logo: file(relativePath: { eq: "logo.jpg" }) {
+      logo: file(relativePath: { eq: "logo_2024_neon_trans.png" }) {
         childImageSharp {
           gatsbyImageData(
             placeholder: BLURRED
