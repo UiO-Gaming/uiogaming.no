@@ -3,7 +3,7 @@
   "private": true,
   "description": "UiO Gaming Website",
   "version": "0.2.0",
-  "author": "LBlend <leanderfurumo@protonmail.com",
+  "author": "Leander Furumo <leander@furumo.eu>",
   "dependencies": {
     "@sanity/block-content-to-react": "^3.0.0",
     "country-flag-icons": "^1.5.9",
