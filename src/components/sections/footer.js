@@ -55,7 +55,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="https://github.com/UiO-Gaming/uiogaming-website/"
+                href="https://github.com/UiO-Gaming/uiogaming.no/"
                 rel="noreferrer"
               >
                 {t("footer.sourcecode")}
