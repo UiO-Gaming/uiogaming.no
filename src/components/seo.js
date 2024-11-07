@@ -131,6 +131,12 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
         .concat(meta)}
     >
       <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+
+      <script
+        defer
+        src="https://umami.uiogaming.no/script.js"
+        data-website-id="1e985053-9158-4d62-be07-0fe83a9dce6e"
+      ></script>
     </Helmet>
   )
 }
