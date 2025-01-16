@@ -9,6 +9,13 @@ const port = process.env.PORT || 9001
 
 app.use(cors({ origin: frontendURL }))
 
+const RateLimit = require("express-rate-limit");
+const limiter = RateLimit({
+  windowMs: 60 * 1000,  // 1 minute
+  max: 2
+})
+app.use(limiter)
+
 app.get("/", (req, res) => {
   res.send("API is running! Yeet!")
 })
