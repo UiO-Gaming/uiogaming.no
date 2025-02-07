@@ -11,6 +11,7 @@ import {
   FaDiscord,
   FaAt,
   FaInstagram,
+  FaTiktok
 } from "react-icons/fa"
 
 const Contact = () => {
@@ -44,6 +45,16 @@ const Contact = () => {
             rel="noreferrer"
           >
             Instagram
+          </a>
+        </div>
+        <div className={styles.item}>
+          <FaTiktok />
+          <a
+            href="https://tiktok.uiogaming.no"
+            target="_blank"
+            rel="noreferrer"
+          >
+            TikTok
           </a>
         </div>
 	      <div className={styles.item}>
