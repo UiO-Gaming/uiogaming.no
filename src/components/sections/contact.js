@@ -36,17 +36,7 @@ const Contact = () => {
             Discord
           </a>
         </div>
-        <div className={styles.item}>
-          <FaFacebook />
-          <a
-            href="https://facebook.uiogaming.no"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Facebook
-          </a>
-        </div>
-        <div className={styles.item}>
+	      <div className={styles.item}>
           <FaInstagram />
           <a
             href="https://instagram.uiogaming.no"
@@ -54,6 +44,16 @@ const Contact = () => {
             rel="noreferrer"
           >
             Instagram
+          </a>
+        </div>
+	      <div className={styles.item}>
+          <FaTwitch />
+          <a
+            href="https://twitch.uiogaming.no"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Twitch
           </a>
         </div>
         <div className={styles.item}>
@@ -66,14 +66,14 @@ const Contact = () => {
             YouTube
           </a>
         </div>
-        <div className={styles.item}>
-          <FaTwitch />
+	      <div className={styles.item}>
+          <FaFacebook />
           <a
-            href="https://twitch.uiogaming.no"
+            href="https://facebook.uiogaming.no"
             target="_blank"
             rel="noreferrer"
           >
-            Twitch
+            Facebook
           </a>
         </div>
         <div className={styles.item}>
