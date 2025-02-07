@@ -9,23 +9,23 @@ Dette er repoet for UiO Gaming sin nettside. Nettsiden består av tre deler hvor
 1. Installer avhengigheter
 
 ```bash
-npm install
+yarn install
 ```
 
 2. Kjør nettsiden
 
 ```bash
-npm start
+yarn start
 ```
 
 ### Webhook API
 
-Om du vil at innhold skal oppdatere seg når innholdet endres i backend må du kjøre dette APIet. Dette gjelder bare om du bruker en produksjonsversjon av nettsiden (`npm run serve`)
+Om du vil at innhold skal oppdatere seg når innholdet endres i backend må du kjøre dette APIet. Dette gjelder bare om du bruker en produksjonsversjon av nettsiden (`yarn serve`)
 
 ```bash
 cd webhook-api
-npm install
-npm start
+yarn install
+yarn start
 ```
 
 Du må også spesifisere URL for webhook i Sanity sitt dashbord. Du kan lese mer om det [her](https://www.sanity.io/docs/webhooks). Denne URLen skal peke på APIet ditt.
