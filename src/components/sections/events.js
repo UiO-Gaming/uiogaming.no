@@ -3,7 +3,7 @@ import * as styles from "./events.module.css"
 
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { Link, useTranslation } from "gatsby-plugin-react-i18next"
+import { Link } from "gatsby"
 
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa"
 
@@ -36,8 +36,6 @@ const Events = () => {
     }
   `)
 
-  const { t, i18n } = useTranslation()
-
   const currentDate = new Date()
   const filteredEvents = data.allSanityEvent.edges
     .filter(({ node: event }) => {
@@ -59,7 +57,7 @@ const Events = () => {
               <div className={styles.metadata}>
                 <FaCalendarAlt />
                 <p>
-                  {new Date(event.date).toLocaleString(i18n.language, {
+                  {new Date(event.date).toLocaleString("no", {
                     weekday: "long",
                     month: "long",
                     year: "numeric",
@@ -77,9 +75,7 @@ const Events = () => {
               ) : (
                 <>
                   {event.description.substring(0, 120)}...{" "}
-                  <span className={styles.readMore}>
-                    {t("events.readMore")}
-                  </span>
+                  <span className={styles.readMore}>Les mer</span>
                 </>
               )}
             </p>
@@ -87,31 +83,22 @@ const Events = () => {
         </Link>
       ))
     } else {
-      return (
-        <h3 className={styles.noEvents}>
-          {t("events.noEvents")}
-          <br />
-          <br />
-          (っ˘̩╭╮˘̩)っ
-        </h3>
-      )
+      return <h3 className={styles.noEvents}>Ingen kommende arrangementer</h3>
     }
   }
 
   return (
     <section className={styles.stretch}>
       <div className={styles.container}>
-        <h2 className={styles.sectionHeader}>{t("events.title")}</h2>
+        <h2 className={styles.sectionHeader}>Hva skjer?</h2>
         <div className={styles.events}>{mapEvents(filteredEvents)}</div>
         <div className={"no-mobile " + styles.image}>
           <GatsbyImage
             image={data.eventImage.childImageSharp.gatsbyImageData}
-            alt={t("altText.events")}
+            alt="Medlemmer spiller brettspill"
           />
           <div>
-            <p className="photo-credit">
-              {t("photo")}: 장태민, Studentenes Fotoklubb
-            </p>
+            <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
           </div>
         </div>
       </div>

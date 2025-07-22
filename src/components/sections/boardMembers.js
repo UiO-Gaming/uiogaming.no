@@ -3,10 +3,8 @@ import * as styles from "./boardMembers.module.css"
 
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { useTranslation } from "gatsby-plugin-react-i18next"
 
 const BoardMembers = () => {
-  const { t, i18n } = useTranslation();
   const data = useStaticQuery(graphql`
     query {
       allSanityAuthor(
@@ -40,7 +38,7 @@ const BoardMembers = () => {
 
   return (
     <section>
-      <h2>{t("boardMembers.title")}</h2>
+      <h2>Styret</h2>
       <div className={styles.container}>
         {data.allSanityAuthor.edges.map(({ node: member }) => (
           <article key={member._id} className={styles.card}>
@@ -51,21 +49,21 @@ const BoardMembers = () => {
                 <GatsbyImage
                   image={member.image.asset.gatsbyImageData}
                   className="circular"
-                  alt={`${t("altText.boardMember")}, ` + member.name}
+                  alt={`Bilde av styremedlem, ` + member.name}
                 />
               </div>
               <div className={styles.info}>
                 <h3>{member.name}</h3>
-                <p>{member.role[i18n.language]}</p>
+                <p>{member.role.no}</p>
               </div>
             </div>
-            <p>{member.bio[i18n.language]}</p>
+            <p>{member.bio.no}</p>
             <div className={styles.footer}>
               <p className="text-center">
                 {member.contactInfo ? (
                   member.contactInfo
                 ) : (
-                  <i>{t("boardMembers.noContact")}</i>
+                  <i>Ingen kontaktinfo</i>
                 )}
               </p>
             </div>

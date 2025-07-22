@@ -3,7 +3,6 @@ import * as React from "react"
 import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import { useTranslation } from "gatsby-plugin-react-i18next"
 
 function Seo({ description, lang, meta, imageURL, title, author }) {
   const { site } = useStaticQuery(graphql`
@@ -19,11 +18,8 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
     }
   `)
 
-  const { t } = useTranslation()
-
   const metaAuthor = author || site.siteMetadata.author
-  const metaDescription =
-    description || t("header.text", site.siteMetadata.description)
+  const metaDescription = description || site.siteMetadata.description
   const defaultTitle = site.siteMetadata?.title
 
   const jsonLd = {
@@ -39,7 +35,8 @@ function Seo({ description, lang, meta, imageURL, title, author }) {
       "https://github.com/UiO-Gaming",
     ],
     name: site.siteMetadata.title,
-    description: t("longDescription"),
+    description:
+      "UiO Gaming har som formål å fremme gaming, e-sport, brettspill og andre spillrelaterte interesser/kulturer ved UiO. I tillegg ønsker vi å skape et sosialt miljø som legger til rette for all aktivitet rundt spill. Foreningen har som mål å arrangere spillkvelder, turneringer, LAN og andre spillrelaterte aktiviteter åpne for alle som er interesserte.",
     email: "styret@uiogaming.no",
     address: {
       "@type": "PostalAddress",

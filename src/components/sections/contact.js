@@ -1,8 +1,6 @@
 import * as React from "react"
 import * as styles from "./contact.module.css"
 
-import { useTranslation } from "gatsby-plugin-react-i18next"
-
 import {
   FaYoutube,
   FaTwitch,
@@ -11,20 +9,18 @@ import {
   FaDiscord,
   FaAt,
   FaInstagram,
-  FaTiktok
+  FaTiktok,
 } from "react-icons/fa"
 
 const Contact = () => {
-  const { t } = useTranslation()
-
   return (
     <section>
-      <h2 className="section-center-header">{t("contact.title")}</h2>
+      <h2 className="section-center-header">Finn oss</h2>
       <div className={styles.container}>
         <div className={styles.item}>
           <FaAt />
           <a href="mailto:styret@uiogaming.no" target="_blank" rel="noreferrer">
-            {t("contact.email")}
+            E-post
           </a>
         </div>
         <div className={styles.item}>
@@ -37,7 +33,7 @@ const Contact = () => {
             Discord
           </a>
         </div>
-	      <div className={styles.item}>
+        <div className={styles.item}>
           <FaInstagram />
           <a
             href="https://instagram.uiogaming.no"
@@ -57,7 +53,7 @@ const Contact = () => {
             TikTok
           </a>
         </div>
-	      <div className={styles.item}>
+        <div className={styles.item}>
           <FaTwitch />
           <a
             href="https://twitch.uiogaming.no"
@@ -77,7 +73,7 @@ const Contact = () => {
             YouTube
           </a>
         </div>
-	      <div className={styles.item}>
+        <div className={styles.item}>
           <FaFacebook />
           <a
             href="https://facebook.uiogaming.no"

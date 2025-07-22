@@ -3,7 +3,6 @@ import * as styles from "./footer.module.css"
 
 import { graphql, useStaticQuery } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import { useTranslation } from "gatsby-plugin-react-i18next"
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
@@ -20,13 +19,6 @@ const Footer = () => {
     }
   `)
 
-  const { t, i18n } = useTranslation()
-
-  const statutesUrl =
-    i18n.language === "en"
-      ? "https://statutes.uiogaming.no"
-      : "https://vedtekter.uiogaming.no"
-
   return (
     <footer>
       <div className={styles.footer}>
@@ -39,18 +31,18 @@ const Footer = () => {
         <div className={styles.links}>
           <ul className="remove-bullets">
             <li>
-              <a href={statutesUrl} rel="noreferrer">
-                {t("footer.statutes")}
+              <a href="https://vedtekter.uiogaming.no" rel="noreferrer">
+                Vedtekter
               </a>
             </li>
             <li>
               <a href="https://innmelding.uiogaming.no" rel="noreferrer">
-                {t("join")}
+                Bli medlem
               </a>
             </li>
             <li>
               <a href="https://klage.uiogaming.no" rel="noreferrer">
-                {t("footer.complaints")}
+                Klage
               </a>
             </li>
             <li>
@@ -58,19 +50,19 @@ const Footer = () => {
                 href="https://github.com/UiO-Gaming/uiogaming.no/"
                 rel="noreferrer"
               >
-                {t("footer.sourcecode")}
+                Kildekode
               </a>
             </li>
             <li>
               <a href="https://admin.uiogaming.no" rel="noreferrer">
-                {t("footer.admin")}
+                Adminområdet
               </a>
             </li>
           </ul>
         </div>
 
         <div className={styles.orgInfo}>
-          <p>{t("footer.orgnum")}: 925 719 153</p>
+          <p>Org.Nr.: 925 719 153</p>
           <address>Slemdalsveien 15, 0369 Oslo</address>
         </div>
       </div>
