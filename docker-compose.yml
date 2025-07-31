@@ -1,0 +1,6 @@
+services:
+  uiogaming.no:
+    container_name: uiogaming.no
+    build: .
+    ports:
+      - 9000:9000
