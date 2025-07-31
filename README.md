@@ -1,5 +1,10 @@
 # uiogaming.no
 
+<img width="1280" height="720" alt="image" src="https://github.com/user-attachments/assets/574daf4d-085c-4df0-ab86-7f843a1a403c" />
+
+<br>
+<br>
+
 Dette er repoet for UiO Gaming sin nettside. Nettsiden består av to deler. Her finner du frontend for nettsiden. Repoet for CMSet er [her](https://github.com/UiO-Gaming/uiogaming.no-backend).
 
 ## Oppsett
