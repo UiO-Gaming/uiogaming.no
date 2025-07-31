@@ -1,5 +1,9 @@
 import "@/app/globals.css"
 
+import UmamiAnalytics from "@/components/umamiAnalytics"
+
+import { getAnalyticsConfig } from "@/lib/analyticsConfig"
+
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -18,10 +22,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const analyticsConfig = getAnalyticsConfig()
+
   return (
     <html lang="no">
       <body>
         <main>{children}</main>
+        {analyticsConfig?.enabled && (
+          <UmamiAnalytics
+            websiteId={analyticsConfig.websiteId}
+            src={analyticsConfig.src}
+            domains={analyticsConfig.domains}
+          />
+        )}
       </body>
     </html>
   )
