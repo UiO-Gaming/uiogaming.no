@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  gap: 2rem;
+  justify-content: center;
+  place-items: center;
+}
+
+.image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.panoramaContainer {
+  width: 100%;
+  height: 400px;
+  background: #000000;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.panoramaContainer > div {
+  width: 100% !important;
+  height: 100% !important;
+}

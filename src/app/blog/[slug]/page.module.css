@@ -1,0 +1,87 @@
+.container {
+  display: grid;
+  place-items: center;
+  padding: 1rem 0;
+}
+.backButton {
+  justify-self: start;
+}
+.article {
+  display: grid;
+  place-items: center;
+  margin-bottom: 2rem;
+}
+.header {
+  display: grid;
+  padding: 0 1rem;
+  max-width: 85ch;
+}
+.published {
+  font-weight: 100;
+}
+.headerImage {
+  padding: 0;
+  margin: 1rem 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 80vh;
+  place-self: center;
+}
+.title {
+  font-size: 3rem;
+  line-height: 1;
+  margin: 1.5rem 0;
+}
+.excerpt {
+  max-width: none;
+  margin-bottom: 1rem;
+}
+.author {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 100;
+}
+.authorNameSection {
+  display: flex;
+  flex-direction: column;
+}
+.author img {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.article {
+  display: grid;
+  gap: 2em;
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+  max-width: 60ch;
+  padding: 0 1rem;
+}
+
+.content blockquote {
+  color: rgb(225, 225, 225);
+  font-weight: 100;
+  margin-inline-start: 2rem;
+  padding-inline-start: 2rem;
+  border-inline-start: 2px solid var(--link-color-hover);
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4 {
+  margin-top: 2rem;
+}
+
+@media (min-width: 60em) {
+  .content {
+    padding: 0;
+  }
+}
