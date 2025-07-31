@@ -1,0 +1,43 @@
+.container {
+  background-color: #7c5ca8;
+  background-image: url("/mustafa.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%);
+
+  padding: 1rem;
+  padding-bottom: 10vh;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  max-width: none;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 2em;
+  margin-block: 2.5em;
+  border-radius: 1rem;
+}
+
+.content > p {
+  max-width: 40ch;
+  color: #130729;
+  font-size: 1.5rem;
+}
+
+.content > h1 {
+  color: #130729;
+  font-size: 4rem;
+}

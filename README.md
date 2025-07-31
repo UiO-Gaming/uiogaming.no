@@ -1,38 +1,46 @@
 # uiogaming.no
 
-Dette er repoet for UiO Gaming sin nettside. Nettsiden består av tre deler hvorav to av disse er i dette repoet. Her finner du frontend for nettsiden samt et webhook API. Dette APIet brukes til å trigge bygging av nettsiden når innhold endrer seg i CMS, backenden. Repoet for dette CMSet er [her](https://github.com/UiO-Gaming/uiogaming.no-backend). Nettsiden er bygget med GatsbyJS.
+Dette er repoet for UiO Gaming sin nettside. Nettsiden består av to deler. Her finner du frontend for nettsiden. Repoet for CMSet er [her](https://github.com/UiO-Gaming/uiogaming.no-backend).
 
 ## Oppsett
 
-### Frontend
+1. Lag konfigurasjonsfil
 
-1. Installer avhengigheter
+I repoet er det en fil som heter [env.example](env.example). Kopier denne og sett navnet på den nye filen til `.env`.
+
+Fyll så ut verdiene.
+
+2. Installer avhengigheter
 
 ```bash
-yarn install
+npm install
 ```
 
-2. Kjør nettsiden
+3. Bygg nettsiden
 
 ```bash
-yarn start
+npm run build
+```
+
+4. Kjør nettsiden
+
+```bash
+npm start
+```
+
+Om du skal utvikle kan du kjøre følgende istedenfor steg 3 og 4
+
+```bash
+npm run dev
 ```
 
 ### Webhook API
 
-Om du vil at innhold skal oppdatere seg når innholdet endres i backend må du kjøre dette APIet. Dette gjelder bare om du bruker en produksjonsversjon av nettsiden (`yarn serve`)
+Om du vil at innhold skal oppdatere seg når innholdet endres i backend må du kjøre dette APIet. Dette gjelder bare om du kjører en produksjonsversjon av nettsiden
 
-```bash
-cd webhook-api
-yarn install
-yarn start
-```
+Du må spesifisere URL for webhook i Sanity sitt dashbord. URLen dette webhooket skal peke på er `https://uiogaming.no/api/revalidate` med _POST_ forespørselstype.
 
-Du må også spesifisere URL for webhook i Sanity sitt dashbord. Du kan lese mer om det [her](https://www.sanity.io/docs/webhooks). Denne URLen skal peke på APIet ditt.
-
-### Docker
-
-Docker er for øyeblikket ikke støttet, men vil støttes fremtiden.
+Du kan lese mer om det [her](https://www.sanity.io/docs/webhooks).
 
 ## Vil du bidra?
 
