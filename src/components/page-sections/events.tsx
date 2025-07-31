@@ -89,9 +89,7 @@ const Events = async () => {
             style={{ borderRadius: "1rem", objectFit: "cover", height: "100%" }}
             alt="Medlemmer spiller brettspill"
           />
-          <div>
-            <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
-          </div>
+          <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
         </div>
       </div>
     </section>

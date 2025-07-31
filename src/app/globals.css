@@ -224,6 +224,7 @@ section h2 {
 .photo-credit:hover {
   color: var(--light-text-color);
   text-align: end;
+  place-self: end;
 }
 @media (min-width: 70em) {
   .no-mobile {

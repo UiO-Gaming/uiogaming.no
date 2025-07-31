@@ -82,6 +82,12 @@
   .card {
     padding: 2em;
   }
+  .image {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+  }
 }
 
 .readMore {
