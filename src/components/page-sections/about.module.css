@@ -44,6 +44,8 @@
   }
   .image {
     display: flex;
-    place-self: center;
+    align-self: center;
+    justify-self: right;
+    height: 100%;
   }
 }

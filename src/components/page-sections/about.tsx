@@ -14,8 +14,8 @@ const About = () => {
           <Image
             src="/about.jpg"
             alt="To medlemmer spiller sammen"
-            width={1000}
-            height={433}
+            width={640}
+            height={480}
           />
           <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
         </div>
