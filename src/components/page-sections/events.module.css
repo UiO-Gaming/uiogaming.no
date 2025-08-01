@@ -67,8 +67,8 @@
 
 .image {
   grid-row: 1 / -1;
-  height: 75%;
-  place-self: center;
+  align-self: center;
+  justify-self: left;
   margin-top: 2em;
 }
 @media (min-width: 70em) {
@@ -87,6 +87,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: center;
+    height: 90%;
   }
 }
 
