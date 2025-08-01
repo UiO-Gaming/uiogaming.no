@@ -4,11 +4,12 @@ import * as styles from "./footer.module.css"
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className={styles.container}>
       <div className={styles.footer}>
         <Image
           src="/logo_2024_neon_trans.png"
           alt="UiO Gaming logo"
+          className={styles.logo}
           width={187}
           height={256}
         />

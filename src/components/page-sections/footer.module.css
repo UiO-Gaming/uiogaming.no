@@ -1,19 +1,36 @@
-.footer {
+.container {
   background-color: var(--footer-color);
-  padding: 10rem 3rem;
-  gap: 2rem;
   display: grid;
-  place-items: center;
+  justify-items: space-around;
+  align-items: center;
+  min-width: 100%;
+}
+
+.footer {
+  max-width: 1280px;
+  width: 100%;
+  justify-self: center;
+  padding: 10rem 3rem;
+  gap: 4rem;
+  display: grid;
+  align-items: center;
 }
 
 .orgInfo {
   text-align: center;
+  justify-self: center;
 }
 .orgInfo * {
   margin: 1rem 0;
 }
+.links {
+  justify-self: center;
+}
 .links * {
   margin: 0.75rem 0;
+}
+.logo {
+  justify-self: center;
 }
 
 @media (min-width: 70em) {
@@ -22,6 +39,10 @@
   }
   .orgInfo {
     text-align: left;
+    justify-self: end;
+  }
+  .logo {
+    justify-self: right;
   }
   .links {
     justify-self: start;
