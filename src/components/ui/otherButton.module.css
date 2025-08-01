@@ -25,7 +25,6 @@
   flex-direction: column;
   position: absolute;
   border-radius: 10px;
-  width: 300px;
   background-color: rgba(0, 0, 0, 0, 0.5);
 }
 
@@ -35,7 +34,6 @@
   background-color: #cccccc;
   border: none;
   border-radius: 999em !important;
-  padding: 8px 16px;
   cursor: pointer;
   outline: none;
   border-radius: 10px;
@@ -43,6 +41,7 @@
   font-size: 1.6rem;
   box-shadow: var(--shadow);
   padding: 0.5em 1em;
+  padding-right: 2em;
 }
 
 .dropdownButton:hover {
