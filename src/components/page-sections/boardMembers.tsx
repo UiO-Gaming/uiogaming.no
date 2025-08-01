@@ -62,10 +62,14 @@ const BoardMembers = async () => {
                 className={`circular-container ${styles.headerImageContainer}`}
               >
                 <Image
-                  src={urlFor(member.image?.asset?.url || "/person.png")
-                    .width(512)
-                    .height(512)
-                    .url()}
+                  src={
+                    member.image?.asset?.url
+                      ? urlFor(member.image.asset.url)
+                          .width(512)
+                          .height(512)
+                          .url()
+                      : "/person.png"
+                  }
                   width={256}
                   height={256}
                   className="circular"
