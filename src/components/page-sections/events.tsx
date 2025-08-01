@@ -84,7 +84,7 @@ const Events = async () => {
         <div className={"no-mobile " + styles.image}>
           <Image
             src="/event.jpg"
-            width={720}
+            width={850}
             height={480}
             style={{ borderRadius: "1rem", objectFit: "cover", height: "100%" }}
             alt="Medlemmer spiller brettspill"
