@@ -28,7 +28,7 @@ const OtherButton = () => {
   ]
 
   return (
-    <div>
+    <div className={styles.dropdownContainer}>
       <button onClick={toggleDropdown} className={styles.button}>
         {t("other")}{" "}
         <span className={isOpen ? styles.arrowUp : styles.arrowDown}></span>
