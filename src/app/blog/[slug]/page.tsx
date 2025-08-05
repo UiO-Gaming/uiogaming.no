@@ -9,6 +9,7 @@ import { getBlogPost } from "@/lib/sanity"
 
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { Metadata, Viewport } from "next"
+import { getLocale } from "next-intl/server"
 import Image from "next/image"
 
 import * as styles from "./page.module.css"
@@ -98,6 +99,7 @@ const components: PortableTextComponents = {
 
 const BlogPost = async ({ params }: BlogPageParams) => {
   const { slug }: { slug: string } = await params
+  const locale = await getLocale()
 
   const data = await getBlogPost(slug)
 
@@ -105,7 +107,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
     throw new Error("Blog post not found")
   }
 
-  const createdAt = new Date(data._createdAt).toLocaleDateString("nb-NO", {
+  const createdAt = new Date(data._createdAt).toLocaleDateString(locale, {
     day: "numeric",
     month: "long",
     year: "numeric",

@@ -1,10 +1,13 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { FaArrowLeft } from "react-icons/fa"
 
 import * as styles from "./back.module.css"
 
 const Back = () => {
+  const t = useTranslations("buttons")
+
   const handleBack = () => {
     const currentDomain = window.location.hostname
     const referrer = document.referrer
@@ -25,7 +28,7 @@ const Back = () => {
       onClick={handleBack}
     >
       <FaArrowLeft />
-      <p>Tilbake</p>
+      <p>{t("back")}</p>
     </button>
   )
 }

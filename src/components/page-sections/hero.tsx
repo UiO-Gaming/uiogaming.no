@@ -1,8 +1,11 @@
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 
 import * as styles from "./hero.module.css"
 
 const Hero = () => {
+  const t = useTranslations("hero")
+
   return (
     <header id="hjem" className={styles.container}>
       <div className={styles.content}>
@@ -12,10 +15,7 @@ const Hero = () => {
           width={187}
           height={256}
         />
-        <p>
-          En hobbyforening som ønsker å skape et sosialt miljø rundt gaming og
-          e-sport på UiO
-        </p>
+        <p>{t("text")}</p>
       </div>
     </header>
   )

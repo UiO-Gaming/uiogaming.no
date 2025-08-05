@@ -1,8 +1,18 @@
+import { useLocale, useTranslations } from "next-intl"
 import Image from "next/image"
 
 import * as styles from "./footer.module.css"
 
 const Footer = () => {
+  const t = useTranslations("footer")
+  const tCommon = useTranslations("common")
+  const locale = useLocale()
+
+  const statutesUrl =
+    locale === "en"
+      ? "https://statutes.uiogaming.no"
+      : "https://vedtekter.uiogaming.no"
+
   return (
     <footer className={styles.container}>
       <div className={styles.footer}>
@@ -16,18 +26,18 @@ const Footer = () => {
         <div className={styles.links}>
           <ul className="remove-bullets">
             <li>
-              <a href="https://vedtekter.uiogaming.no" rel="noreferrer">
-                Vedtekter
+              <a href={statutesUrl} rel="noreferrer">
+                {tCommon("statutes")}
               </a>
             </li>
             <li>
               <a href="https://innmelding.uiogaming.no" rel="noreferrer">
-                Bli medlem
+                {tCommon("join")}
               </a>
             </li>
             <li>
               <a href="https://klage.uiogaming.no" rel="noreferrer">
-                Klage
+                {tCommon("complaint")}
               </a>
             </li>
             <li>
@@ -35,19 +45,19 @@ const Footer = () => {
                 href="https://github.com/UiO-Gaming/uiogaming.no/"
                 rel="noreferrer"
               >
-                Kildekode
+                {t("sourceCode")}
               </a>
             </li>
             <li>
               <a href="https://admin.uiogaming.no" rel="noreferrer">
-                Adminområdet
+                {t("admin")}
               </a>
             </li>
           </ul>
         </div>
 
         <div className={styles.orgInfo}>
-          <p>Org.Nr.: 925 719 153</p>
+          <p>{t("orgNum")}: 925 719 153</p>
           <address>Slemdalsveien 15, 0369 Oslo</address>
         </div>
       </div>

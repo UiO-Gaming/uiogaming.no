@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl"
+
 import * as styles from "./contact.module.css"
 
 import {
@@ -12,14 +14,16 @@ import {
 } from "react-icons/fa"
 
 const Contact = () => {
+  const t = useTranslations("contact")
+
   return (
     <section>
-      <h2 className="section-center-header">Finn oss</h2>
+      <h2 className="section-center-header">{t("title")}</h2>
       <div className={styles.container}>
         <div className={styles.item}>
           <FaAt />
           <a href="mailto:styret@uiogaming.no" target="_blank" rel="noreferrer">
-            E-post
+            {t("email")}
           </a>
         </div>
         <div className={styles.item}>

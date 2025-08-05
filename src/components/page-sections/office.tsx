@@ -1,23 +1,19 @@
 "use client"
 
+import { useTranslations } from "next-intl"
 import { ReactPhotoSphereViewer } from "react-photo-sphere-viewer"
 
 import * as styles from "./office.module.css"
 
 const Office = () => {
+  const t = useTranslations("office")
+
   return (
     <section>
-      <h2>Kontoret</h2>
+      <h2>{t("title")}</h2>
       <div className={styles.container}>
-        <p>
-          Vi har et foreningskontor på Chateau Neuf der man kan bruke utstyret
-          vårt og henge med andre medlemmer! Vi har blant annet alle de nyeste
-          konsollene, 6 gaming-PCer samt et bredt utvalg av brettspill.
-        </p>
-        <p>
-          Tips: Du kan kikke rundt i kontoret ved å klikke og dra på bildet
-          nedenfor 👀
-        </p>
+        <p>{t("text")}</p>
+        <p>{t("tip")}</p>
         <div
           style={{
             width: "100%",

@@ -1,0 +1,53 @@
+{
+  "common": {
+    "photo": "Foto",
+    "join": "Bli medlem",
+    "statutes": "Vedtekter",
+    "complaint": "Klage",
+    "documents": "Dokumenter"
+  },
+  "buttons": {
+    "back": "tilbake",
+    "flagImageAlt": "Britisk flagg"
+  },
+  "404": {
+    "title": "404: Siden finnes ikke",
+    "text": "Du har nådd en blindvei, men ikke på Blindern",
+    "back": "Tilbake til hjemmesiden"
+  },
+  "hero": {
+    "text": "En hobbyforening som ønsker å skape et sosialt miljø rundt gaming og e-sport på UiO"
+  },
+  "about": {
+    "title": "Hvem er vi?",
+    "imageAlt": "2 medlemmer som spiller sammen",
+    "text": "UiO Gaming er en forening med hovedfokus på å danne et inkluderende fellesskap rundt videospill og e-sport. Hos oss er det enkelt å skaffe seg venner, ettersom alle har felles interesser. Vi arrangerer ukentlige spillkvelder og fysiske sosiale arrangementer, som for eksempel brettspillkvelder og sosiale sammenkomster. Vår hovedkanal er en aktiv Discord-server hvor man kan møte nye folk med felles interesser og game med andre studenter.",
+    "interested": "Interessert?",
+    "other": "Annet"
+  },
+  "events": {
+    "title": "Hva skjer?",
+    "imageAlt": "Medlemmer som spiller brettspill",
+    "readMore": "Les mer",
+    "noEvents": "Ingen kommende arrangementer"
+  },
+  "office": {
+    "title": "Kontoret",
+    "text": "Vi har et foreningskontor på Chateau Neuf der man kan bruke utstyret vårt og henge med andre medlemmer! Vi har blant annet alle de nyeste konsollene, 6 gaming-PCer samt et bredt utvalg av brettspill.",
+    "tip": "Tips: Du kan kikke rundt i kontoret ved å klikke og dra på bildet nedenfor 👀"
+  },
+  "boardMembers": {
+    "title": "Styret",
+    "imageAlt": "Bilde av styremedlem",
+    "noContact": "Ingen kontaktinfo"
+  },
+  "contact": {
+    "title": "Finn oss",
+    "email": "E-post"
+  },
+  "footer": {
+    "sourceCode": "Kildekode",
+    "admin": "Adminområdet",
+    "orgNum": "Org.Nr."
+  }
+}

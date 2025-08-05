@@ -2,38 +2,35 @@ import DiscordButton from "@components/ui/discordButton"
 import MemberButton from "@components/ui/memberButton"
 import OtherButton from "@components/ui/otherButton"
 
+import { useTranslations } from "next-intl"
 import Image from "next/image"
 
 import * as styles from "./about.module.css"
 
 const About = () => {
+  const t = useTranslations("about")
+  const tCommon = useTranslations("common")
+
   return (
     <section>
       <div className={styles.container}>
         <div className={"no-mobile " + styles.image}>
           <Image
             src="/about.jpg"
-            alt="To medlemmer spiller sammen"
+            alt={t("imageAlt")}
             width={640}
             height={480}
           />
-          <p className="photo-credit">Foto: 장태민, Studentenes Fotoklubb</p>
+          <p className="photo-credit">
+            {tCommon("photo")}: 장태민, Studentenes Fotoklubb
+          </p>
         </div>
         <div>
-          <h2 className="left-section-header">Hvem er vi?</h2>
+          <h2 className="left-section-header">{t("title")}</h2>
           <div>
-            <p>
-              UiO Gaming er en forening med hovedfokus på å danne et
-              inkluderende fellesskap rundt videospill og e-sport. Hos oss er
-              det enkelt å skaffe seg venner, ettersom alle har felles
-              interesser. Vi arrangerer ukentlige spillkvelder og fysiske
-              sosiale arrangementer, som for eksempel brettspillkvelder og
-              sosiale sammenkomster. Vår hovedkanal er en aktiv Discord-server
-              hvor man kan møte nye folk med felles interesser og game med andre
-              studenter.
-            </p>
+            <p>{t("text")}</p>
             <div className={styles.joinSection}>
-              <h3>Interessert?</h3>
+              <h3>{t("interested")}</h3>
               <div className={styles.buttons}>
                 <MemberButton />
                 <DiscordButton />

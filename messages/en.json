@@ -1,0 +1,53 @@
+{
+  "common": {
+    "photo": "Photo",
+    "join": "Become a member",
+    "statutes": "Statutes",
+    "complaint": "Complaint",
+    "documents": "Documents"
+  },
+  "buttons": {
+    "back": "back",
+    "flagImageAlt": "Norwegian flag"
+  },
+  "404": {
+    "title": "404: Page not found",
+    "text": "Our journey ended here. Please don't leave us :(",
+    "back": "Back to safe grounds"
+  },
+  "hero": {
+    "text": "A student organisation that aims to create an inclusive environment around gaming and e-sports for the students at UiO"
+  },
+  "about": {
+    "title": "Who are we?",
+    "imageAlt": "2 members playing together",
+    "text": "UiO Gaming is a student organisation with a primary focus on creating an inclusive environment around gaming and e-sports. We wish to establish a community where it’s easy to make new friends and cultivate your gaming interests. Each week we host both casual and more intense gamenights, as well as physical events such as board game nights and other social gatherings. Our main channel is a Discord server where you can meet new people with common interests and play games with other students.",
+    "interested": "Interested?",
+    "other": "Other"
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "imageAlt": "Members playing board games",
+    "readMore": "Read more",
+    "noEvents": "No upcoming events"
+  },
+  "office": {
+    "title": "The Office",
+    "text": "We have an office at Chateau Neuf where you can use our gear and hang out with other members! We've got all the latest and greatest consoles, 6 high-end PCs as well as a plethora of board games.",
+    "tip": "Tip: You can look around the office by clicking and dragging the image below 👀"
+  },
+  "boardMembers": {
+    "title": "The Board",
+    "imageAlt": "Potrait of board member",
+    "noContact": "No contact info"
+  },
+  "contact": {
+    "title": "Find us",
+    "email": "E-mail"
+  },
+  "footer": {
+    "sourceCode": "Source code",
+    "admin": "Admin page",
+    "orgNum": "Org. No."
+  }
+}

@@ -1,6 +1,10 @@
+import { useTranslations } from "next-intl"
+
 import * as styles from "./memberButton.module.css"
 
 const MemberButton = () => {
+  const t = useTranslations("common")
+
   return (
     <a
       href="https://innmelding.uiogaming.no"
@@ -8,7 +12,7 @@ const MemberButton = () => {
       rel="noreferrer"
       className={styles.button}
     >
-      Bli medlem
+      {t("join")}
     </a>
   )
 }

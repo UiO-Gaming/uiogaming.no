@@ -1,10 +1,12 @@
 import "@/app/globals.css"
 
+import { LocaleProvider } from "@/components/localeProvider"
 import UmamiAnalytics from "@/components/umamiAnalytics"
 
 import { getAnalyticsConfig } from "@/lib/analyticsConfig"
 
 import type { Metadata } from "next"
+import { getLocale } from "next-intl/server"
 
 export const metadata: Metadata = {
   title: "UiO Gaming",
@@ -17,24 +19,29 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const locale = (await getLocale()) as "no" | "en"
+  const messages = (await import(`../../messages/${locale}.json`)).default // TODO: duplicate of request.ts?
+
   const analyticsConfig = getAnalyticsConfig()
 
   return (
-    <html lang="no">
+    <html lang={locale}>
       <body>
-        <main>{children}</main>
-        {analyticsConfig?.enabled && (
-          <UmamiAnalytics
-            websiteId={analyticsConfig.websiteId}
-            src={analyticsConfig.src}
-            domains={analyticsConfig.domains}
-          />
-        )}
+        <LocaleProvider locale={locale} messages={messages}>
+          <main>{children}</main>
+          {analyticsConfig?.enabled && (
+            <UmamiAnalytics
+              websiteId={analyticsConfig.websiteId}
+              src={analyticsConfig.src}
+              domains={analyticsConfig.domains}
+            />
+          )}
+        </LocaleProvider>
       </body>
     </html>
   )

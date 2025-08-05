@@ -4,6 +4,7 @@ import Back from "@/components/ui/back"
 import { getEvent } from "@/lib/sanity"
 
 import { Metadata, Viewport } from "next"
+import { getLocale } from "next-intl/server"
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
 
 import * as styles from "./page.module.css"
@@ -52,6 +53,7 @@ export function generateViewport(): Viewport {
 
 const Event = async ({ params }: EventPageParams) => {
   const { slug }: { slug: string } = await params
+  const locale = await getLocale()
 
   const data = await getEvent(slug)
 
@@ -71,7 +73,7 @@ const Event = async ({ params }: EventPageParams) => {
       timeZone: "Europe/Oslo",
     }
 
-    return date.toLocaleString("no", options)
+    return date.toLocaleString(locale, options)
   }
 
   return (

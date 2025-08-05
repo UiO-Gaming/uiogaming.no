@@ -2,22 +2,35 @@
 
 import { useState } from "react"
 
+import { useLocale, useTranslations } from "next-intl"
 import * as styles from "./otherButton.module.css"
 
 const OtherButton = () => {
+  const t = useTranslations("about")
+  const tCommon = useTranslations("common")
+  const locale = useLocale()
+
   const [isOpen, setIsOpen] = useState(false)
   const toggleDropdown = () => setIsOpen(!isOpen)
 
+  const statutesUrl =
+    locale === "en"
+      ? "https://statutes.uiogaming.no"
+      : "https://vedtekter.uiogaming.no"
+
   const links = [
-    { url: "https://vedtekter.uiogaming.no", label: "Vedtekter" },
-    { url: "https://klage.uiogaming.no", label: "Klage" },
-    { url: "https://github.com/UiO-Gaming/dokumenter", label: "Dokumenter" },
+    { url: statutesUrl, label: tCommon("statutes") },
+    { url: "https://klage.uiogaming.no", label: tCommon("complaint") },
+    {
+      url: "https://github.com/UiO-Gaming/dokumenter",
+      label: tCommon("documents"),
+    },
   ]
 
   return (
     <div>
       <button onClick={toggleDropdown} className={styles.button}>
-        Annet{" "}
+        {t("other")}{" "}
         <span className={isOpen ? styles.arrowUp : styles.arrowDown}></span>
       </button>
       {isOpen && (
