@@ -1,25 +1,33 @@
 .container {
   display: grid;
   gap: 2rem;
-  justify-content: center;
   place-items: center;
-}
-
-.image {
-  width: 100%;
-  aspect-ratio: 1 / 1;
 }
 
 .panoramaContainer {
   width: 100%;
-  height: 400px;
-  background: #000000;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
+  aspect-ratio: 4 / 3;
+  max-height: 75vh;
 }
 
 .panoramaContainer > div {
   width: 100% !important;
   height: 100% !important;
 }
+
+.pcRoomImage {
+  width: 100%;
+  height: auto;
+  max-width: 60ch;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.map {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 400px;
+  max-height: 75vh;
+  border-radius: 8px;
+}
+
