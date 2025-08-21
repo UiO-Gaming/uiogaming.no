@@ -26,7 +26,7 @@ const Office = () => {
         </div>
         <Image
           src="/pc_room.jpg"
-          alt="Picture of PC-room. Shows 6 gaming PC setups"
+          alt={t("pcRoomImageAlt")}
           className={styles.pcRoomImage}
           width={666}
           height={500}

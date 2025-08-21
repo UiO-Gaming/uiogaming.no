@@ -34,7 +34,8 @@
   "office": {
     "title": "The Office",
     "text": "We have an office at Chateau Neuf where you can use our gear and hang out with other members! We've got all the latest and greatest consoles, 6 high-end PCs as well as a plethora of board games.",
-    "tip": "Tip: You can look around the office by clicking and dragging the image below 👀"
+    "tip": "Tip: You can look around the office by clicking and dragging the image below 👀",
+    "pcRoomImageAlt": "PC-room with 6 gaming setups"
   },
   "boardMembers": {
     "title": "The Board",
