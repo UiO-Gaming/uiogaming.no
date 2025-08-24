@@ -4,4 +4,6 @@ services:
     build: .
     ports:
       - 9000:9000
+    environment:
+      - TZ=Europe/Oslo
     restart: unless-stopped
