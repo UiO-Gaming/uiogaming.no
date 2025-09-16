@@ -6,6 +6,11 @@
     "complaint": "Klage",
     "documents": "Dokumenter"
   },
+  "metaTags": {
+    "time": "Tid",
+    "location": "Sted",
+    "description": "En hobbyforening som ønsker skape et sosialt miljø rundt gaming og e-sport på UiO!"
+  },
   "buttons": {
     "back": "tilbake",
     "flagImageAlt": "Britisk flagg"

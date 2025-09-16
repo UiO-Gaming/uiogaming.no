@@ -1,11 +1,14 @@
 "use client"
 
-import { useTranslations } from "next-intl"
+import { useLocale, useTranslations } from "next-intl"
+import { useRouter } from "next/navigation"
 import { FaArrowLeft } from "react-icons/fa"
 
 import * as styles from "./back.module.css"
 
 const Back = () => {
+  const locale = useLocale()
+  const router = useRouter()
   const t = useTranslations("buttons")
 
   const handleBack = () => {
@@ -18,7 +21,7 @@ const Back = () => {
     if (window.history.length > 1 && isSameDomain) {
       window.history.back()
     } else {
-      window.location.href = "/"
+      router.push(`/${locale}`)
     }
   }
 

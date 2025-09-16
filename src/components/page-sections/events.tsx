@@ -50,7 +50,7 @@ const Events = async () => {
   const mapEvents = (events: Event[]) => {
     if (events.length !== 0) {
       return events.map((event: Event) => (
-        <Link key={event._id} href={"/event/" + event.slug.current}>
+        <Link key={event._id} href={`/${locale}/event/${event.slug.current}`}>
           <article className={styles.card}>
             <h3>{event.title}</h3>
             <div>

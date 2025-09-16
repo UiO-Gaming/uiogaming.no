@@ -1,10 +1,13 @@
+import Layout from "@/app/[locale]/layout"
+
 import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
 import Back from "@/components/ui/back"
 
 import { getEvent } from "@/lib/sanity"
 
 import { Metadata, Viewport } from "next"
-import { getLocale } from "next-intl/server"
+import { notFound } from "next/navigation"
+import { getLocale, getTranslations } from "next-intl/server"
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
 
 import * as styles from "./page.module.css"
@@ -12,6 +15,7 @@ import * as styles from "./page.module.css"
 interface EventPageParams {
   params: Promise<{
     slug: string
+    locale: string
   }>
 }
 
@@ -21,11 +25,8 @@ export async function generateMetadata({
   const { slug } = await params
   const data = await getEvent(slug)
 
-  if (!data) {
-    return {
-      title: "Event Not Found | UiO Gaming",
-    }
-  }
+  const locale = await getLocale()
+  const t = await getTranslations("metaTags")
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -38,12 +39,12 @@ export async function generateMetadata({
       minute: "2-digit",
       timeZone: "Europe/Oslo",
     }
-    return date.toLocaleString("no", options)
+    return date.toLocaleString(locale, options)
   }
 
   return generateSeoMetadata({
     title: data.title,
-    description: `Tid: ${formatDate(data.date)}\nSted: ${data.location}\n\n${data.description}`,
+    description: `${t("time")}: ${formatDate(data.date)}\n${t("location")}: ${data.location}\n\n${data.description}`,
   })
 }
 
@@ -57,9 +58,7 @@ const Event = async ({ params }: EventPageParams) => {
 
   const data = await getEvent(slug)
 
-  if (!data) {
-    throw new Error("Event not found")
-  }
+  if (!data) return notFound()
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -77,21 +76,23 @@ const Event = async ({ params }: EventPageParams) => {
   }
 
   return (
-    <div className={styles.container}>
-      <Back />
-      <div className={styles.event}>
-        <h1>{data.title}</h1>
-        <div className={styles.metadata}>
-          <FaMapMarkerAlt />
-          <p>{data.location}</p>
+    <Layout>
+      <div className={styles.container}>
+        <Back />
+        <div className={styles.event}>
+          <h1>{data.title}</h1>
+          <div className={styles.metadata}>
+            <FaMapMarkerAlt />
+            <p>{data.location}</p>
+          </div>
+          <div className={styles.metadata}>
+            <FaCalendarAlt />
+            <p>{formatDate(data.date)}</p>
+          </div>
+          <p className={styles.description}>{data.description}</p>
         </div>
-        <div className={styles.metadata}>
-          <FaCalendarAlt />
-          <p>{formatDate(data.date)}</p>
-        </div>
-        <p className={styles.description}>{data.description}</p>
       </div>
-    </div>
+    </Layout>
   )
 }
 

@@ -1,4 +1,5 @@
 import { Metadata, Viewport } from "next"
+import { getLocale, getTranslations } from "next-intl/server"
 
 type SeoProps = {
   title?: string
@@ -7,16 +8,17 @@ type SeoProps = {
   author?: string
 }
 
-export function generateSeoMetadata({
+export async function generateSeoMetadata({
   title,
   description,
   imageURL,
   author,
-}: SeoProps): Metadata {
+}: SeoProps): Promise<Metadata> {
+  const t = await getTranslations("metaTags")
+  const locale = await getLocale()
+
   const defaultTitle = "UiO Gaming"
-  const metaDescription =
-    description ||
-    "En hobbyforening som ønsker skape et sosialt miljö rundt gaming og e-sport på UiO!"
+  const metaDescription = description || t("description")
   const siteUrl = "https://uiogaming.no"
   const themeColor = "#7d36e7"
 
@@ -24,11 +26,16 @@ export function generateSeoMetadata({
     title: title ? `${title} | ${defaultTitle}` : defaultTitle,
     description: metaDescription,
     authors: author ? [{ name: author }] : [{ name: "UiO Gaming" }],
+    icons: {
+      icon: "/logo_2024_neon_pink.png",
+      shortcut: "/logo_2024_neon_pink.png",
+      apple: "/logo_2024_neon_pink.png",
+    },
     openGraph: {
       title: title || defaultTitle,
       description: metaDescription,
       type: "website",
-      locale: "no",
+      locale: locale,
       siteName: defaultTitle,
       images: imageURL
         ? [
