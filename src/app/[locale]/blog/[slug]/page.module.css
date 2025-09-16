@@ -5,6 +5,7 @@
 }
 .backButton {
   justify-self: start;
+  margin-left: 2rem;
 }
 .article {
   display: grid;
