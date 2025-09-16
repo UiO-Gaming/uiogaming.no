@@ -3,14 +3,17 @@ import Layout from "@/app/layout"
 import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
 
 import { Metadata, Viewport } from "next"
+import { getTranslations } from "next-intl/server"
 import { useTranslations } from "next-intl"
 import Link from "next/link"
 
 import * as styles from "./global-not-found.module.css"
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("404")
+
   return generateSeoMetadata({
-    title: "404: Ikke funnet",
+    title: t("title"),
     description: "Uh oh :(",
   })
 }

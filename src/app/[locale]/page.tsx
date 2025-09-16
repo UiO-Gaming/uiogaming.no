@@ -1,4 +1,4 @@
-import Layout from "@/app/layout"
+import Layout from "@/app/[locale]/layout"
 
 import About from "@/components/page-sections/about"
 import BoardMembers from "@/components/page-sections/boardMembers"
@@ -13,7 +13,7 @@ import { Metadata, Viewport } from "next"
 
 export const revalidate = 3600 // 1 hour
 
-export function generateMetadata(): Metadata {
+export async function generateMetadata(): Promise<Metadata> {
   return generateSeoMetadata({})
 }
 

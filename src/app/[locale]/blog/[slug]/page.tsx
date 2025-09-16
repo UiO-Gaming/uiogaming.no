@@ -1,4 +1,4 @@
-import Layout from "@/app/layout"
+import Layout from "@/app/[locale]/layout"
 
 import Footer from "@/components/page-sections/footer"
 import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
@@ -9,6 +9,7 @@ import { getBlogPost } from "@/lib/sanity"
 
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { Metadata, Viewport } from "next"
+import { notFound } from "next/navigation"
 import { getLocale } from "next-intl/server"
 import Image from "next/image"
 
@@ -17,6 +18,7 @@ import * as styles from "./page.module.css"
 interface BlogPageParams {
   params: Promise<{
     slug: string
+    locale: string
   }>
 }
 
@@ -38,12 +40,6 @@ export async function generateMetadata({
 }: BlogPageParams): Promise<Metadata> {
   const { slug } = await params
   const data = await getBlogPost(slug)
-
-  if (!data) {
-    return {
-      title: "Blog Post Not Found | UiO Gaming",
-    }
-  }
 
   return generateSeoMetadata({
     title: data.title,
@@ -103,9 +99,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
 
   const data = await getBlogPost(slug)
 
-  if (!data) {
-    throw new Error("Blog post not found")
-  }
+  if (!data) return notFound()
 
   const createdAt = new Date(data._createdAt).toLocaleDateString(locale, {
     day: "numeric",
@@ -136,7 +130,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
               {data.author?.image && (
                 <Image
                   className="circular"
-                  alt={`Forfatteren av innlegget, ${data.author.name}`}
+                  alt={data.author.name}
                   src={urlFor(data.author.image).width(50).height(50).url()}
                   width={50}
                   height={50}

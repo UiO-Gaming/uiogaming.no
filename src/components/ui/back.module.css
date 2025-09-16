@@ -9,6 +9,7 @@
   background: none;
   border: none;
   color: var(--link-color);
+  cursor: pointer;
 }
 .button:hover,
 .button *:hover {
