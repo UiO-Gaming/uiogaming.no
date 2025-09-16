@@ -2,7 +2,8 @@
   display: grid;
   place-content: center;
   min-height: 100vh;
-  margin: 1rem;
+  margin-block: 6rem;
+  margin-inline: 1rem;
 }
 
 .event {
