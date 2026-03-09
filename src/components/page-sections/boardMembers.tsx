@@ -56,7 +56,7 @@ const BoardMembers = async () => {
   const data: BoardMember[] = await sanityClient.fetch(query)
 
   return (
-    <section>
+    <section id="board-members">
       <h2>{t("title")}</h2>
       <div className={styles.container}>
         {data.map((member: BoardMember) => (

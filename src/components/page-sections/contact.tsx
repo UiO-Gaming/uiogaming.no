@@ -17,7 +17,7 @@ const Contact = () => {
   const t = useTranslations("contact")
 
   return (
-    <section>
+    <section id="contact">
       <h2 className="section-center-header">{t("title")}</h2>
       <div className={styles.container}>
         <div className={styles.item}>

@@ -89,7 +89,7 @@ const Events = async () => {
   }
 
   return (
-    <section>
+    <section id="events">
       <div className={styles.container}>
         <h2 className={styles.sectionHeader}>{t("title")}</h2>
         <div className={styles.events}>{mapEvents(filteredEvents)}</div>

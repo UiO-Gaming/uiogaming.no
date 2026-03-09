@@ -12,7 +12,7 @@ const About = () => {
   const tCommon = useTranslations("common")
 
   return (
-    <section>
+    <section id="about">
       <div className={styles.container}>
         <div className={"no-mobile " + styles.image}>
           <Image

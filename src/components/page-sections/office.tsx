@@ -10,7 +10,7 @@ const Office = () => {
   const t = useTranslations("office")
 
   return (
-    <section>
+    <section id="office">
       <h2>{t("title")}</h2>
       <div className={styles.container}>
         <p>{t("text")}</p>
