@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { ReactPhotoSphereViewer } from "react-photo-sphere-viewer"
@@ -8,6 +9,13 @@ import * as styles from "./office.module.css"
 
 const Office = () => {
   const t = useTranslations("office")
+  const [supportsWebGL2, setSupportsWebGL2] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const canvas = document.createElement("canvas")
+    const gl = canvas.getContext("webgl2")
+    setSupportsWebGL2(Boolean(gl))
+  }, [])
 
   return (
     <section id="office">
@@ -16,13 +24,23 @@ const Office = () => {
         <p>{t("text")}</p>
         <p>{t("tip")}</p>
         <div className={styles.panoramaContainer}>
-          <ReactPhotoSphereViewer
-            width={"100%"}
-            height={"100%"}
-            src="/3D_office_2025_08_20.jpg"
-            defaultZoomLvl={0}
-            navbar={true}
-          />
+          {supportsWebGL2 === true ? (
+            <ReactPhotoSphereViewer
+              width={"100%"}
+              height={"100%"}
+              src="/3D_office_2025_08_20.jpg"
+              defaultZoomLvl={0}
+              navbar={true}
+            />
+          ) : (
+            <Image
+              src="/3D_office_2025_08_20.jpg"
+              alt={t("title")}
+              className={styles.panoramaFallback}
+              width={1200}
+              height={900}
+            />
+          )}
         </div>
         <Image
           src="/pc_room.jpg"

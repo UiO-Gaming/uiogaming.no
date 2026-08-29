@@ -17,18 +17,18 @@ export async function POST(request: NextRequest) {
     )
 
     if (_type === "post") {
-      revalidateTag("blog-posts")
+      revalidateTag("blog-posts", "max")
       if (slug?.current) {
-        revalidateTag(`post-${slug.current}`)
+        revalidateTag(`post-${slug.current}`, "max")
       }
     } else if (_type === "event") {
-      revalidateTag("events")
+      revalidateTag("events", "max")
       if (slug?.current) {
-        revalidateTag(`event-${slug.current}`)
+        revalidateTag(`event-${slug.current}`, "max")
       }
     }
 
-    revalidateTag("home")
+    revalidateTag("home", "max")
 
     return NextResponse.json({
       revalidated: true,
