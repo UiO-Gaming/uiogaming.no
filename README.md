@@ -41,7 +41,9 @@ npm run dev
 
 ### Webhook API
 
-Om du vil at innhold skal oppdatere seg når innholdet endres i backend må du kjøre dette APIet. Dette gjelder bare om du kjører en produksjonsversjon av nettsiden
+Om du vil at innhold skal oppdatere seg når innholdet endres i backend må du kjøre dette APIet. Det kjører automatisk når du starter applikasjonen.
+
+MEN
 
 Du må spesifisere URL for webhook i Sanity sitt dashbord. URLen dette webhooket skal peke på er `https://uiogaming.no/api/revalidate` med _POST_ forespørselstype.
 
