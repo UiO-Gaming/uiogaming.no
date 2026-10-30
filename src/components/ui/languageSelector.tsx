@@ -24,13 +24,13 @@ const LanguageSelector = () => {
     <div className={styles.languageSwitcher}>
       {locale === "no" ? (
         <button onClick={() => changeLocale("en")} className={styles.button}>
-          <GB className={styles.flag} title="English flag" />
-          English
+          <GB className={styles.flag} aria-hidden="true" />
+          <span lang="en">English</span>
         </button>
       ) : (
         <button onClick={() => changeLocale("no")} className={styles.button}>
-          <NO className={styles.flag} title="Norwegian flag" />
-          Norsk
+          <NO className={styles.flag} aria-hidden="true" />
+          <span lang="no">Norsk</span>
         </button>
       )}
     </div>
