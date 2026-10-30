@@ -1,7 +1,15 @@
 services:
   uiogaming.no:
     container_name: uiogaming.no
-    build: .
+    build:
+      context: .
+      # Values are read from .env
+      args:
+        NEXT_PUBLIC_SANITY_PROJECT_ID: ${NEXT_PUBLIC_SANITY_PROJECT_ID}
+        NEXT_PUBLIC_SANITY_DATASET: ${NEXT_PUBLIC_SANITY_DATASET}
+        NEXT_PUBLIC_UMAMI_SRC: ${NEXT_PUBLIC_UMAMI_SRC}
+        NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+    env_file: .env
     ports:
       - 9000:9000
     environment:
