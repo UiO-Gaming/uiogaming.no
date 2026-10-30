@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "UiO Gaming",
   description:
-    "En hobbyforening som ønsker skape et sosialt miljø rundt gaming og e-sport på UiO!",
+    "En hobbyforening som ønsker å skape et sosialt miljø rundt gaming og e-sport på UiO!",
   icons: {
     icon: "/logo_2024_neon_pink.png",
     shortcut: "/logo_2024_neon_pink.png",
