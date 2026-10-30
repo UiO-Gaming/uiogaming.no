@@ -6,7 +6,7 @@ import { getMessages } from "next-intl/server"
 import { notFound } from "next/navigation"
 
 import LanguageSelector from "@/components/ui/languageSelector"
-import { THEME_COLOR } from "@/components/seo"
+import { SITE_URL, THEME_COLOR } from "@/components/seo"
 import UmamiAnalytics from "@/components/umamiAnalytics"
 import { routing } from "@/i18n/routing"
 
@@ -16,6 +16,8 @@ import { routing } from "@/i18n/routing"
 const CLIENT_NAMESPACES = ["about", "buttons", "common", "office"]
 
 export const metadata: Metadata = {
+  // Resolves relative URLs in metadata, like Open Graph images and alternates
+  metadataBase: new URL(SITE_URL),
   title: "UiO Gaming",
   description:
     "En hobbyforening som ønsker skape et sosialt miljø rundt gaming og e-sport på UiO!",

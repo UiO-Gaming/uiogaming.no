@@ -23,7 +23,7 @@ export async function generateMetadata({
 }: HomePageParams): Promise<Metadata> {
   const { locale } = await params
 
-  return generateSeoMetadata({ locale })
+  return generateSeoMetadata({ locale, path: "/" })
 }
 
 export default function Home() {

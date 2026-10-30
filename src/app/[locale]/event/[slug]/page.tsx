@@ -36,6 +36,7 @@ export async function generateMetadata({
 
   return generateSeoMetadata({
     locale,
+    path: `/event/${slug}`,
     title: data.title,
     description: [
       `${t("time")}: ${formatEventDate(data.date, locale)}`,

@@ -64,10 +64,12 @@ export async function generateMetadata({
 
   return generateSeoMetadata({
     locale,
+    path: `/blog/${slug}`,
     title: data.title,
     description: data.excerpt,
     imageURL: data.mainImage?.asset?.url,
     author: data.author?.name,
+    publishedTime: data._createdAt,
   })
 }
 
