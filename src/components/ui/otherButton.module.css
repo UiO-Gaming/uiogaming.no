@@ -39,18 +39,19 @@
 .dropdownLink {
   display: block;
   width: 100%;
+  margin-top: 4px;
   color: black;
   background-color: #cccccc;
-  border: none;
-  border-radius: 999em !important;
-  cursor: pointer;
-  outline: none;
-  border-radius: 10px;
+  border-radius: 999em;
   text-align: left;
   font-size: 1.6rem;
   box-shadow: var(--shadow);
   padding: 0.5em 1em;
   padding-right: 2em;
+}
+
+.dropdownLink:first-child {
+  margin-top: 8px;
 }
 
 .dropdownLink:hover {
