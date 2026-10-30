@@ -66,6 +66,7 @@ const Office = () => {
           className={styles.map}
           src="https://use.mazemap.com/embed.html#v=1&config=uio&zlevel=3&center=10.712463,59.932424&zoom=17&campusid=797&sharepoitype=poi&sharepoi=1000986035&utm_medium=iframe"
           allow="geolocation"
+          loading="lazy"
           title="Map by MazeMap"
         ></iframe>
       </div>
