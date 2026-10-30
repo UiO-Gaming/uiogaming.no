@@ -4,7 +4,7 @@ import { hasLocale, NextIntlClientProvider } from "next-intl"
 import type { Metadata, Viewport } from "next"
 import { notFound } from "next/navigation"
 
-import LanguageSelector from "@components/ui/languageSelector"
+import LanguageSelector from "@/components/ui/languageSelector"
 import { THEME_COLOR } from "@/components/seo"
 import UmamiAnalytics from "@/components/umamiAnalytics"
 import { routing } from "@/i18n/routing"
