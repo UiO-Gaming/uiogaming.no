@@ -144,3 +144,33 @@ export async function getBoardMembers() {
     }
   )
 }
+
+export async function getSitemapDocuments(): Promise<{
+  posts: { slug: string; _updatedAt: string }[]
+  events: { slug: string; _updatedAt: string }[]
+}> {
+  const query = `
+    {
+      "posts": *[_type == "post" && defined(slug.current)] {
+        "slug": slug.current,
+        _updatedAt
+      },
+      "events": *[_type == "event" && defined(slug.current)] {
+        "slug": slug.current,
+        _updatedAt
+      }
+    }
+  `
+
+  return sanityClient.fetch(
+    query,
+    {},
+    {
+      cache: "force-cache",
+      next: {
+        tags: ["blog-posts", "events"],
+        revalidate: 3600, // 1 hour
+      },
+    }
+  )
+}

@@ -7,6 +7,10 @@ import { routing } from "@/i18n/routing"
 export const SITE_URL = "https://uiogaming.no"
 export const THEME_COLOR = "#7d36e7"
 
+/** Adds the locale prefix to a path, e.g. ("en", "/event/x") -> "/en/event/x" */
+export const getLocalizedPath = (locale: Locale, path: string) =>
+  path === "/" ? `/${locale}` : `/${locale}${path}`
+
 type SeoProps = {
   locale: Locale
   /** Path without the locale prefix, e.g. "/" or "/event/some-slug" */
@@ -32,8 +36,6 @@ export async function generateSeoMetadata({
 
   const defaultTitle = "UiO Gaming"
   const metaDescription = description || t("description")
-  const localizedPath = (pageLocale: Locale) =>
-    path === "/" ? `/${pageLocale}` : `/${pageLocale}${path}`
 
   return {
     title: title ? `${title} | ${defaultTitle}` : defaultTitle,
@@ -42,12 +44,12 @@ export async function generateSeoMetadata({
     // Tells search engines that the Norwegian and English versions are the
     // same page. The unprefixed path redirects based on the browser language
     alternates: {
-      canonical: localizedPath(locale),
+      canonical: getLocalizedPath(locale, path),
       languages: {
         ...Object.fromEntries(
           routing.locales.map(pageLocale => [
             pageLocale,
-            localizedPath(pageLocale),
+            getLocalizedPath(pageLocale, path),
           ])
         ),
         "x-default": path,
@@ -60,7 +62,7 @@ export async function generateSeoMetadata({
         ? { type: "article", publishedTime, authors: author && [author] }
         : { type: "website" }),
       locale: locale,
-      url: localizedPath(locale),
+      url: getLocalizedPath(locale, path),
       siteName: defaultTitle,
       images: imageURL
         ? [
