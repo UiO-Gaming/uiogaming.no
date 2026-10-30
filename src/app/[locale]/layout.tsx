@@ -7,7 +7,6 @@ import { notFound } from "next/navigation"
 import LanguageSelector from "@components/ui/languageSelector"
 import UmamiAnalytics from "@/components/umamiAnalytics"
 import { routing } from "@/i18n/routing"
-import { getAnalyticsConfig } from "@/lib/analyticsConfig"
 
 export const metadata: Metadata = {
   title: "UiO Gaming",
@@ -38,21 +37,13 @@ export default async function RootLayout({
 
   const messages = (await import(`../../../messages/${locale}.json`)).default
 
-  const analyticsConfig = getAnalyticsConfig()
-
   return (
     <html lang={locale}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <LanguageSelector />
           <main>{children}</main>
-          {analyticsConfig?.enabled && (
-            <UmamiAnalytics
-              websiteId={analyticsConfig.websiteId}
-              src={analyticsConfig.src}
-              domains={analyticsConfig.domains}
-            />
-          )}
+          <UmamiAnalytics />
         </NextIntlClientProvider>
       </body>
     </html>
