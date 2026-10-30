@@ -1,4 +1,4 @@
-import { urlFor } from "@/lib/imageUrlBuilder"
+import { type SanityImage, urlFor } from "@/lib/imageUrlBuilder"
 import { getBoardMembers } from "@/lib/sanity"
 
 import { getLocale, getTranslations } from "next-intl/server"
@@ -14,12 +14,7 @@ interface BoardMember {
     no: string
     en: string
   }
-  image?: {
-    asset?: {
-      _id: string
-      url: string
-    }
-  }
+  image: SanityImage | null
   bio?: {
     no: string
     en: string
@@ -44,11 +39,9 @@ const BoardMembers = async () => {
               >
                 <Image
                   src={
-                    member.image?.asset?.url
-                      ? urlFor(member.image.asset.url)
-                          .width(512)
-                          .height(512)
-                          .url()
+                    member.image?.asset
+                      ? // Cropped to a square around the hotspot
+                        urlFor(member.image).width(512).height(512).url()
                       : "/person.png"
                   }
                   width={256}

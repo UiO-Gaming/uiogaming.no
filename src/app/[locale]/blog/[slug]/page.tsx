@@ -2,7 +2,7 @@ import Footer from "@/components/page-sections/footer"
 import { generateSeoMetadata } from "@/components/seo"
 import Back from "@/components/ui/back"
 
-import { urlFor } from "@/lib/imageUrlBuilder"
+import { type SanityImage, urlFor } from "@/lib/imageUrlBuilder"
 import { getBlogPost } from "@/lib/sanity"
 
 import { PortableText, PortableTextComponents } from "@portabletext/react"
@@ -20,11 +20,7 @@ interface BlogPageParams {
   }>
 }
 
-interface ImageValue {
-  asset?: {
-    _id: string
-    url: string
-  }
+type ImageValue = Partial<SanityImage> & {
   alt?: string
   caption?: string
 }
@@ -67,7 +63,10 @@ export async function generateMetadata({
     path: `/blog/${slug}`,
     title: data.title,
     description: data.excerpt,
-    imageURL: data.mainImage?.asset?.url,
+    // Cropped around the hotspot to the size link previews expect
+    imageURL: data.mainImage?.asset
+      ? urlFor(data.mainImage).width(1200).height(630).url()
+      : undefined,
     author: data.author?.name,
     publishedTime: data._createdAt,
   })
@@ -80,10 +79,13 @@ const components: PortableTextComponents = {
       return (
         <div className={styles.imageContainer}>
           <Image
-            src={urlFor(value).url()}
+            // Only a width, so the image keeps its shape and just the crop
+            // applies. fit("max") avoids upscaling small images
+            src={urlFor(value).width(1200).fit("max").url()}
             alt={value.alt || "Blog image"}
             width={800}
             height={400}
+            sizes="(max-width: 640px) 100vw, 640px"
             style={{ width: "100%", height: "auto" }}
           />
           {value.caption && (
@@ -144,10 +146,11 @@ const BlogPost = async ({ params }: BlogPageParams) => {
           <header className={styles.header}>
             {data.mainImage && (
               <Image
-                src={urlFor(data.mainImage).url()}
+                src={urlFor(data.mainImage).width(1600).fit("max").url()}
                 alt={data.title}
                 width={800}
                 height={400}
+                sizes="(max-width: 850px) 100vw, 850px"
                 className={styles.headerImage}
               />
             )}
@@ -158,7 +161,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
                 <Image
                   className="circular"
                   alt={data.author.name}
-                  src={urlFor(data.author.image).width(50).height(50).url()}
+                  src={urlFor(data.author.image).width(100).height(100).url()}
                   width={50}
                   height={50}
                 />

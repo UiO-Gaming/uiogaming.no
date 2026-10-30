@@ -17,19 +17,9 @@ export async function getBlogPost(slug: string) {
       title,
       author-> {
         name,
-        image {
-          asset-> {
-            _id,
-            url
-          }
-        }
+        image
       },
-      mainImage {
-        asset-> {
-          _id,
-          url
-        }
-      },
+      mainImage,
       excerpt,
       body
     }
@@ -119,12 +109,7 @@ export async function getBoardMembers() {
         no,
         en
       },
-      image {
-        asset->{
-          _id,
-          url
-        }
-      },
+      image,
       bio {
         no,
         en
