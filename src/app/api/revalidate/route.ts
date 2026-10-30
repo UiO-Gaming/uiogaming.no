@@ -26,9 +26,11 @@ export async function POST(request: NextRequest) {
       if (slug?.current) {
         revalidateTag(`event-${slug.current}`, "max")
       }
+    } else if (_type === "author") {
+      revalidateTag("authors", "max")
+      // Blog posts show the author's name and image
+      revalidateTag("blog-posts", "max")
     }
-
-    revalidateTag("home", "max")
 
     return NextResponse.json({
       revalidated: true,

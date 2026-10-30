@@ -95,3 +95,40 @@ export async function getAllEvents() {
     }
   )
 }
+
+export async function getBoardMembers() {
+  const query = `
+    *[_type == "author" && boardMember == true] | order(orderRank asc) {
+      _id,
+      boardMember,
+      contactInfo,
+      name,
+      role {
+        no,
+        en
+      },
+      image {
+        asset->{
+          _id,
+          url
+        }
+      },
+      bio {
+        no,
+        en
+      }
+    }
+  `
+
+  return sanityClient.fetch(
+    query,
+    {},
+    {
+      cache: "force-cache",
+      next: {
+        tags: ["authors"],
+        revalidate: 3600, // 1 hour
+      },
+    }
+  )
+}

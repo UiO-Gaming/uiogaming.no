@@ -1,5 +1,5 @@
 import { urlFor } from "@/lib/imageUrlBuilder"
-import { sanityClient } from "@/lib/sanity"
+import { getBoardMembers } from "@/lib/sanity"
 
 import { getLocale, getTranslations } from "next-intl/server"
 import Image from "next/image"
@@ -31,29 +31,7 @@ const BoardMembers = async () => {
   const t = await getTranslations("boardMembers")
   const locale = (await getLocale()) as "no" | "en"
 
-  const query = `
-    *[_type == "author" && boardMember == true] | order(orderRank asc) {
-      _id,
-      boardMember,
-      contactInfo,
-      name,
-      role {
-        no,
-        en
-      },
-      image {
-        asset->{
-          _id,
-          url
-        }
-      },
-      bio {
-        no,
-        en
-      }
-    }
-  `
-  const data: BoardMember[] = await sanityClient.fetch(query)
+  const data: BoardMember[] = await getBoardMembers()
 
   return (
     <section id="board-members">
