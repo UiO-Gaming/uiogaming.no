@@ -71,9 +71,27 @@ export async function getEvent(slug: string) {
   )
 }
 
-export async function getAllEvents() {
+export async function getUpcomingEvents(limit: number) {
+  // Event dates are stored as Oslo local time strings ("2026-11-05 17:00"),
+  // which sort correctly as text, so compare against the current time in the
+  // same format
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Europe/Oslo",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    })
+      .formatToParts(new Date())
+      .map(({ type, value }) => [type, value])
+  )
+  const now = `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}`
+
   const query = `
-    *[_type == "event"] | order(date asc) {
+    *[_type == "event" && date >= $now] | order(date asc)[0...$limit] {
       _id,
       title,
       location,
@@ -85,7 +103,7 @@ export async function getAllEvents() {
 
   return sanityClient.fetch(
     query,
-    {},
+    { now, limit },
     {
       cache: "force-cache",
       next: {

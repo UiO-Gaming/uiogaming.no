@@ -1,4 +1,4 @@
-import { getAllEvents } from "@/lib/sanity"
+import { getUpcomingEvents } from "@/lib/sanity"
 
 import { getLocale, getTranslations } from "next-intl/server"
 import Image from "next/image"
@@ -25,14 +25,7 @@ const Events = async () => {
   const tCommon = await getTranslations("common")
   const locale = await getLocale()
 
-  const data: Event[] = await getAllEvents()
-
-  const currentDate = new Date()
-  const filteredEvents = data
-    .filter((event: Event) => {
-      return currentDate <= new Date(event.date)
-    })
-    .slice(0, 2)
+  const events: Event[] = await getUpcomingEvents(2)
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -105,7 +98,7 @@ const Events = async () => {
     <section id="events">
       <div className={styles.container}>
         <h2 className={styles.sectionHeader}>{t("title")}</h2>
-        <div className={styles.events}>{mapEvents(filteredEvents)}</div>
+        <div className={styles.events}>{mapEvents(events)}</div>
         <div className={"no-mobile " + styles.image}>
           <Image
             src="/event.jpg"
