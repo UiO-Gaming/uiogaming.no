@@ -36,14 +36,16 @@ const OtherButton = () => {
       {isOpen && (
         <div className={styles.dropdown}>
           {links.map((link, index) => (
-            <button
-              key={index}
-              onClick={() => window.open(link.url, "_blank")}
-              className={styles.dropdownButton}
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.dropdownLink}
               style={{ marginTop: index === 0 ? "8px" : "4px" }}
             >
               {link.label}
-            </button>
+            </a>
           ))}
         </div>
       )}

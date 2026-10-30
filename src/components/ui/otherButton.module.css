@@ -36,7 +36,8 @@
   border-radius: 10px;
 }
 
-.dropdownButton {
+.dropdownLink {
+  display: block;
   width: 100%;
   color: black;
   background-color: #cccccc;
@@ -52,7 +53,7 @@
   padding-right: 2em;
 }
 
-.dropdownButton:hover {
+.dropdownLink:hover {
   color: black;
   background-color: #e6e6e6;
 }
