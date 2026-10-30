@@ -102,12 +102,15 @@ const components: PortableTextComponents = {
       const href = getSafeHref(value?.href)
       if (!href) return <>{children}</>
 
+      // Only links to other sites open in a new tab, not mailto: or links
+      // within this site
+      const isExternal = /^https?:\/\//i.test(href)
+
       return (
         <a
           href={href}
-          target="_blank"
-          rel="noopener noreferrer"
           className={styles.link}
+          {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
         >
           {children}
         </a>
