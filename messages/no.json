@@ -12,8 +12,7 @@
     "description": "En hobbyforening som ønsker skape et sosialt miljø rundt gaming og e-sport på UiO!"
   },
   "buttons": {
-    "back": "tilbake",
-    "flagImageAlt": "Britisk flagg"
+    "back": "tilbake"
   },
   "404": {
     "title": "404: Siden finnes ikke",

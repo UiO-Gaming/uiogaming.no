@@ -8,7 +8,6 @@ import * as styles from "./boardMembers.module.css"
 
 interface BoardMember {
   _id: string
-  boardMember: boolean
   contactInfo?: string
   name: string
   role?: {

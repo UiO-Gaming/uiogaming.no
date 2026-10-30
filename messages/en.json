@@ -12,8 +12,7 @@
     "description": "A student organisation that aims to create an inclusive environment around gaming and e-sports for the students at UiO"
   },
   "buttons": {
-    "back": "back",
-    "flagImageAlt": "Norwegian flag"
+    "back": "back"
   },
   "404": {
     "title": "404: Page not found",

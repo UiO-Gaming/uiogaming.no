@@ -118,7 +118,6 @@ export async function getBoardMembers() {
   const query = `
     *[_type == "author" && boardMember == true] | order(orderRank asc) {
       _id,
-      boardMember,
       contactInfo,
       name,
       role {
