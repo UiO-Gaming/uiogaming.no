@@ -1,5 +1,3 @@
-import Layout from "@/app/[locale]/layout"
-
 import About from "@/components/page-sections/about"
 import BoardMembers from "@/components/page-sections/boardMembers"
 import Contact from "@/components/page-sections/contact"
@@ -23,7 +21,7 @@ export function generateViewport(): Viewport {
 
 export default function Home() {
   return (
-    <Layout>
+    <>
       <Hero />
       <About />
       <Events />
@@ -31,6 +29,6 @@ export default function Home() {
       <BoardMembers />
       <Contact />
       <Footer />
-    </Layout>
+    </>
   )
 }

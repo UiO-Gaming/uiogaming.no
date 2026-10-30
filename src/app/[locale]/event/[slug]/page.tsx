@@ -1,5 +1,3 @@
-import Layout from "@/app/[locale]/layout"
-
 import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
 import Back from "@/components/ui/back"
 
@@ -78,23 +76,21 @@ const Event = async ({ params }: EventPageParams) => {
   }
 
   return (
-    <Layout>
-      <div className={styles.container}>
-        <Back />
-        <div className={styles.event}>
-          <h1>{data.title}</h1>
-          <div className={styles.metadata}>
-            <FaMapMarkerAlt />
-            <p>{data.location}</p>
-          </div>
-          <div className={styles.metadata}>
-            <FaCalendarAlt />
-            <p>{formatDate(data.date)}</p>
-          </div>
-          <p className={styles.description}>{data.description}</p>
+    <div className={styles.container}>
+      <Back />
+      <div className={styles.event}>
+        <h1>{data.title}</h1>
+        <div className={styles.metadata}>
+          <FaMapMarkerAlt />
+          <p>{data.location}</p>
         </div>
+        <div className={styles.metadata}>
+          <FaCalendarAlt />
+          <p>{formatDate(data.date)}</p>
+        </div>
+        <p className={styles.description}>{data.description}</p>
       </div>
-    </Layout>
+    </div>
   )
 }
 

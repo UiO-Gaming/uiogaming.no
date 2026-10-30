@@ -1,5 +1,3 @@
-import Layout from "@/app/[locale]/layout"
-
 import Footer from "@/components/page-sections/footer"
 import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
 import Back from "@/components/ui/back"
@@ -110,7 +108,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
   })
 
   return (
-    <Layout>
+    <>
       <div className={styles.container}>
         <div className={styles.backButton}>
           <Back />
@@ -150,7 +148,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
         </article>
       </div>
       <Footer />
-    </Layout>
+    </>
   )
 }
 
