@@ -1,3 +1,4 @@
+import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook"
 import { revalidateTag } from "next/cache"
 import { NextRequest, NextResponse } from "next/server"
 
@@ -6,14 +7,37 @@ import { NextRequest, NextResponse } from "next/server"
 const expireTag = (tag: string) => revalidateTag(tag, { expire: 0 })
 
 export async function POST(request: NextRequest) {
-  const secret = request.nextUrl.searchParams.get("secret")
+  const secret = process.env.SANITY_REVALIDATE_SECRET
+  if (!secret) {
+    console.error("SANITY_REVALIDATE_SECRET is not set")
+    return NextResponse.json(
+      { message: "Webhook is not configured" },
+      { status: 500 }
+    )
+  }
 
-  if (secret !== process.env.SANITY_REVALIDATE_SECRET) {
-    return NextResponse.json({ message: "Invalid secret" }, { status: 401 })
+  // Sanity signs the raw body with the webhook secret, so verify it before
+  // parsing
+  const rawBody = await request.text()
+  const signature = request.headers.get(SIGNATURE_HEADER_NAME) ?? ""
+
+  // Throws on a malformed signature header instead of returning false
+  const isValid = await isValidSignature(rawBody, signature, secret).catch(
+    () => false
+  )
+
+  if (!isValid) {
+    return NextResponse.json({ message: "Invalid signature" }, { status: 401 })
+  }
+
+  let body
+  try {
+    body = JSON.parse(rawBody)
+  } catch {
+    return NextResponse.json({ message: "Invalid JSON body" }, { status: 400 })
   }
 
   try {
-    const body = await request.json()
     const { _type, slug } = body
 
     console.log(

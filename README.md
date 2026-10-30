@@ -47,6 +47,8 @@ MEN
 
 Du må spesifisere URL for webhook i Sanity sitt dashbord. URLen dette webhooket skal peke på er `https://uiogaming.no/api/revalidate` med _POST_ forespørselstype.
 
+Sett feltet _Secret_ på webhooket til samme verdi som `SANITY_REVALIDATE_SECRET` i `.env`. Sanity signerer da hver forespørsel, og APIet avviser forespørsler uten gyldig signatur.
+
 Du kan lese mer om det [her](https://www.sanity.io/docs/webhooks).
 
 ## Vil du bidra?
