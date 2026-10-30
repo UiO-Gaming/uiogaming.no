@@ -1,3 +1,4 @@
+import { formatEventDate } from "@/lib/dates"
 import { getUpcomingEvents } from "@/lib/sanity"
 
 import { getLocale, getTranslations } from "next-intl/server"
@@ -26,21 +27,6 @@ const Events = async () => {
   const locale = await getLocale()
 
   const events: Event[] = await getUpcomingEvents(2)
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Europe/Oslo",
-    }
-
-    return date.toLocaleString(locale, options)
-  }
 
   const previewDescription = (description: string | null) => {
     if (!description) return null
@@ -75,7 +61,7 @@ const Events = async () => {
               </div>
               <div className={styles.metadata}>
                 <FaCalendarAlt />
-                <p>{formatDate(event.date)}</p>
+                <p>{formatEventDate(event.date, locale)}</p>
               </div>
             </div>
             <p>{previewDescription(event.description)}</p>

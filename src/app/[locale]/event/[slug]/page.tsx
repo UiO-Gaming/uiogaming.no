@@ -1,6 +1,7 @@
 import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
 import Back from "@/components/ui/back"
 
+import { formatEventDate } from "@/lib/dates"
 import { getEvent } from "@/lib/sanity"
 
 import { Metadata, Viewport } from "next"
@@ -33,25 +34,11 @@ export async function generateMetadata({
 
   const t = await getTranslations({ locale, namespace: "metaTags" })
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Europe/Oslo",
-    }
-    return date.toLocaleString(locale, options)
-  }
-
   return generateSeoMetadata({
     locale,
     title: data.title,
     description: [
-      `${t("time")}: ${formatDate(data.date)}`,
+      `${t("time")}: ${formatEventDate(data.date, locale)}`,
       data.location && `${t("location")}: ${data.location}`,
       data.description && `\n${data.description}`,
     ]
@@ -71,21 +58,6 @@ const Event = async ({ params }: EventPageParams) => {
 
   if (!data) return notFound()
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Europe/Oslo",
-    }
-
-    return date.toLocaleString(locale, options)
-  }
-
   return (
     <div className={styles.container}>
       <Back />
@@ -97,7 +69,7 @@ const Event = async ({ params }: EventPageParams) => {
         </div>
         <div className={styles.metadata}>
           <FaCalendarAlt />
-          <p>{formatDate(data.date)}</p>
+          <p>{formatEventDate(data.date, locale)}</p>
         </div>
         <p className={styles.description}>{data.description}</p>
       </div>

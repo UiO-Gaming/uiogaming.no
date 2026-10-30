@@ -1,5 +1,7 @@
 import { createClient } from "@sanity/client"
 
+import { toOsloDateString } from "./dates"
+
 export const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
@@ -72,26 +74,19 @@ export async function getEvent(slug: string) {
 }
 
 export async function getUpcomingEvents(limit: number) {
-  // Event dates are stored as Oslo local time strings ("2026-11-05 17:00"),
-  // which sort correctly as text, so compare against the current time in the
-  // same format
-  const parts = Object.fromEntries(
-    new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Europe/Oslo",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-      hourCycle: "h23",
-    })
-      .formatToParts(new Date())
-      .map(({ type, value }) => [type, value])
-  )
-  const now = `${parts.year}-${parts.month}-${parts.day} ${parts.hour}:${parts.minute}`
+  // Most event dates are Oslo wall-clock strings ("2026-11-05 17:00"), which
+  // sort correctly as text, so compare them against the current Oslo time in
+  // the same format. ISO timestamps from the Studio are compared as datetimes
+  const now = toOsloDateString(new Date())
 
   const query = `
-    *[_type == "event" && date >= $now] | order(date asc)[0...$limit] {
+    *[
+      _type == "event" &&
+      select(
+        defined(dateTime(date)) => dateTime(date) >= dateTime(now()),
+        date >= $now
+      )
+    ] | order(date asc)[0...$limit] {
       _id,
       title,
       location,
