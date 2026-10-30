@@ -25,6 +25,8 @@ export async function generateMetadata({
   const { slug } = await params
   const data = await getEvent(slug)
 
+  if (!data) notFound()
+
   const locale = await getLocale()
   const t = await getTranslations("metaTags")
 

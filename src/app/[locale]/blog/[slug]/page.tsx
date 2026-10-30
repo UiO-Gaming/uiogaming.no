@@ -41,6 +41,8 @@ export async function generateMetadata({
   const { slug } = await params
   const data = await getBlogPost(slug)
 
+  if (!data) notFound()
+
   return generateSeoMetadata({
     title: data.title,
     description: data.excerpt,
