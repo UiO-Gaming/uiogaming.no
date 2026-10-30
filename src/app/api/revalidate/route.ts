@@ -1,6 +1,10 @@
 import { revalidateTag } from "next/cache"
 import { NextRequest, NextResponse } from "next/server"
 
+// Expire immediately so the first visit after a publish gets fresh content.
+// The "max" profile would serve the stale version once more while refetching
+const expireTag = (tag: string) => revalidateTag(tag, { expire: 0 })
+
 export async function POST(request: NextRequest) {
   const secret = request.nextUrl.searchParams.get("secret")
 
@@ -17,19 +21,19 @@ export async function POST(request: NextRequest) {
     )
 
     if (_type === "post") {
-      revalidateTag("blog-posts", "max")
+      expireTag("blog-posts")
       if (slug?.current) {
-        revalidateTag(`post-${slug.current}`, "max")
+        expireTag(`post-${slug.current}`)
       }
     } else if (_type === "event") {
-      revalidateTag("events", "max")
+      expireTag("events")
       if (slug?.current) {
-        revalidateTag(`event-${slug.current}`, "max")
+        expireTag(`event-${slug.current}`)
       }
     } else if (_type === "author") {
-      revalidateTag("authors", "max")
+      expireTag("authors")
       // Blog posts show the author's name and image
-      revalidateTag("blog-posts", "max")
+      expireTag("blog-posts")
     }
 
     return NextResponse.json({
