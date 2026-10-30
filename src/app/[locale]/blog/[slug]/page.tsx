@@ -7,6 +7,7 @@ import { getBlogPost } from "@/lib/sanity"
 
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { Metadata, Viewport } from "next"
+import type { Locale } from "next-intl"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 
@@ -15,7 +16,7 @@ import * as styles from "./page.module.css"
 interface BlogPageParams {
   params: Promise<{
     slug: string
-    locale: string
+    locale: Locale
   }>
 }
 

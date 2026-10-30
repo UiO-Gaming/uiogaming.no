@@ -6,7 +6,7 @@ import { notFound } from "next/navigation"
 
 import LanguageSelector from "@components/ui/languageSelector"
 import UmamiAnalytics from "@/components/umamiAnalytics"
-import { locales } from "@/i18n"
+import { routing } from "@/i18n/routing"
 import { getAnalyticsConfig } from "@/lib/analyticsConfig"
 
 export const metadata: Metadata = {
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 }
 
 export function generateStaticParams() {
-  return locales.map(locale => ({ locale }))
+  return routing.locales.map(locale => ({ locale }))
 }
 
 export default async function RootLayout({
@@ -34,7 +34,7 @@ export default async function RootLayout({
   const { locale } = await params
 
   // [locale] matches any first path segment, e.g. /favicon.txt or /de
-  if (!hasLocale(locales, locale)) notFound()
+  if (!hasLocale(routing.locales, locale)) notFound()
 
   const messages = (await import(`../../../messages/${locale}.json`)).default
 

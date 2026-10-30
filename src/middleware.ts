@@ -1,10 +1,8 @@
 import createMiddleware from "next-intl/middleware"
 
-export default createMiddleware({
-  locales: ["no", "en"],
-  defaultLocale: "no",
-  localePrefix: "always",
-})
+import { routing } from "./i18n/routing"
+
+export default createMiddleware(routing)
 
 export const config = {
   // Match everything except API routes, Next internals and files with an

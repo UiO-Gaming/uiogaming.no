@@ -1,8 +1,9 @@
 import { Metadata, Viewport } from "next"
+import type { Locale } from "next-intl"
 import { getTranslations } from "next-intl/server"
 
 type SeoProps = {
-  locale: string
+  locale: Locale
   title?: string
   description?: string
   imageURL?: string

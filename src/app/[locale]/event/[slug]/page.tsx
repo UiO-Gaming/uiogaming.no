@@ -4,6 +4,7 @@ import Back from "@/components/ui/back"
 import { getEvent } from "@/lib/sanity"
 
 import { Metadata, Viewport } from "next"
+import type { Locale } from "next-intl"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
@@ -13,7 +14,7 @@ import * as styles from "./page.module.css"
 interface EventPageParams {
   params: Promise<{
     slug: string
-    locale: string
+    locale: Locale
   }>
 }
 

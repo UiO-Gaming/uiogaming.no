@@ -1,9 +1,10 @@
+import type { Locale } from "next-intl"
 import { getTranslations } from "next-intl/server"
 import Link from "next/link"
 
 import * as styles from "./notFound.module.css"
 
-const NotFound = async ({ locale }: { locale: string }) => {
+const NotFound = async ({ locale }: { locale: Locale }) => {
   const t = await getTranslations({ locale, namespace: "404" })
 
   return (

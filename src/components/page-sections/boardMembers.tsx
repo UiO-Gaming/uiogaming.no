@@ -29,7 +29,7 @@ interface BoardMember {
 
 const BoardMembers = async () => {
   const t = await getTranslations("boardMembers")
-  const locale = (await getLocale()) as "no" | "en"
+  const locale = await getLocale()
 
   const data: BoardMember[] = await getBoardMembers()
 

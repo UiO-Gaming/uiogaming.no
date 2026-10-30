@@ -8,12 +8,13 @@ import Office from "@/components/page-sections/office"
 import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
 
 import { Metadata, Viewport } from "next"
+import type { Locale } from "next-intl"
 
 export const revalidate = 3600 // 1 hour
 
 interface HomePageParams {
   params: Promise<{
-    locale: string
+    locale: Locale
   }>
 }
 
