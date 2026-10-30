@@ -1,17 +1,24 @@
 // app/[locale]/layout.tsx
-import { NextIntlClientProvider } from "next-intl"
-import { getLocale } from "next-intl/server"
+import { hasLocale, NextIntlClientProvider } from "next-intl"
+import { notFound } from "next/navigation"
 
 import LanguageSelector from "@components/ui/languageSelector"
 import UmamiAnalytics from "@/components/umamiAnalytics"
+import { locales } from "@/i18n"
 import { getAnalyticsConfig } from "@/lib/analyticsConfig"
 
 export default async function LocaleLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: Promise<{ locale: string }>
 }) {
-  const locale = (await getLocale()) as "no" | "en"
+  const { locale } = await params
+
+  // [locale] matches any first path segment, e.g. /favicon.txt or /de
+  if (!hasLocale(locales, locale)) notFound()
+
   const messages = (await import(`../../../messages/${locale}.json`)).default
 
   const analyticsConfig = getAnalyticsConfig()
