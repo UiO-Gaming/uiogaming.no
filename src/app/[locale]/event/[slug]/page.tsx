@@ -49,7 +49,13 @@ export async function generateMetadata({
   return generateSeoMetadata({
     locale,
     title: data.title,
-    description: `${t("time")}: ${formatDate(data.date)}\n${t("location")}: ${data.location}\n\n${data.description}`,
+    description: [
+      `${t("time")}: ${formatDate(data.date)}`,
+      data.location && `${t("location")}: ${data.location}`,
+      data.description && `\n${data.description}`,
+    ]
+      .filter(Boolean)
+      .join("\n"),
   })
 }
 

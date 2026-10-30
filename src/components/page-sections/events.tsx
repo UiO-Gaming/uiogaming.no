@@ -15,8 +15,10 @@ interface Event {
   slug: {
     current: string
   }
-  description: string
+  description: string | null
 }
+
+const DESCRIPTION_PREVIEW_LENGTH = 70
 
 const Events = async () => {
   const t = await getTranslations("events")
@@ -47,6 +49,26 @@ const Events = async () => {
     return date.toLocaleString(locale, options)
   }
 
+  const previewDescription = (description: string | null) => {
+    if (!description) return null
+
+    // Count graphemes so emoji and accented characters are never cut in half
+    const graphemes = Array.from(new Intl.Segmenter().segment(description))
+    if (graphemes.length <= DESCRIPTION_PREVIEW_LENGTH) return description
+
+    const preview = graphemes
+      .slice(0, DESCRIPTION_PREVIEW_LENGTH)
+      .map(({ segment }) => segment)
+      .join("")
+      .trimEnd()
+
+    return (
+      <>
+        {preview}... <span className={styles.readMore}>{t("readMore")}</span>
+      </>
+    )
+  }
+
   const mapEvents = (events: Event[]) => {
     if (events.length !== 0) {
       return events.map((event: Event) => (
@@ -63,16 +85,7 @@ const Events = async () => {
                 <p>{formatDate(event.date)}</p>
               </div>
             </div>
-            <p>
-              {event.description.length < 70 ? (
-                event.description
-              ) : (
-                <>
-                  {event.description.substring(0, 70)}...{" "}
-                  <span className={styles.readMore}>{t("readMore")}</span>
-                </>
-              )}
-            </p>
+            <p>{previewDescription(event.description)}</p>
           </article>
         </Link>
       ))
