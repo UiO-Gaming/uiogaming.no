@@ -31,7 +31,7 @@ const Back = () => {
       onClick={handleBack}
     >
       <FaArrowLeft />
-      <p>{t("back")}</p>
+      <span>{t("back")}</span>
     </button>
   )
 }
