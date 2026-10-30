@@ -1,7 +1,8 @@
 import { Metadata, Viewport } from "next"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getTranslations } from "next-intl/server"
 
 type SeoProps = {
+  locale: string
   title?: string
   description?: string
   imageURL?: string
@@ -9,13 +10,13 @@ type SeoProps = {
 }
 
 export async function generateSeoMetadata({
+  locale,
   title,
   description,
   imageURL,
   author,
 }: SeoProps): Promise<Metadata> {
-  const t = await getTranslations("metaTags")
-  const locale = await getLocale()
+  const t = await getTranslations({ locale, namespace: "metaTags" })
 
   const defaultTitle = "UiO Gaming"
   const metaDescription = description || t("description")

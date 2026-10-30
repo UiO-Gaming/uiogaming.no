@@ -8,7 +8,6 @@ import { getBlogPost } from "@/lib/sanity"
 import { PortableText, PortableTextComponents } from "@portabletext/react"
 import { Metadata, Viewport } from "next"
 import { notFound } from "next/navigation"
-import { getLocale } from "next-intl/server"
 import Image from "next/image"
 
 import * as styles from "./page.module.css"
@@ -33,15 +32,21 @@ interface LinkValue {
   href: string
 }
 
+// Render posts on first visit and cache them, instead of on every request
+export async function generateStaticParams() {
+  return []
+}
+
 export async function generateMetadata({
   params,
 }: BlogPageParams): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params
   const data = await getBlogPost(slug)
 
   if (!data) notFound()
 
   return generateSeoMetadata({
+    locale,
     title: data.title,
     description: data.excerpt,
     imageURL: data.mainImage?.asset?.url,
@@ -94,8 +99,7 @@ const components: PortableTextComponents = {
 }
 
 const BlogPost = async ({ params }: BlogPageParams) => {
-  const { slug }: { slug: string } = await params
-  const locale = await getLocale()
+  const { slug, locale } = await params
 
   const data = await getBlogPost(slug)
 

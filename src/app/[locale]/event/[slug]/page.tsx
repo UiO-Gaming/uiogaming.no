@@ -5,7 +5,7 @@ import { getEvent } from "@/lib/sanity"
 
 import { Metadata, Viewport } from "next"
 import { notFound } from "next/navigation"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getTranslations } from "next-intl/server"
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
 
 import * as styles from "./page.module.css"
@@ -17,16 +17,20 @@ interface EventPageParams {
   }>
 }
 
+// Render events on first visit and cache them, instead of on every request
+export async function generateStaticParams() {
+  return []
+}
+
 export async function generateMetadata({
   params,
 }: EventPageParams): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params
   const data = await getEvent(slug)
 
   if (!data) notFound()
 
-  const locale = await getLocale()
-  const t = await getTranslations("metaTags")
+  const t = await getTranslations({ locale, namespace: "metaTags" })
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString)
@@ -43,6 +47,7 @@ export async function generateMetadata({
   }
 
   return generateSeoMetadata({
+    locale,
     title: data.title,
     description: `${t("time")}: ${formatDate(data.date)}\n${t("location")}: ${data.location}\n\n${data.description}`,
   })
@@ -53,8 +58,7 @@ export function generateViewport(): Viewport {
 }
 
 const Event = async ({ params }: EventPageParams) => {
-  const { slug }: { slug: string } = await params
-  const locale = await getLocale()
+  const { slug, locale } = await params
 
   const data = await getEvent(slug)
 

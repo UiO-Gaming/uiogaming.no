@@ -7,6 +7,7 @@ export default createMiddleware({
 })
 
 export const config = {
-  // Match only internationalized pathnames
-  matcher: ["/", "/(no|en)/:path*"],
+  // Match everything except API routes, Next internals and files with an
+  // extension, so paths without a locale get redirected to one
+  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
 }

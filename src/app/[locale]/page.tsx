@@ -11,8 +11,18 @@ import { Metadata, Viewport } from "next"
 
 export const revalidate = 3600 // 1 hour
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateSeoMetadata({})
+interface HomePageParams {
+  params: Promise<{
+    locale: string
+  }>
+}
+
+export async function generateMetadata({
+  params,
+}: HomePageParams): Promise<Metadata> {
+  const { locale } = await params
+
+  return generateSeoMetadata({ locale })
 }
 
 export function generateViewport(): Viewport {

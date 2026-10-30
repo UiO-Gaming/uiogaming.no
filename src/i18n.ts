@@ -1,14 +1,15 @@
 import { hasLocale } from "next-intl"
 import { getRequestConfig } from "next-intl/server"
+import { locale as rootLocale } from "next/root-params"
 
 export const locales = ["no", "en"] as const
-export const defaultLocale = "no"
+const defaultLocale = "no"
 
-export default getRequestConfig(async ({ locale, requestLocale }) => {
+export default getRequestConfig(async ({ locale }) => {
   // An explicit locale (e.g. getTranslations({ locale })) takes precedence.
-  // Fall back to the default instead of throwing, so pages rendered outside
-  // a valid locale (like the root not-found page) can still be translated
-  const requested = locale ?? (await requestLocale)
+  // The root param can be any first path segment until the layout rejects it,
+  // so fall back to the default instead of throwing
+  const requested = locale ?? (await rootLocale())
   const resolved = hasLocale(locales, requested) ? requested : defaultLocale
 
   return {
