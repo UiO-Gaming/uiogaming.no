@@ -32,6 +32,22 @@ interface LinkValue {
   href: string
 }
 
+const SAFE_LINK_PROTOCOLS = ["http:", "https:", "mailto:"]
+
+// Links come from the CMS, so reject schemes like javascript: that would run
+// code when clicked. Parsing with URL also catches tricks like leading
+// whitespace or mixed case that a simple prefix check would miss
+const getSafeHref = (href?: string) => {
+  if (!href) return null
+
+  try {
+    const { protocol } = new URL(href, "https://uiogaming.no")
+    return SAFE_LINK_PROTOCOLS.includes(protocol) ? href : null
+  } catch {
+    return null
+  }
+}
+
 // Render posts on first visit and cache them, instead of on every request
 export async function generateStaticParams() {
   return []
@@ -85,16 +101,21 @@ const components: PortableTextComponents = {
     }: {
       children?: React.ReactNode
       value?: LinkValue
-    }) => (
-      <a
-        href={value?.href ?? "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.link}
-      >
-        {children}
-      </a>
-    ),
+    }) => {
+      const href = getSafeHref(value?.href)
+      if (!href) return <>{children}</>
+
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.link}
+        >
+          {children}
+        </a>
+      )
+    },
   },
 }
 
