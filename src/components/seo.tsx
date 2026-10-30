@@ -1,6 +1,8 @@
-import { Metadata, Viewport } from "next"
+import { Metadata } from "next"
 import type { Locale } from "next-intl"
 import { getTranslations } from "next-intl/server"
+
+export const THEME_COLOR = "#7d36e7"
 
 type SeoProps = {
   locale: Locale
@@ -22,17 +24,11 @@ export async function generateSeoMetadata({
   const defaultTitle = "UiO Gaming"
   const metaDescription = description || t("description")
   const siteUrl = "https://uiogaming.no"
-  const themeColor = "#7d36e7"
 
   return {
     title: title ? `${title} | ${defaultTitle}` : defaultTitle,
     description: metaDescription,
     authors: author ? [{ name: author }] : [{ name: "UiO Gaming" }],
-    icons: {
-      icon: "/logo_2024_neon_pink.png",
-      shortcut: "/logo_2024_neon_pink.png",
-      apple: "/logo_2024_neon_pink.png",
-    },
     openGraph: {
       title: title || defaultTitle,
       description: metaDescription,
@@ -62,17 +58,9 @@ export async function generateSeoMetadata({
       images: imageURL ? [imageURL] : [`${siteUrl}/logo_2024_neon_trans.png`],
     },
     other: {
-      "theme-color": themeColor,
-      "msapplication-TileColor": themeColor,
-      "msapplication-navbutton-color": themeColor,
+      "msapplication-TileColor": THEME_COLOR,
+      "msapplication-navbutton-color": THEME_COLOR,
       "apple-mobile-web-app-status-bar-style": "black-translucent",
     },
-  }
-}
-
-export function generateSeoViewport(): Viewport {
-  return {
-    themeColor: "#7d36e7",
-    colorScheme: "dark",
   }
 }

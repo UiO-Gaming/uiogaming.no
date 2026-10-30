@@ -1,12 +1,12 @@
 import Footer from "@/components/page-sections/footer"
-import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
+import { generateSeoMetadata } from "@/components/seo"
 import Back from "@/components/ui/back"
 
 import { urlFor } from "@/lib/imageUrlBuilder"
 import { getBlogPost } from "@/lib/sanity"
 
 import { PortableText, PortableTextComponents } from "@portabletext/react"
-import { Metadata, Viewport } from "next"
+import { Metadata } from "next"
 import type { Locale } from "next-intl"
 import { notFound } from "next/navigation"
 import Image from "next/image"
@@ -69,10 +69,6 @@ export async function generateMetadata({
     imageURL: data.mainImage?.asset?.url,
     author: data.author?.name,
   })
-}
-
-export function generateViewport(): Viewport {
-  return generateSeoViewport()
 }
 
 const components: PortableTextComponents = {

@@ -1,10 +1,11 @@
 import "@/app/globals.css"
 
 import { hasLocale, NextIntlClientProvider } from "next-intl"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { notFound } from "next/navigation"
 
 import LanguageSelector from "@components/ui/languageSelector"
+import { THEME_COLOR } from "@/components/seo"
 import UmamiAnalytics from "@/components/umamiAnalytics"
 import { routing } from "@/i18n/routing"
 
@@ -17,6 +18,11 @@ export const metadata: Metadata = {
     shortcut: "/logo_2024_neon_pink.png",
     apple: "/logo_2024_neon_pink.png",
   },
+}
+
+export const viewport: Viewport = {
+  themeColor: THEME_COLOR,
+  colorScheme: "dark",
 }
 
 export function generateStaticParams() {

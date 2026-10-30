@@ -1,10 +1,10 @@
-import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
+import { generateSeoMetadata } from "@/components/seo"
 import Back from "@/components/ui/back"
 
 import { formatEventDate } from "@/lib/dates"
 import { getEvent } from "@/lib/sanity"
 
-import { Metadata, Viewport } from "next"
+import { Metadata } from "next"
 import type { Locale } from "next-intl"
 import { notFound } from "next/navigation"
 import { getTranslations } from "next-intl/server"
@@ -45,10 +45,6 @@ export async function generateMetadata({
       .filter(Boolean)
       .join("\n"),
   })
-}
-
-export function generateViewport(): Viewport {
-  return generateSeoViewport()
 }
 
 const Event = async ({ params }: EventPageParams) => {
