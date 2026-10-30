@@ -9,7 +9,7 @@
     "build": "next build",
     "start": "next start -p 9000",
     "lint": "eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@portabletext/react": "^8.0.1",
