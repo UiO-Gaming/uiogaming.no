@@ -45,9 +45,20 @@ Om du vil at innhold skal oppdatere seg når innholdet endres i backend må du k
 
 MEN
 
-Du må spesifisere URL for webhook i Sanity sitt dashbord. URLen dette webhooket skal peke på er `https://uiogaming.no/api/revalidate` med _POST_ forespørselstype.
+Du må sette opp et webhook i [Sanity sitt dashbord](https://www.sanity.io/manage) under _API → Webhooks_:
 
-Du kan lese mer om det [her](https://www.sanity.io/docs/webhooks).
+- **URL:** `https://uiogaming.no/api/revalidate?secret=<SANITY_REVALIDATE_SECRET>`
+- **HTTP method:** POST
+- **Projection:** Må minst inneholde `_type` og `slug`, f.eks `{_type, slug}`
+
+Verdien til `secret` på slutten av _URL_-feltet må være lik `SANITY_REVALIDATE_SECRET` i `.env`. Om disse ikke stemmer overens svarer APIet med `401`.
+
+> [!NOTE]
+> Webhook-skjemaet i Sanity har også et eget felt som heter _Secret_. Det brukes til å signere forespørselen med headeren `sanity-webhook-signature`, som dette APIet ikke sjekker. Hemmeligheten må derfor ligge i _URL_-feltet, ikke i _Secret_-feltet.
+
+Webhooket oppdaterer blogginnlegg og arrangementer med en gang. Annet innhold oppdateres først når cachen går ut (opptil en time).
+
+Du kan lese mer om webhooks [her](https://www.sanity.io/docs/webhooks).
 
 ## Vil du bidra?
 
