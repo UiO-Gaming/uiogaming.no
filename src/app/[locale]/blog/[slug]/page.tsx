@@ -1,16 +1,14 @@
-import Layout from "@/app/[locale]/layout"
-
 import Footer from "@/components/page-sections/footer"
-import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
+import { generateSeoMetadata } from "@/components/seo"
 import Back from "@/components/ui/back"
 
-import { urlFor } from "@/lib/imageUrlBuilder"
+import { type SanityImage, urlFor } from "@/lib/imageUrlBuilder"
 import { getBlogPost } from "@/lib/sanity"
 
 import { PortableText, PortableTextComponents } from "@portabletext/react"
-import { Metadata, Viewport } from "next"
+import { Metadata } from "next"
+import type { Locale } from "next-intl"
 import { notFound } from "next/navigation"
-import { getLocale } from "next-intl/server"
 import Image from "next/image"
 
 import * as styles from "./page.module.css"
@@ -18,15 +16,11 @@ import * as styles from "./page.module.css"
 interface BlogPageParams {
   params: Promise<{
     slug: string
-    locale: string
+    locale: Locale
   }>
 }
 
-interface ImageValue {
-  asset?: {
-    _id: string
-    url: string
-  }
+type ImageValue = Partial<SanityImage> & {
   alt?: string
   caption?: string
 }
@@ -35,22 +29,47 @@ interface LinkValue {
   href: string
 }
 
+const SAFE_LINK_PROTOCOLS = ["http:", "https:", "mailto:"]
+
+// Links come from the CMS, so reject schemes like javascript: that would run
+// code when clicked. Parsing with URL also catches tricks like leading
+// whitespace or mixed case that a simple prefix check would miss
+const getSafeHref = (href?: string) => {
+  if (!href) return null
+
+  try {
+    const { protocol } = new URL(href, "https://uiogaming.no")
+    return SAFE_LINK_PROTOCOLS.includes(protocol) ? href : null
+  } catch {
+    return null
+  }
+}
+
+// Render posts on first visit and cache them, instead of on every request
+export async function generateStaticParams() {
+  return []
+}
+
 export async function generateMetadata({
   params,
 }: BlogPageParams): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params
   const data = await getBlogPost(slug)
 
+  if (!data) notFound()
+
   return generateSeoMetadata({
+    locale,
+    path: `/blog/${slug}`,
     title: data.title,
     description: data.excerpt,
-    imageURL: data.mainImage?.asset?.url,
+    // Cropped around the hotspot to the size link previews expect
+    imageURL: data.mainImage?.asset
+      ? urlFor(data.mainImage).width(1200).height(630).url()
+      : undefined,
     author: data.author?.name,
+    publishedTime: data._createdAt,
   })
-}
-
-export function generateViewport(): Viewport {
-  return generateSeoViewport()
 }
 
 const components: PortableTextComponents = {
@@ -60,10 +79,13 @@ const components: PortableTextComponents = {
       return (
         <div className={styles.imageContainer}>
           <Image
-            src={urlFor(value).url()}
+            // Only a width, so the image keeps its shape and just the crop
+            // applies. fit("max") avoids upscaling small images
+            src={urlFor(value).width(1200).fit("max").url()}
             alt={value.alt || "Blog image"}
             width={800}
             height={400}
+            sizes="(max-width: 640px) 100vw, 640px"
             style={{ width: "100%", height: "auto" }}
           />
           {value.caption && (
@@ -80,22 +102,29 @@ const components: PortableTextComponents = {
     }: {
       children?: React.ReactNode
       value?: LinkValue
-    }) => (
-      <a
-        href={value?.href ?? "#"}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles.link}
-      >
-        {children}
-      </a>
-    ),
+    }) => {
+      const href = getSafeHref(value?.href)
+      if (!href) return <>{children}</>
+
+      // Only links to other sites open in a new tab, not mailto: or links
+      // within this site
+      const isExternal = /^https?:\/\//i.test(href)
+
+      return (
+        <a
+          href={href}
+          className={styles.link}
+          {...(isExternal && { target: "_blank", rel: "noopener noreferrer" })}
+        >
+          {children}
+        </a>
+      )
+    },
   },
 }
 
 const BlogPost = async ({ params }: BlogPageParams) => {
-  const { slug }: { slug: string } = await params
-  const locale = await getLocale()
+  const { slug, locale } = await params
 
   const data = await getBlogPost(slug)
 
@@ -108,7 +137,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
   })
 
   return (
-    <Layout>
+    <>
       <div className={styles.container}>
         <div className={styles.backButton}>
           <Back />
@@ -117,10 +146,11 @@ const BlogPost = async ({ params }: BlogPageParams) => {
           <header className={styles.header}>
             {data.mainImage && (
               <Image
-                src={urlFor(data.mainImage).url()}
+                src={urlFor(data.mainImage).width(1600).fit("max").url()}
                 alt={data.title}
                 width={800}
                 height={400}
+                sizes="(max-width: 850px) 100vw, 850px"
                 className={styles.headerImage}
               />
             )}
@@ -131,7 +161,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
                 <Image
                   className="circular"
                   alt={data.author.name}
-                  src={urlFor(data.author.image).width(50).height(50).url()}
+                  src={urlFor(data.author.image).width(100).height(100).url()}
                   width={50}
                   height={50}
                 />
@@ -148,7 +178,7 @@ const BlogPost = async ({ params }: BlogPageParams) => {
         </article>
       </div>
       <Footer />
-    </Layout>
+    </>
   )
 }
 

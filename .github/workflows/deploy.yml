@@ -5,6 +5,11 @@ on:
     branches:
       - main
 
+# Let a running deploy finish before the next one starts
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
 jobs:
   run_pull:
     runs-on: ubuntu-latest
@@ -17,12 +22,13 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519  # This should be redundant but seems to do the trick.
           ssh-keyscan -H ${{ vars.SSH_HOST }} > ~/.ssh/known_hosts
 
+      # up --build builds the new image while the old container keeps serving,
+      # then swaps the container. Old images are pruned so they don't fill the disk
       - name: Connect, pull, build and deploy
-        run: ssh ${{ secrets.SSH_USER }}@${{ vars.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ vars.MAIN_BRANCH }} && git pull && docker compose down && docker compose up -d --build && exit"
+        run: ssh ${{ secrets.SSH_USER }}@${{ vars.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ vars.MAIN_BRANCH }} && git pull && docker compose up -d --build && docker image prune -f && exit"
 
       - name: Clean up
         run: rm -rf ~/.ssh
 
     permissions:
       contents: read
-      pull-requests: write

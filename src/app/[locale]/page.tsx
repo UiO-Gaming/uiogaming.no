@@ -1,5 +1,3 @@
-import Layout from "@/app/[locale]/layout"
-
 import About from "@/components/page-sections/about"
 import BoardMembers from "@/components/page-sections/boardMembers"
 import Contact from "@/components/page-sections/contact"
@@ -7,23 +5,30 @@ import Events from "@/components/page-sections/events"
 import Footer from "@/components/page-sections/footer"
 import Hero from "@/components/page-sections/hero"
 import Office from "@/components/page-sections/office"
-import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
+import { generateSeoMetadata } from "@/components/seo"
 
-import { Metadata, Viewport } from "next"
+import { Metadata } from "next"
+import type { Locale } from "next-intl"
 
 export const revalidate = 3600 // 1 hour
 
-export async function generateMetadata(): Promise<Metadata> {
-  return generateSeoMetadata({})
+interface HomePageParams {
+  params: Promise<{
+    locale: Locale
+  }>
 }
 
-export function generateViewport(): Viewport {
-  return generateSeoViewport()
+export async function generateMetadata({
+  params,
+}: HomePageParams): Promise<Metadata> {
+  const { locale } = await params
+
+  return generateSeoMetadata({ locale, path: "/" })
 }
 
 export default function Home() {
   return (
-    <Layout>
+    <>
       <Hero />
       <About />
       <Events />
@@ -31,6 +36,6 @@ export default function Home() {
       <BoardMembers />
       <Contact />
       <Footer />
-    </Layout>
+    </>
   )
 }

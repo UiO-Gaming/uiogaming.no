@@ -1,0 +1,13 @@
+# Installed and built inside the image
+node_modules
+.next
+
+# Secrets are passed in by docker compose, never baked into the image
+.env*
+
+.git
+.github
+Dockerfile
+docker-compose.yml
+*.md
+npm-debug.log*

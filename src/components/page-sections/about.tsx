@@ -1,6 +1,6 @@
-import DiscordButton from "@components/ui/discordButton"
-import MemberButton from "@components/ui/memberButton"
-import OtherButton from "@components/ui/otherButton"
+import DiscordButton from "@/components/ui/discordButton"
+import MemberButton from "@/components/ui/memberButton"
+import OtherButton from "@/components/ui/otherButton"
 
 import { useTranslations } from "next-intl"
 import Image from "next/image"

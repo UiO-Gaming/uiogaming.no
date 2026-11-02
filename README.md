@@ -47,16 +47,14 @@ MEN
 
 Du må sette opp et webhook i [Sanity sitt dashbord](https://www.sanity.io/manage) under _API → Webhooks_:
 
-- **URL:** `https://uiogaming.no/api/revalidate?secret=<SANITY_REVALIDATE_SECRET>`
+- **URL:** `https://uiogaming.no/api/revalidate`
 - **HTTP method:** POST
 - **Projection:** Må minst inneholde `_type` og `slug`, f.eks `{_type, slug}`
+- **Secret:** Samme verdi som `SANITY_REVALIDATE_SECRET` i `.env`
 
-Verdien til `secret` på slutten av _URL_-feltet må være lik `SANITY_REVALIDATE_SECRET` i `.env`. Om disse ikke stemmer overens svarer APIet med `401`.
+Sanity bruker _Secret_ til å signere hver forespørsel med headeren `sanity-webhook-signature`, og APIet avviser forespørsler uten gyldig signatur med `401`. Hemmeligheten skal altså ligge i _Secret_-feltet, ikke i URLen.
 
-> [!NOTE]
-> Webhook-skjemaet i Sanity har også et eget felt som heter _Secret_. Det brukes til å signere forespørselen med headeren `sanity-webhook-signature`, som dette APIet ikke sjekker. Hemmeligheten må derfor ligge i _URL_-feltet, ikke i _Secret_-feltet.
-
-Webhooket oppdaterer blogginnlegg og arrangementer med en gang. Annet innhold oppdateres først når cachen går ut (opptil en time).
+Webhooket oppdaterer blogginnlegg, arrangementer og forfattere med en gang. Annet innhold oppdateres først når cachen går ut (opptil en time).
 
 Du kan lese mer om webhooks [her](https://www.sanity.io/docs/webhooks).
 

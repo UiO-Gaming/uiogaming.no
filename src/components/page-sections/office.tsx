@@ -1,21 +1,33 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useSyncExternalStore } from "react"
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import { ReactPhotoSphereViewer } from "react-photo-sphere-viewer"
 
 import * as styles from "./office.module.css"
 
+let webGL2Support: boolean | undefined
+
+// Checked once, since creating a WebGL context is not free
+const getWebGL2Support = () => {
+  webGL2Support ??= Boolean(
+    document.createElement("canvas").getContext("webgl2")
+  )
+  return webGL2Support
+}
+
+// WebGL support never changes, so there is nothing to subscribe to
+const subscribe = () => () => {}
+
 const Office = () => {
   const t = useTranslations("office")
-  const [supportsWebGL2, setSupportsWebGL2] = useState<boolean | null>(null)
-
-  useEffect(() => {
-    const canvas = document.createElement("canvas")
-    const gl = canvas.getContext("webgl2")
-    setSupportsWebGL2(Boolean(gl))
-  }, [])
+  // null on the server, which renders the fallback image
+  const supportsWebGL2 = useSyncExternalStore(
+    subscribe,
+    getWebGL2Support,
+    () => null
+  )
 
   return (
     <section id="office">
@@ -54,6 +66,7 @@ const Office = () => {
           className={styles.map}
           src="https://use.mazemap.com/embed.html#v=1&config=uio&zlevel=3&center=10.712463,59.932424&zoom=17&campusid=797&sharepoitype=poi&sharepoi=1000986035&utm_medium=iframe"
           allow="geolocation"
+          loading="lazy"
           title="Map by MazeMap"
         ></iframe>
       </div>

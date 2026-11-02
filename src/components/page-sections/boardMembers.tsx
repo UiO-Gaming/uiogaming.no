@@ -1,5 +1,5 @@
-import { urlFor } from "@/lib/imageUrlBuilder"
-import { sanityClient } from "@/lib/sanity"
+import { type SanityImage, urlFor } from "@/lib/imageUrlBuilder"
+import { getBoardMembers } from "@/lib/sanity"
 
 import { getLocale, getTranslations } from "next-intl/server"
 import Image from "next/image"
@@ -8,19 +8,13 @@ import * as styles from "./boardMembers.module.css"
 
 interface BoardMember {
   _id: string
-  boardMember: boolean
   contactInfo?: string
   name: string
   role?: {
     no: string
     en: string
   }
-  image?: {
-    asset?: {
-      _id: string
-      url: string
-    }
-  }
+  image: SanityImage | null
   bio?: {
     no: string
     en: string
@@ -29,31 +23,9 @@ interface BoardMember {
 
 const BoardMembers = async () => {
   const t = await getTranslations("boardMembers")
-  const locale = (await getLocale()) as "no" | "en"
+  const locale = await getLocale()
 
-  const query = `
-    *[_type == "author" && boardMember == true] | order(orderRank asc) {
-      _id,
-      boardMember,
-      contactInfo,
-      name,
-      role {
-        no,
-        en
-      },
-      image {
-        asset->{
-          _id,
-          url
-        }
-      },
-      bio {
-        no,
-        en
-      }
-    }
-  `
-  const data: BoardMember[] = await sanityClient.fetch(query)
+  const data: BoardMember[] = await getBoardMembers()
 
   return (
     <section id="board-members">
@@ -67,11 +39,9 @@ const BoardMembers = async () => {
               >
                 <Image
                   src={
-                    member.image?.asset?.url
-                      ? urlFor(member.image.asset.url)
-                          .width(512)
-                          .height(512)
-                          .url()
+                    member.image?.asset
+                      ? // Cropped to a square around the hotspot
+                        urlFor(member.image).width(512).height(512).url()
                       : "/person.png"
                   }
                   width={256}

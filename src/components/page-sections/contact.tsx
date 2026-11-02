@@ -22,9 +22,7 @@ const Contact = () => {
       <div className={styles.container}>
         <div className={styles.item}>
           <FaAt />
-          <a href="mailto:styret@uiogaming.no" target="_blank" rel="noreferrer">
-            {t("email")}
-          </a>
+          <a href="mailto:styret@uiogaming.no">{t("email")}</a>
         </div>
         <div className={styles.item}>
           <FaDiscord />

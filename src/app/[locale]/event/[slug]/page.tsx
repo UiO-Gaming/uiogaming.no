@@ -1,13 +1,13 @@
-import Layout from "@/app/[locale]/layout"
-
-import { generateSeoMetadata, generateSeoViewport } from "@/components/seo"
+import { generateSeoMetadata } from "@/components/seo"
 import Back from "@/components/ui/back"
 
+import { formatEventDate } from "@/lib/dates"
 import { getEvent } from "@/lib/sanity"
 
-import { Metadata, Viewport } from "next"
+import { Metadata } from "next"
+import type { Locale } from "next-intl"
 import { notFound } from "next/navigation"
-import { getLocale, getTranslations } from "next-intl/server"
+import { getTranslations } from "next-intl/server"
 import { FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa"
 
 import * as styles from "./page.module.css"
@@ -15,84 +15,62 @@ import * as styles from "./page.module.css"
 interface EventPageParams {
   params: Promise<{
     slug: string
-    locale: string
+    locale: Locale
   }>
+}
+
+// Render events on first visit and cache them, instead of on every request
+export async function generateStaticParams() {
+  return []
 }
 
 export async function generateMetadata({
   params,
 }: EventPageParams): Promise<Metadata> {
-  const { slug } = await params
+  const { slug, locale } = await params
   const data = await getEvent(slug)
 
-  const locale = await getLocale()
-  const t = await getTranslations("metaTags")
+  if (!data) notFound()
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Europe/Oslo",
-    }
-    return date.toLocaleString(locale, options)
-  }
+  const t = await getTranslations({ locale, namespace: "metaTags" })
 
   return generateSeoMetadata({
+    locale,
+    path: `/event/${slug}`,
     title: data.title,
-    description: `${t("time")}: ${formatDate(data.date)}\n${t("location")}: ${data.location}\n\n${data.description}`,
+    description: [
+      `${t("time")}: ${formatEventDate(data.date, locale)}`,
+      data.location && `${t("location")}: ${data.location}`,
+      data.description && `\n${data.description}`,
+    ]
+      .filter(Boolean)
+      .join("\n"),
   })
 }
 
-export function generateViewport(): Viewport {
-  return generateSeoViewport()
-}
-
 const Event = async ({ params }: EventPageParams) => {
-  const { slug }: { slug: string } = await params
-  const locale = await getLocale()
+  const { slug, locale } = await params
 
   const data = await getEvent(slug)
 
   if (!data) return notFound()
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Europe/Oslo",
-    }
-
-    return date.toLocaleString(locale, options)
-  }
-
   return (
-    <Layout>
-      <div className={styles.container}>
-        <Back />
-        <div className={styles.event}>
-          <h1>{data.title}</h1>
-          <div className={styles.metadata}>
-            <FaMapMarkerAlt />
-            <p>{data.location}</p>
-          </div>
-          <div className={styles.metadata}>
-            <FaCalendarAlt />
-            <p>{formatDate(data.date)}</p>
-          </div>
-          <p className={styles.description}>{data.description}</p>
+    <div className={styles.container}>
+      <Back />
+      <div className={styles.event}>
+        <h1>{data.title}</h1>
+        <div className={styles.metadata}>
+          <FaMapMarkerAlt />
+          <p>{data.location}</p>
         </div>
+        <div className={styles.metadata}>
+          <FaCalendarAlt />
+          <p>{formatEventDate(data.date, locale)}</p>
+        </div>
+        <p className={styles.description}>{data.description}</p>
       </div>
-    </Layout>
+    </div>
   )
 }
 

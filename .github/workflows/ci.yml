@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    # Public values from env.example. The build prerenders pages with data
+    # from Sanity, so it needs to know which project to read from
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: mmqlu667
+      NEXT_PUBLIC_SANITY_DATASET: production
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check formatting
+        run: npx prettier --check .
+
+      - name: Lint
+        run: npm run lint
+
+      # Generates the route and next/root-params types tsc relies on
+      - name: Type check
+        run: npx next typegen && npx tsc --noEmit
+
+      - name: Build
+        run: npm run build

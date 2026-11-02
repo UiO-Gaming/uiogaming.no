@@ -1,4 +1,5 @@
-import { getAllEvents } from "@/lib/sanity"
+import { formatEventDate } from "@/lib/dates"
+import { getUpcomingEvents } from "@/lib/sanity"
 
 import { getLocale, getTranslations } from "next-intl/server"
 import Image from "next/image"
@@ -15,36 +16,36 @@ interface Event {
   slug: {
     current: string
   }
-  description: string
+  description: string | null
 }
+
+const DESCRIPTION_PREVIEW_LENGTH = 70
 
 const Events = async () => {
   const t = await getTranslations("events")
   const tCommon = await getTranslations("common")
   const locale = await getLocale()
 
-  const data: Event[] = await getAllEvents()
+  const events: Event[] = await getUpcomingEvents(2)
 
-  const currentDate = new Date()
-  const filteredEvents = data
-    .filter((event: Event) => {
-      return currentDate <= new Date(event.date)
-    })
-    .slice(0, 2)
+  const previewDescription = (description: string | null) => {
+    if (!description) return null
 
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: "long",
-      month: "long",
-      year: "numeric",
-      day: "numeric",
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Europe/Oslo",
-    }
+    // Count graphemes so emoji and accented characters are never cut in half
+    const graphemes = Array.from(new Intl.Segmenter().segment(description))
+    if (graphemes.length <= DESCRIPTION_PREVIEW_LENGTH) return description
 
-    return date.toLocaleString(locale, options)
+    const preview = graphemes
+      .slice(0, DESCRIPTION_PREVIEW_LENGTH)
+      .map(({ segment }) => segment)
+      .join("")
+      .trimEnd()
+
+    return (
+      <>
+        {preview}... <span className={styles.readMore}>{t("readMore")}</span>
+      </>
+    )
   }
 
   const mapEvents = (events: Event[]) => {
@@ -60,19 +61,10 @@ const Events = async () => {
               </div>
               <div className={styles.metadata}>
                 <FaCalendarAlt />
-                <p>{formatDate(event.date)}</p>
+                <p>{formatEventDate(event.date, locale)}</p>
               </div>
             </div>
-            <p>
-              {event.description.length < 70 ? (
-                event.description
-              ) : (
-                <>
-                  {event.description.substring(0, 70)}...{" "}
-                  <span className={styles.readMore}>{t("readMore")}</span>
-                </>
-              )}
-            </p>
+            <p>{previewDescription(event.description)}</p>
           </article>
         </Link>
       ))
@@ -92,7 +84,7 @@ const Events = async () => {
     <section id="events">
       <div className={styles.container}>
         <h2 className={styles.sectionHeader}>{t("title")}</h2>
-        <div className={styles.events}>{mapEvents(filteredEvents)}</div>
+        <div className={styles.events}>{mapEvents(events)}</div>
         <div className={"no-mobile " + styles.image}>
           <Image
             src="/event.jpg"
